@@ -1,0 +1,20 @@
+{
+  "name": "my-contents-admin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "관리자 어드민 백엔드 — my-contents-app 의 DB(users/orders)를 읽기 전용으로 분석",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "imagekit": "^6.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.1"
+  }
+}

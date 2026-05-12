@@ -8,6 +8,8 @@
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- TossPayments Payment Widget SDK v2 -->
+  <script src="https://js.tosspayments.com/v2/standard"></script>
   <style>
     /* Smooth fade transition for paid state */
     .fade-in { animation: fadeIn .4s ease-out; }
@@ -32,96 +34,13 @@
     // ========================================
     // ⚛️ React Hooks
     // ========================================
-    const { useState, useEffect, useContext, createContext, useMemo, useCallback } = React;
+    const { useState, useEffect, useContext, createContext, useMemo, useCallback, useRef } = React;
 
     // ========================================
     // 💳 Product Mock Data
     // (NOTE: 실제 결제 연동은 이후 단계에서 PG사 SDK 연결 예정 — 현재는 mock 상태)
     // ========================================
-    const PRODUCTS = [
-      {
-        id: 'aurora-pack',
-        title: 'Aurora Pack',
-        tagline: '북유럽 오로라 일러스트',
-        description: '신비로운 오로라의 빛깔을 담은 고해상도 일러스트. SNS, 굿즈, 브랜드 무드보드에 활용하기 좋아요.',
-        price: 4900, originalPrice: 9900,
-        previewUrl: 'images/aurora-pack.png',
-        category: '자연 · 풍경', tag: '베스트',
-      },
-      {
-        id: 'sakura-bloom',
-        title: 'Sakura Bloom',
-        tagline: '벚꽃 흩날리는 봄날',
-        description: '부드러운 파스텔 핑크의 벚꽃 일러스트. 봄 이벤트, 결혼식 청첩장, 카드 디자인에 어울려요.',
-        price: 3900, originalPrice: 7900,
-        previewUrl: 'images/sakura-bloom.png',
-        category: '자연 · 식물', tag: '신상',
-      },
-      {
-        id: 'neon-city',
-        title: 'Neon City',
-        tagline: '사이버펑크 네온 야경',
-        description: '비 내리는 미래 도시. 게임 UI, 음악 커버, 사이버펑크 무드 컨텐츠에 사용해보세요.',
-        price: 5900, originalPrice: 11900,
-        previewUrl: 'images/neon-city.png',
-        category: '도시 · 미래', tag: '인기',
-      },
-      {
-        id: 'ocean-wave',
-        title: 'Ocean Wave',
-        tagline: '미니멀 푸른 파도',
-        description: '우키요에 스타일의 깔끔한 파도 일러스트. 명함, 로고 배경, 미니멀 디자인에 추천해요.',
-        price: 3900, originalPrice: 6900,
-        previewUrl: 'images/ocean-wave.png',
-        category: '자연 · 바다', tag: null,
-      },
-      {
-        id: 'mountain-mist',
-        title: 'Mountain Mist',
-        tagline: '운무 낀 산 수채화',
-        description: '동양화 느낌의 안개 낀 산 수채화. 명상 앱, 힐링 콘텐츠, 여행 블로그에 어울려요.',
-        price: 4900, originalPrice: 8900,
-        previewUrl: 'images/mountain-mist.png',
-        category: '자연 · 풍경', tag: null,
-      },
-      {
-        id: 'galaxy-dust',
-        title: 'Galaxy Dust',
-        tagline: '우주 성운 그라데이션',
-        description: '깊은 보라와 핑크의 코스믹 그라데이션. 음악 앨범 커버, 발표 자료 표지로 멋져요.',
-        price: 4900, originalPrice: 9900,
-        previewUrl: 'images/galaxy-dust.png',
-        category: '우주 · 추상', tag: '베스트',
-      },
-      {
-        id: 'forest-zen',
-        title: 'Forest Zen',
-        tagline: '일본풍 대나무 숲',
-        description: '평온한 대나무 숲의 동양적 분위기. 요가/명상 스튜디오, 자연주의 브랜드에 추천.',
-        price: 3900, originalPrice: 7900,
-        previewUrl: 'images/forest-zen.png',
-        category: '자연 · 동양', tag: null,
-      },
-      {
-        id: 'desert-sunset',
-        title: 'Desert Sunset',
-        tagline: '사막 일몰 그라데이션',
-        description: '따뜻한 오렌지·핑크의 사막 노을. 여행 컨텐츠, 따뜻한 무드의 그래픽에 활용하세요.',
-        price: 4900, originalPrice: 8900,
-        previewUrl: 'images/desert-sunset.png',
-        category: '자연 · 풍경', tag: null,
-      },
-      {
-        id: 'crystal-gem',
-        title: 'Crystal Gem',
-        tagline: '영롱한 크리스탈',
-        description: '홀로그래픽 크리스탈 3D 렌더. 주얼리 브랜드, 럭셔리 무드 콘텐츠에 잘 어울려요.',
-        price: 6900, originalPrice: 12900,
-        previewUrl: 'images/crystal-gem.png',
-        category: '오브제 · 럭셔리', tag: '인기',
-      },
-    ];
-
+    // 상품은 /api/products 에서 로드 (ProductsProvider 참조)
     const DEFAULT_PRODUCT_META = {
       format: 'PNG (1024 × 1024)',
       resolution: '1024 × 1024 px',
@@ -129,52 +48,62 @@
       delivery: '결제 즉시 다운로드',
     };
 
-    const getProduct = (id) => PRODUCTS.find((p) => p.id === id) || null;
-
     const formatKRW = (n) => '₩' + n.toLocaleString('ko-KR');
 
     // ========================================
-    // 🔐 Payment Context (상품 단위, localStorage 영속)
-    // 결제 완료된 상품 ID를 Set으로 관리. 실제 결제 연동 전 mock 상태.
+    // 🔐 Purchases Context — 서버의 /api/purchases 기반 실제 결제 상태
     // ========================================
     const PaymentContext = createContext(null);
 
     function PaymentProvider({ children }) {
-      const [paidIds, setPaidIds] = useState(() => {
-        try {
-          const raw = localStorage.getItem('mock_paidIds');
-          if (raw) return new Set(JSON.parse(raw));
-        } catch (_) {}
-        return new Set();
-      });
+      const { token, isAuthenticated } = useAuth();
+      const [paidIds, setPaidIds] = useState(new Set());
+      const [loading, setLoading] = useState(false);
 
-      useEffect(() => {
-        try { localStorage.setItem('mock_paidIds', JSON.stringify([...paidIds])); } catch (_) {}
-      }, [paidIds]);
+      const refresh = useCallback(async () => {
+        if (!isAuthenticated || !token) { setPaidIds(new Set()); return; }
+        setLoading(true);
+        try {
+          const data = await apiRequest('/purchases', { token });
+          setPaidIds(new Set(data.productIds || []));
+        } catch (_) {
+          setPaidIds(new Set());
+        } finally {
+          setLoading(false);
+        }
+      }, [isAuthenticated, token]);
+
+      // 로그인 상태/토큰 변경 시 자동 동기화
+      useEffect(() => { refresh(); }, [refresh]);
 
       const isPaid = useCallback((id) => paidIds.has(id), [paidIds]);
-      const markPaid = useCallback((id) => {
-        setPaidIds((s) => { const n = new Set(s); n.add(id); return n; });
-      }, []);
-      const unmarkPaid = useCallback((id) => {
-        setPaidIds((s) => { const n = new Set(s); n.delete(id); return n; });
-      }, []);
-      const resetAll = useCallback(() => setPaidIds(new Set()), []);
-      const markAllPaid = useCallback(() => {
-        setPaidIds(new Set(PRODUCTS.map((p) => p.id)));
-      }, []);
 
       const value = useMemo(() => ({
-        paidIds, isPaid, markPaid, unmarkPaid, resetAll, markAllPaid,
-        paidCount: paidIds.size,
-      }), [paidIds, isPaid, markPaid, unmarkPaid, resetAll, markAllPaid]);
+        paidIds, isPaid, paidCount: paidIds.size, loading, refresh,
+      }), [paidIds, isPaid, loading, refresh]);
 
-      return (
-        <PaymentContext.Provider value={value}>{children}</PaymentContext.Provider>
-      );
+      return <PaymentContext.Provider value={value}>{children}</PaymentContext.Provider>;
     }
 
     const usePayment = () => useContext(PaymentContext);
+
+    // ========================================
+    // 🔍 Hash-routing safe query parser (Toss successUrl 핸들링)
+    // 토스는 paymentKey/orderId/amount를 hash 앞 location.search 에 붙이고
+    // paymentType=NORMAL은 hash 안 query string에 붙이므로 둘 다 병합해야 한다.
+    // ========================================
+    function parseHashQuery() {
+      const params = new URLSearchParams();
+      const search = new URLSearchParams(window.location.search);
+      search.forEach((v, k) => params.set(k, v));
+      const hash = window.location.hash;
+      const qIdx = hash.indexOf('?');
+      if (qIdx !== -1) {
+        const inner = new URLSearchParams(hash.slice(qIdx + 1));
+        inner.forEach((v, k) => params.set(k, v));
+      }
+      return params;
+    }
 
     // ========================================
     // 🔑 Auth API + Context (JWT, localStorage 토큰)
@@ -267,15 +196,53 @@
     const useAuth = () => useContext(AuthContext);
 
     // ========================================
+    // 🛍️ Products Context — /api/products 로드
+    // ========================================
+    const ProductsContext = createContext({ products: [], loading: true, getProduct: () => null });
+
+    function ProductsProvider({ children }) {
+      const [products, setProducts] = useState([]);
+      const [loading, setLoading] = useState(true);
+      const [error, setError] = useState(null);
+
+      const refresh = useCallback(() => {
+        setLoading(true);
+        return apiRequest('/products')
+          .then((data) => { setProducts(data.products || []); setError(null); })
+          .catch((e) => { setError(e); setProducts([]); })
+          .finally(() => setLoading(false));
+      }, []);
+
+      useEffect(() => { refresh(); }, [refresh]);
+
+      const getProduct = useCallback((id) => products.find((p) => p.id === id) || null, [products]);
+
+      const value = useMemo(() => ({ products, loading, error, getProduct, refresh }),
+        [products, loading, error, getProduct, refresh]);
+
+      return <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>;
+    }
+
+    const useProducts = () => useContext(ProductsContext);
+
+    // ========================================
     // 🔀 Hash Router (lightweight)
     // ========================================
     const RouterContext = createContext(null);
 
+    // hash에서 query string(?...)을 분리하고 path만 추출
+    // 예: "#/success/neon-city?paymentType=NORMAL" → "/success/neon-city"
+    function pathFromHash() {
+      const raw = window.location.hash.replace(/^#/, '') || '/';
+      const qIdx = raw.indexOf('?');
+      return qIdx === -1 ? raw : raw.slice(0, qIdx);
+    }
+
     function Router({ children }) {
-      const [path, setPath] = useState(() => window.location.hash.replace(/^#/, '') || '/');
+      const [path, setPath] = useState(pathFromHash);
 
       useEffect(() => {
-        const onHash = () => setPath(window.location.hash.replace(/^#/, '') || '/');
+        const onHash = () => setPath(pathFromHash());
         window.addEventListener('hashchange', onHash);
         return () => window.removeEventListener('hashchange', onHash);
       }, []);
@@ -456,7 +423,7 @@
     // 🧩 Header (with demo paid-toggle)
     // ========================================
     function Header() {
-      const { paidCount, markAllPaid, resetAll } = usePayment();
+      const { paidCount } = usePayment();
       const { user, isAuthenticated, logout, loading } = useAuth();
       const { navigate } = useRouter();
 
@@ -464,10 +431,6 @@
         logout();
         navigate('/');
       };
-
-      const totalCount = PRODUCTS.length;
-      const allPaid = paidCount === totalCount;
-      const toggleDemo = () => { allPaid ? resetAll() : markAllPaid(); };
 
       return (
         <header className="sticky top-0 z-20 backdrop-blur bg-white/80 border-b border-slate-200/70">
@@ -500,18 +463,18 @@
                 </div>
               )}
 
-              {/* 데모 결제 토글 (구분선) */}
-              <span className="hidden sm:inline-block h-5 w-px bg-slate-200 mx-1"></span>
-              <button
-                onClick={toggleDemo}
-                className={`hidden sm:inline-flex items-center text-xs px-3 py-1.5 rounded-full ring-1 ring-inset transition
-                  ${allPaid
-                    ? 'bg-emerald-50 text-emerald-700 ring-emerald-200 hover:bg-emerald-100'
-                    : 'bg-slate-100 text-slate-700 ring-slate-200 hover:bg-slate-200'}`}
-                title="데모용: 전체 상품의 결제 상태를 토글합니다"
-              >
-                [데모] {paidCount}/{totalCount} 결제됨 ▸ {allPaid ? '전체 해제' : '전체 결제'}
-              </button>
+              {/* 구매 카운트 (로그인 시) */}
+              {isAuthenticated && (
+                <>
+                  <span className="hidden sm:inline-block h-5 w-px bg-slate-200 mx-1"></span>
+                  <span
+                    className="hidden sm:inline-flex items-center text-xs px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 ring-1 ring-inset ring-indigo-200"
+                    title="결제 완료된 콘텐츠 수"
+                  >
+                    🎁 보유 {paidCount}개
+                  </span>
+                </>
+              )}
             </div>
           </div>
         </header>
@@ -654,7 +617,8 @@
     // ========================================
     function ProductsListPage() {
       const { paidCount } = usePayment();
-      const totalCount = PRODUCTS.length;
+      const { products, loading } = useProducts();
+      const totalCount = products.length;
 
       return (
         <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
@@ -693,9 +657,15 @@
 
           {/* Products grid */}
           <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {PRODUCTS.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
+            {loading ? (
+              Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="aspect-square bg-slate-100 rounded-2xl animate-pulse" />
+              ))
+            ) : products.length === 0 ? (
+              <div className="col-span-full text-center py-16 text-slate-400">표시할 상품이 없습니다.</div>
+            ) : (
+              products.map((p) => <ProductCard key={p.id} product={p} />)
+            )}
           </section>
 
           {/* Trust block */}
@@ -726,11 +696,13 @@
     // 📄 Page — Product Detail
     // ========================================
     function ProductDetailPage({ params }) {
+      const { getProduct, loading, products } = useProducts();
       const product = getProduct(params?.id);
       const { isPaid } = usePayment();
       const { navigate } = useRouter();
       const [downloading, setDownloading] = useState(false);
 
+      if (loading) return <main className="max-w-5xl mx-auto px-4 py-12"><div className="aspect-square sm:aspect-auto sm:h-96 bg-slate-100 rounded-2xl animate-pulse" /></main>;
       if (!product) return <NotFoundPage />;
 
       const paid = isPaid(product.id);
@@ -828,7 +800,7 @@
           <section className="mt-12">
             <h2 className="text-lg font-bold text-slate-900 mb-4">함께 보기 좋은 상품</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {PRODUCTS.filter((p) => p.id !== product.id).slice(0, 4).map((p) => (
+              {products.filter((p) => p.id !== product.id).slice(0, 4).map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}
             </div>
@@ -838,65 +810,104 @@
     }
 
     // ========================================
-    // 📄 Page — Checkout (mock, 상품 단위)
+    // 📄 Page — Checkout (TossPayments 위젯)
     // ========================================
     function CheckoutPage({ params }) {
+      const { getProduct, loading: productsLoading } = useProducts();
       const product = getProduct(params?.id);
-      const { markPaid } = usePayment();
-      const { isAuthenticated, user, loading: authLoading } = useAuth();
+      const { isAuthenticated, user, token, loading: authLoading } = useAuth();
+      const { isPaid } = usePayment();
       const { navigate } = useRouter();
+
+      const widgetsRef = useRef(null);
+      const renderedRef = useRef(false);
+
+      const [order, setOrder] = useState(null);              // { orderId, amount, orderName }
+      const [clientKey, setClientKey] = useState(null);
+      const [widgetReady, setWidgetReady] = useState(false);
+      const [error, setError] = useState('');
+      const [paying, setPaying] = useState(false);
 
       // 로그인 안 된 경우 로그인 페이지로
       useEffect(() => {
         if (!authLoading && !isAuthenticated) navigate('/login');
       }, [authLoading, isAuthenticated]);
 
-      const [method, setMethod] = useState('card');
-      const [email, setEmail] = useState(user?.email || '');
-      const [emailError, setEmailError] = useState('');
-      const [agree, setAgree] = useState(false);
-      const [processing, setProcessing] = useState(false);
-
+      // 이미 구매한 상품이면 상세로
       useEffect(() => {
-        if (user?.email && !email) setEmail(user.email);
-      }, [user]);
+        if (product && isPaid(product.id)) navigate(`/product/${product.id}`);
+      }, [product, isPaid]);
 
+      // 1. 토스 클라이언트 키 로드
+      useEffect(() => {
+        apiRequest('/config')
+          .then((d) => setClientKey(d.tossClientKey))
+          .catch((e) => setError(e.message || '결제 설정을 불러오지 못했습니다.'));
+      }, []);
+
+      // 2. 주문 생성
+      useEffect(() => {
+        if (!product || !token) return;
+        apiRequest('/orders', { method: 'POST', body: { productId: product.id }, token })
+          .then(setOrder)
+          .catch((e) => {
+            if (e.code === 'ALREADY_PURCHASED') navigate(`/product/${product.id}`);
+            else setError(e.message || '주문 생성에 실패했습니다.');
+          });
+      }, [product, token]);
+
+      // 3. 토스 위젯 초기화 + 렌더 (단 한 번)
+      useEffect(() => {
+        if (!order || !clientKey || !user || renderedRef.current) return;
+        if (typeof window.TossPayments !== 'function') {
+          setError('토스 SDK가 로드되지 않았습니다.');
+          return;
+        }
+
+        (async () => {
+          try {
+            const toss = window.TossPayments(clientKey);
+            const widgets = toss.widgets({ customerKey: `user_${user.id}` });
+            widgetsRef.current = widgets;
+
+            await widgets.setAmount({ currency: 'KRW', value: order.amount });
+            await widgets.renderPaymentMethods({ selector: '#payment-method', variantKey: 'DEFAULT' });
+            await widgets.renderAgreement({ selector: '#agreement', variantKey: 'AGREEMENT' });
+
+            renderedRef.current = true;
+            setWidgetReady(true);
+          } catch (e) {
+            setError(e?.message || '결제 위젯 초기화에 실패했습니다.');
+          }
+        })();
+      }, [order, clientKey, user]);
+
+      const handlePay = async () => {
+        if (!widgetsRef.current || !order || !product) return;
+        setPaying(true);
+        setError('');
+        try {
+          await widgetsRef.current.requestPayment({
+            orderId: order.orderId,
+            orderName: order.orderName || product.title,
+            successUrl: `${window.location.origin}/#/success/${product.id}`,
+            failUrl:    `${window.location.origin}/#/fail/${product.id}`,
+            customerEmail: user.email,
+            customerName: user.email.split('@')[0],
+          });
+          // requestPayment는 페이지를 이동시키므로 보통 여기 도달 안 함
+        } catch (err) {
+          setPaying(false);
+          if (err?.code === 'USER_CANCEL') {
+            setError('결제가 취소되었습니다.');
+          } else {
+            setError(err?.message || '결제 요청에 실패했습니다.');
+          }
+        }
+      };
+
+      if (productsLoading) return <main className="max-w-3xl mx-auto px-4 py-12 text-slate-400">불러오는 중…</main>;
       if (!product) return <NotFoundPage />;
-
-      const validate = () => {
-        if (!email) { setEmailError('이메일을 입력해주세요'); return false; }
-        const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        if (!ok) { setEmailError('올바른 이메일 형식이 아닙니다'); return false; }
-        setEmailError('');
-        return true;
-      };
-
-      const handlePay = (e) => {
-        e.preventDefault();
-        if (!validate()) return;
-        if (!agree) { alert('약관에 동의해주세요'); return; }
-
-        // NOTE: 실제 결제는 PG SDK 호출 자리. 데모는 잠시 로딩 후 markPaid(product.id)
-        setProcessing(true);
-        setTimeout(() => {
-          markPaid(product.id);
-          navigate(`/success/${product.id}`);
-        }, 900);
-      };
-
-      const PaymentMethodButton = ({ id, label, emoji }) => (
-        <button
-          type="button"
-          onClick={() => setMethod(id)}
-          className={`flex flex-col items-center justify-center gap-1 py-4 rounded-xl border-2 transition
-            ${method === id
-              ? 'border-indigo-500 bg-indigo-50/60 text-indigo-700'
-              : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'}`}
-        >
-          <span className="text-2xl">{emoji}</span>
-          <span className="text-xs font-medium">{label}</span>
-        </button>
-      );
 
       return (
         <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
@@ -904,53 +915,43 @@
             <Link to={`/product/${product.id}`} className="hover:text-indigo-600">← 상품으로</Link>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">결제하기</h1>
-          <p className="mt-1 text-slate-500 text-sm">결제 완료 즉시 다운로드 링크가 이메일로 전송됩니다.</p>
+          <p className="mt-1 text-slate-500 text-sm">결제 완료 즉시 콘텐츠 다운로드가 활성화됩니다.</p>
 
           <div className="mt-8 grid md:grid-cols-5 gap-6">
-            <form onSubmit={handlePay} className="md:col-span-3 space-y-4">
+            <div className="md:col-span-3 space-y-4">
               <Card className="p-5 sm:p-6">
                 <h2 className="font-semibold text-slate-900 mb-3">결제 수단</h2>
-                <div className="grid grid-cols-3 gap-3">
-                  <PaymentMethodButton id="card"  label="카드"     emoji="💳" />
-                  <PaymentMethodButton id="kakao" label="카카오페이" emoji="🟡" />
-                  <PaymentMethodButton id="toss"  label="토스페이"   emoji="🔵" />
-                </div>
-              </Card>
-
-              <Card className="p-5 sm:p-6 space-y-4">
-                <h2 className="font-semibold text-slate-900">받는 이메일</h2>
-                <Input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
-                  error={emailError}
-                  hint="이 주소로 다운로드 링크와 영수증을 보내드려요."
-                />
+                <div id="payment-method" className="min-h-[180px]" />
+                {!widgetReady && !error && (
+                  <p className="text-xs text-slate-400">결제 위젯을 불러오는 중…</p>
+                )}
               </Card>
 
               <Card className="p-5 sm:p-6">
-                <label className="flex items-start gap-3 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={agree}
-                    onChange={(e) => setAgree(e.target.checked)}
-                    className="mt-1 w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400"
-                  />
-                  <span className="text-sm text-slate-700 leading-6">
-                    <b>(필수)</b> 디지털 콘텐츠 특성상 결제 후 환불이 제한될 수 있음에 동의합니다. 약관/개인정보 처리방침을 확인했습니다.
-                  </span>
-                </label>
+                <h2 className="font-semibold text-slate-900 mb-3">약관 동의</h2>
+                <div id="agreement" />
               </Card>
 
-              <Button type="submit" size="lg" className="w-full" disabled={processing}>
-                {processing ? '결제 처리 중…' : `${formatKRW(product.price)} 결제하기`}
+              {error && (
+                <div className="px-4 py-3 rounded-xl bg-rose-50 border border-rose-100 text-sm text-rose-700">
+                  {error}
+                </div>
+              )}
+
+              <Button
+                size="lg"
+                className="w-full"
+                onClick={handlePay}
+                disabled={!widgetReady || paying}
+              >
+                {paying ? '결제창 여는 중…' : `${formatKRW(order?.amount ?? product.price)} 결제하기`}
               </Button>
 
-              <p className="text-xs text-slate-400 text-center">
-                * 데모 환경입니다. 실제 결제는 발생하지 않습니다.
+              <p className="text-xs text-slate-400 text-center leading-5">
+                * 토스 공식 테스트 상점 키를 사용하고 있어 실제 청구가 발생하지 않습니다.<br />
+                테스트 카드: 임의 16자리, 미래 만료일, 임의 CVC/비밀번호.
               </p>
-            </form>
+            </div>
 
             <aside className="md:col-span-2">
               <Card className="p-5 sm:p-6 sticky top-20">
@@ -982,13 +983,19 @@
                   <div className="flex justify-between items-baseline">
                     <span className="font-semibold text-slate-900">총 결제 금액</span>
                     <span className="text-xl font-black bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
-                      {formatKRW(product.price)}
+                      {formatKRW(order?.amount ?? product.price)}
                     </span>
                   </div>
                 </div>
 
+                {order?.orderId && (
+                  <div className="mt-4 text-[10px] text-slate-400 break-all">
+                    주문번호: {order.orderId}
+                  </div>
+                )}
+
                 <div className="mt-5 p-3 rounded-lg bg-indigo-50/70 text-xs text-indigo-700 leading-5">
-                  🔒 모든 결제 정보는 암호화되어 안전하게 처리됩니다.
+                  🔒 결제 정보는 토스페이먼츠를 통해 암호화 처리되며 본 서비스에 저장되지 않습니다.
                 </div>
               </Card>
             </aside>
@@ -998,60 +1005,181 @@
     }
 
     // ========================================
-    // 📄 Page — Success (상품 단위)
+    // 📄 Page — Success (토스 confirm 호출 + 다운로드)
     // ========================================
     function SuccessPage({ params }) {
+      const { getProduct } = useProducts();
       const product = getProduct(params?.id);
-      const { isPaid } = usePayment();
+      const { token, isAuthenticated, loading: authLoading } = useAuth();
+      const { refresh } = usePayment();
       const { navigate } = useRouter();
+
+      const [phase, setPhase] = useState('confirming'); // confirming | paid | error
+      const [errorMsg, setErrorMsg] = useState('');
       const [downloading, setDownloading] = useState(false);
+      const confirmedRef = useRef(false); // StrictMode/리렌더에서 중복 호출 차단
 
-      // 결제 안 된 상품에 직접 진입 시 상세 페이지로
       useEffect(() => {
+        if (authLoading) return;
+        if (!isAuthenticated) { navigate('/login'); return; }
         if (!product) { navigate('/'); return; }
-        if (!isPaid(product.id)) navigate(`/product/${product.id}`);
-      }, [product, isPaid]);
+        if (confirmedRef.current) return;
 
-      if (!product) return null;
+        const q = parseHashQuery();
+        const paymentKey = q.get('paymentKey');
+        const orderId = q.get('orderId');
+        const amount = q.get('amount');
+
+        if (!paymentKey || !orderId || !amount) {
+          setPhase('error');
+          setErrorMsg('결제 정보가 올바르지 않습니다.');
+          return;
+        }
+
+        confirmedRef.current = true;
+        apiRequest('/payments/confirm', {
+          method: 'POST',
+          body: { paymentKey, orderId, amount: Number(amount) },
+          token,
+        })
+          .then(async () => {
+            await refresh();
+            setPhase('paid');
+            // confirm 성공 후 query 정리 — 새로고침해도 재confirm 방지 + 민감정보 URL 노출 최소화
+            const cleanUrl = window.location.pathname + window.location.hash;
+            window.history.replaceState({}, '', cleanUrl);
+          })
+          .catch((e) => {
+            setPhase('error');
+            setErrorMsg(e?.message || '결제 승인에 실패했습니다.');
+          });
+      }, [authLoading, isAuthenticated, product, token]);
 
       const handleDownload = async () => {
+        if (!product) return;
         setDownloading(true);
         await downloadPng(product.previewUrl, `${product.id}.png`);
         setDownloading(false);
       };
 
+      if (!product) return null;
+
       return (
         <main className="max-w-xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
           <Card className="p-8 sm:p-10 text-center fade-in">
-            <div className="mx-auto w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 grid place-items-center text-white text-4xl shadow-lg shadow-emerald-500/30">
-              ✓
-            </div>
-            <h1 className="mt-6 text-2xl sm:text-3xl font-extrabold text-slate-900">결제가 완료되었습니다</h1>
-            <p className="mt-2 text-slate-600">이제 콘텐츠를 자유롭게 다운로드할 수 있어요.</p>
-
-            <div className="mt-6 p-4 rounded-xl bg-slate-50 border border-slate-100 text-left">
-              <div className="flex items-center gap-3">
-                <img src={product.previewUrl} alt="" className="w-14 h-14 rounded-lg object-cover ring-1 ring-slate-200" />
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold text-slate-900 truncate">{product.title}</p>
-                  <p className="text-xs text-slate-500">{DEFAULT_PRODUCT_META.format}</p>
+            {phase === 'confirming' && (
+              <>
+                <div className="mx-auto w-20 h-20 rounded-full bg-gradient-to-br from-indigo-400 to-violet-500 grid place-items-center text-white text-4xl shadow-lg shadow-indigo-500/30 animate-pulse">
+                  ⏳
                 </div>
-                <div className="ml-auto text-sm font-bold text-slate-900">{formatKRW(product.price)}</div>
-              </div>
+                <h1 className="mt-6 text-2xl sm:text-3xl font-extrabold text-slate-900">결제를 확인하는 중…</h1>
+                <p className="mt-2 text-slate-600">잠시만 기다려주세요.</p>
+              </>
+            )}
+
+            {phase === 'paid' && (
+              <>
+                <div className="mx-auto w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 grid place-items-center text-white text-4xl shadow-lg shadow-emerald-500/30">
+                  ✓
+                </div>
+                <h1 className="mt-6 text-2xl sm:text-3xl font-extrabold text-slate-900">결제가 완료되었습니다</h1>
+                <p className="mt-2 text-slate-600">이제 콘텐츠를 자유롭게 다운로드할 수 있어요.</p>
+
+                <div className="mt-6 p-4 rounded-xl bg-slate-50 border border-slate-100 text-left">
+                  <div className="flex items-center gap-3">
+                    <img src={product.previewUrl} alt="" className="w-14 h-14 rounded-lg object-cover ring-1 ring-slate-200" />
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-slate-900 truncate">{product.title}</p>
+                      <p className="text-xs text-slate-500">{DEFAULT_PRODUCT_META.format}</p>
+                    </div>
+                    <div className="ml-auto text-sm font-bold text-slate-900">{formatKRW(product.price)}</div>
+                  </div>
+                </div>
+
+                <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <Button size="lg" onClick={handleDownload} disabled={downloading}>
+                    {downloading ? '다운로드 중…' : '⬇  PNG 다운로드'}
+                  </Button>
+                  <Button size="lg" variant="secondary" onClick={() => navigate('/')}>
+                    다른 상품 보기
+                  </Button>
+                </div>
+
+                <p className="mt-6 text-xs text-slate-400">
+                  영수증은 가입하신 이메일로 발송됩니다.
+                </p>
+              </>
+            )}
+
+            {phase === 'error' && (
+              <>
+                <div className="mx-auto w-20 h-20 rounded-full bg-gradient-to-br from-rose-400 to-rose-600 grid place-items-center text-white text-4xl shadow-lg shadow-rose-500/30">
+                  ⚠
+                </div>
+                <h1 className="mt-6 text-2xl sm:text-3xl font-extrabold text-slate-900">결제 승인에 실패했습니다</h1>
+                <p className="mt-2 text-slate-600 text-sm">{errorMsg}</p>
+                <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <Button size="lg" onClick={() => navigate(`/checkout/${product.id}`)}>
+                    다시 결제하기
+                  </Button>
+                  <Button size="lg" variant="secondary" onClick={() => navigate(`/product/${product.id}`)}>
+                    상품으로
+                  </Button>
+                </div>
+              </>
+            )}
+          </Card>
+        </main>
+      );
+    }
+
+    // ========================================
+    // 📄 Page — Fail (토스 failUrl 콜백)
+    // ========================================
+    function FailPage({ params }) {
+      const { getProduct } = useProducts();
+      const product = getProduct(params?.id);
+      const { navigate } = useRouter();
+      const [info, setInfo] = useState({ code: '', message: '' });
+
+      useEffect(() => {
+        const q = parseHashQuery();
+        setInfo({
+          code: q.get('code') || '',
+          message: q.get('message') || '결제가 취소되거나 실패했습니다.',
+        });
+        const cleanUrl = window.location.pathname + window.location.hash;
+        window.history.replaceState({}, '', cleanUrl);
+      }, []);
+
+      return (
+        <main className="max-w-xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+          <Card className="p-8 sm:p-10 text-center fade-in">
+            <div className="mx-auto w-20 h-20 rounded-full bg-gradient-to-br from-rose-400 to-rose-600 grid place-items-center text-white text-4xl shadow-lg shadow-rose-500/30">
+              ✗
             </div>
+            <h1 className="mt-6 text-2xl sm:text-3xl font-extrabold text-slate-900">결제가 완료되지 않았어요</h1>
+            <p className="mt-2 text-slate-600 text-sm">{info.message}</p>
+            {info.code && (
+              <p className="mt-2 text-xs text-slate-400">사유 코드: {info.code}</p>
+            )}
 
             <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <Button size="lg" onClick={handleDownload} disabled={downloading}>
-                {downloading ? '다운로드 중…' : '⬇  PNG 다운로드'}
-              </Button>
-              <Button size="lg" variant="secondary" onClick={() => navigate('/')}>
-                다른 상품 보기
-              </Button>
+              {product ? (
+                <>
+                  <Button size="lg" onClick={() => navigate(`/checkout/${product.id}`)}>
+                    다시 결제하기
+                  </Button>
+                  <Button size="lg" variant="secondary" onClick={() => navigate(`/product/${product.id}`)}>
+                    상품으로
+                  </Button>
+                </>
+              ) : (
+                <Button size="lg" onClick={() => navigate('/')} className="sm:col-span-2">
+                  메인으로
+                </Button>
+              )}
             </div>
-
-            <p className="mt-6 text-xs text-slate-400">
-              영수증과 다운로드 링크가 입력하신 이메일로도 발송되었습니다. (데모)
-            </p>
           </Card>
         </main>
       );
@@ -1291,10 +1419,11 @@
     function App() {
       return (
         <AuthProvider>
-          <PaymentProvider>
-            <Router>
-              <div className="min-h-screen flex flex-col">
-                <Header />
+          <ProductsProvider>
+            <PaymentProvider>
+              <Router>
+                <div className="min-h-screen flex flex-col">
+                  <Header />
                 <div className="flex-1">
                   <Routes>
                     <Route path="/"               element={<ProductsListPage />} />
@@ -1303,13 +1432,15 @@
                     <Route path="/signup"         element={<SignupPage />} />
                     <Route path="/checkout/:id"   element={<CheckoutPage />} />
                     <Route path="/success/:id"    element={<SuccessPage />} />
+                    <Route path="/fail/:id"       element={<FailPage />} />
                     <Route path="*"               element={<NotFoundPage />} />
                   </Routes>
                 </div>
                 <Footer />
               </div>
             </Router>
-          </PaymentProvider>
+            </PaymentProvider>
+          </ProductsProvider>
         </AuthProvider>
       );
     }
