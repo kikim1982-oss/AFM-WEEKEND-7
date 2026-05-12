@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel Studio — 프리미엄 PNG 콘텐츠</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    /* Smooth fade transition for paid state */
+    .fade-in { animation: fadeIn .4s ease-out; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    /* Subtle pulse for lock badge */
+    .lock-pulse { animation: lockPulse 2.4s ease-in-out infinite; }
+    @keyframes lockPulse {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.04); }
+    }
+    /* Hide scrollbar in mock UI */
+    body { -webkit-font-smoothing: antialiased; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // ========================================
+    // ⚛️ React Hooks
+    // ========================================
+    const { useState, useEffect, useContext, createContext, useMemo, useCallback } = React;
+
+    // ========================================
+    // 💳 Product Mock Data
+    // (NOTE: 실제 결제 연동은 이후 단계에서 PG사 SDK 연결 예정 — 현재는 mock 상태)
+    // ========================================
+    const PRODUCTS = [
+      {
+        id: 'aurora-pack',
+        title: 'Aurora Pack',
+        tagline: '북유럽 오로라 일러스트',
+        description: '신비로운 오로라의 빛깔을 담은 고해상도 일러스트. SNS, 굿즈, 브랜드 무드보드에 활용하기 좋아요.',
+        price: 4900, originalPrice: 9900,
+        previewUrl: 'images/aurora-pack.png',
+        category: '자연 · 풍경', tag: '베스트',
+      },
+      {
+        id: 'sakura-bloom',
+        title: 'Sakura Bloom',
+        tagline: '벚꽃 흩날리는 봄날',
+        description: '부드러운 파스텔 핑크의 벚꽃 일러스트. 봄 이벤트, 결혼식 청첩장, 카드 디자인에 어울려요.',
+        price: 3900, originalPrice: 7900,
+        previewUrl: 'images/sakura-bloom.png',
+        category: '자연 · 식물', tag: '신상',
+      },
+      {
+        id: 'neon-city',
+        title: 'Neon City',
+        tagline: '사이버펑크 네온 야경',
+        description: '비 내리는 미래 도시. 게임 UI, 음악 커버, 사이버펑크 무드 컨텐츠에 사용해보세요.',
+        price: 5900, originalPrice: 11900,
+        previewUrl: 'images/neon-city.png',
+        category: '도시 · 미래', tag: '인기',
+      },
+      {
+        id: 'ocean-wave',
+        title: 'Ocean Wave',
+        tagline: '미니멀 푸른 파도',
+        description: '우키요에 스타일의 깔끔한 파도 일러스트. 명함, 로고 배경, 미니멀 디자인에 추천해요.',
+        price: 3900, originalPrice: 6900,
+        previewUrl: 'images/ocean-wave.png',
+        category: '자연 · 바다', tag: null,
+      },
+      {
+        id: 'mountain-mist',
+        title: 'Mountain Mist',
+        tagline: '운무 낀 산 수채화',
+        description: '동양화 느낌의 안개 낀 산 수채화. 명상 앱, 힐링 콘텐츠, 여행 블로그에 어울려요.',
+        price: 4900, originalPrice: 8900,
+        previewUrl: 'images/mountain-mist.png',
+        category: '자연 · 풍경', tag: null,
+      },
+      {
+        id: 'galaxy-dust',
+        title: 'Galaxy Dust',
+        tagline: '우주 성운 그라데이션',
+        description: '깊은 보라와 핑크의 코스믹 그라데이션. 음악 앨범 커버, 발표 자료 표지로 멋져요.',
+        price: 4900, originalPrice: 9900,
+        previewUrl: 'images/galaxy-dust.png',
+        category: '우주 · 추상', tag: '베스트',
+      },
+      {
+        id: 'forest-zen',
+        title: 'Forest Zen',
+        tagline: '일본풍 대나무 숲',
+        description: '평온한 대나무 숲의 동양적 분위기. 요가/명상 스튜디오, 자연주의 브랜드에 추천.',
+        price: 3900, originalPrice: 7900,
+        previewUrl: 'images/forest-zen.png',
+        category: '자연 · 동양', tag: null,
+      },
+      {
+        id: 'desert-sunset',
+        title: 'Desert Sunset',
+        tagline: '사막 일몰 그라데이션',
+        description: '따뜻한 오렌지·핑크의 사막 노을. 여행 컨텐츠, 따뜻한 무드의 그래픽에 활용하세요.',
+        price: 4900, originalPrice: 8900,
+        previewUrl: 'images/desert-sunset.png',
+        category: '자연 · 풍경', tag: null,
+      },
+      {
+        id: 'crystal-gem',
+        title: 'Crystal Gem',
+        tagline: '영롱한 크리스탈',
+        description: '홀로그래픽 크리스탈 3D 렌더. 주얼리 브랜드, 럭셔리 무드 콘텐츠에 잘 어울려요.',
+        price: 6900, originalPrice: 12900,
+        previewUrl: 'images/crystal-gem.png',
+        category: '오브제 · 럭셔리', tag: '인기',
+      },
+    ];
+
+    const DEFAULT_PRODUCT_META = {
+      format: 'PNG (1024 × 1024)',
+      resolution: '1024 × 1024 px',
+      license: '상업적 사용 가능 (재판매 불가)',
+      delivery: '결제 즉시 다운로드',
+    };
+
+    const getProduct = (id) => PRODUCTS.find((p) => p.id === id) || null;
+
+    const formatKRW = (n) => '₩' + n.toLocaleString('ko-KR');
+
+    // ========================================
+    // 🔐 Payment Context (상품 단위, localStorage 영속)
+    // 결제 완료된 상품 ID를 Set으로 관리. 실제 결제 연동 전 mock 상태.
+    // ========================================
+    const PaymentContext = createContext(null);
+
+    function PaymentProvider({ children }) {
+      const [paidIds, setPaidIds] = useState(() => {
+        try {
+          const raw = localStorage.getItem('mock_paidIds');
+          if (raw) return new Set(JSON.parse(raw));
+        } catch (_) {}
+        return new Set();
+      });
+
+      useEffect(() => {
+        try { localStorage.setItem('mock_paidIds', JSON.stringify([...paidIds])); } catch (_) {}
+      }, [paidIds]);
+
+      const isPaid = useCallback((id) => paidIds.has(id), [paidIds]);
+      const markPaid = useCallback((id) => {
+        setPaidIds((s) => { const n = new Set(s); n.add(id); return n; });
+      }, []);
+      const unmarkPaid = useCallback((id) => {
+        setPaidIds((s) => { const n = new Set(s); n.delete(id); return n; });
+      }, []);
+      const resetAll = useCallback(() => setPaidIds(new Set()), []);
+      const markAllPaid = useCallback(() => {
+        setPaidIds(new Set(PRODUCTS.map((p) => p.id)));
+      }, []);
+
+      const value = useMemo(() => ({
+        paidIds, isPaid, markPaid, unmarkPaid, resetAll, markAllPaid,
+        paidCount: paidIds.size,
+      }), [paidIds, isPaid, markPaid, unmarkPaid, resetAll, markAllPaid]);
+
+      return (
+        <PaymentContext.Provider value={value}>{children}</PaymentContext.Provider>
+      );
+    }
+
+    const usePayment = () => useContext(PaymentContext);
+
+    // ========================================
+    // 🔑 Auth API + Context (JWT, localStorage 토큰)
+    // ========================================
+    const API_BASE_URL = '/api';
+
+    async function apiRequest(endpoint, { method = 'GET', body, token } = {}) {
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers.Authorization = `Bearer ${token}`;
+      const res = await fetch(`${API_BASE_URL}${endpoint}`, {
+        method,
+        headers,
+        body: body ? JSON.stringify(body) : undefined,
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        const err = new Error(data.message || '요청에 실패했습니다.');
+        err.code = data.error;
+        err.status = res.status;
+        throw err;
+      }
+      return data;
+    }
+
+    const AuthContext = createContext(null);
+
+    function AuthProvider({ children }) {
+      const [token, setToken] = useState(() => {
+        try { return localStorage.getItem('auth_token') || null; } catch (_) { return null; }
+      });
+      const [user, setUser] = useState(null);
+      const [loading, setLoading] = useState(!!token);
+
+      // 토큰 ↔ localStorage 동기화
+      useEffect(() => {
+        try {
+          if (token) localStorage.setItem('auth_token', token);
+          else localStorage.removeItem('auth_token');
+        } catch (_) {}
+      }, [token]);
+
+      // 부팅 시 토큰 검증 + 사용자 정보 로드
+      useEffect(() => {
+        let cancelled = false;
+        if (!token) { setUser(null); setLoading(false); return; }
+        setLoading(true);
+        apiRequest('/auth/me', { token })
+          .then((data) => { if (!cancelled) setUser(data.user); })
+          .catch(() => {
+            if (!cancelled) { setToken(null); setUser(null); }
+          })
+          .finally(() => { if (!cancelled) setLoading(false); });
+        return () => { cancelled = true; };
+      }, [token]);
+
+      const signup = useCallback(async (email, password) => {
+        const data = await apiRequest('/auth/signup', {
+          method: 'POST',
+          body: { email, password },
+        });
+        setUser(data.user);
+        setToken(data.token);
+        return data.user;
+      }, []);
+
+      const login = useCallback(async (email, password) => {
+        const data = await apiRequest('/auth/login', {
+          method: 'POST',
+          body: { email, password },
+        });
+        setUser(data.user);
+        setToken(data.token);
+        return data.user;
+      }, []);
+
+      const logout = useCallback(() => {
+        setUser(null);
+        setToken(null);
+      }, []);
+
+      const value = useMemo(() => ({
+        user, token, loading,
+        isAuthenticated: !!user,
+        signup, login, logout,
+      }), [user, token, loading, signup, login, logout]);
+
+      return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+    }
+
+    const useAuth = () => useContext(AuthContext);
+
+    // ========================================
+    // 🔀 Hash Router (lightweight)
+    // ========================================
+    const RouterContext = createContext(null);
+
+    function Router({ children }) {
+      const [path, setPath] = useState(() => window.location.hash.replace(/^#/, '') || '/');
+
+      useEffect(() => {
+        const onHash = () => setPath(window.location.hash.replace(/^#/, '') || '/');
+        window.addEventListener('hashchange', onHash);
+        return () => window.removeEventListener('hashchange', onHash);
+      }, []);
+
+      const navigate = useCallback((to) => {
+        window.location.hash = to;
+      }, []);
+
+      return (
+        <RouterContext.Provider value={{ path, navigate }}>
+          {children}
+        </RouterContext.Provider>
+      );
+    }
+
+    function matchRoute(pattern, path) {
+      const patternParts = pattern.split('/').filter(Boolean);
+      const pathParts = path.split('/').filter(Boolean);
+      if (patternParts.length !== pathParts.length) return null;
+      const params = {};
+      for (let i = 0; i < patternParts.length; i++) {
+        if (patternParts[i].startsWith(':')) {
+          params[patternParts[i].slice(1)] = decodeURIComponent(pathParts[i]);
+        } else if (patternParts[i] !== pathParts[i]) {
+          return null;
+        }
+      }
+      return params;
+    }
+
+    function Routes({ children }) {
+      const { path } = useContext(RouterContext);
+      const arr = React.Children.toArray(children);
+      for (const child of arr) {
+        const params = matchRoute(child.props.path, path);
+        if (params) {
+          return React.cloneElement(child.props.element, { params });
+        }
+      }
+      return arr.find(c => c.props.path === '*')?.props.element ?? null;
+    }
+
+    function Route() { return null; }
+
+    function Link({ to, children, className = '', ...rest }) {
+      const { navigate } = useContext(RouterContext);
+      return (
+        <a
+          href={`#${to}`}
+          onClick={(e) => { e.preventDefault(); navigate(to); }}
+          className={className}
+          {...rest}
+        >
+          {children}
+        </a>
+      );
+    }
+
+    const useRouter = () => useContext(RouterContext);
+
+    // ========================================
+    // 🎨 Design System — Button
+    // ========================================
+    function Button({
+      variant = 'primary',
+      size = 'md',
+      disabled = false,
+      onClick,
+      type = 'button',
+      className = '',
+      children,
+      as: As = 'button',
+      ...rest
+    }) {
+      const sizes = {
+        sm: 'px-3 py-1.5 text-sm',
+        md: 'px-5 py-2.5 text-sm',
+        lg: 'px-6 py-3.5 text-base',
+      };
+      const variants = {
+        primary:
+          'text-white bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-600 hover:to-violet-700 shadow-md shadow-indigo-500/20',
+        secondary:
+          'text-slate-800 bg-white hover:bg-slate-50 border border-slate-200',
+        ghost:
+          'text-slate-700 bg-transparent hover:bg-slate-100',
+        danger:
+          'text-white bg-rose-500 hover:bg-rose-600 shadow-md shadow-rose-500/20',
+        outline:
+          'text-indigo-600 bg-white border border-indigo-200 hover:bg-indigo-50',
+      };
+      const base =
+        'inline-flex items-center justify-center gap-2 font-semibold rounded-xl transition-all duration-150 ' +
+        'focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 ' +
+        'disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]';
+      return (
+        <As
+          type={As === 'button' ? type : undefined}
+          onClick={disabled ? undefined : onClick}
+          disabled={As === 'button' ? disabled : undefined}
+          className={`${base} ${sizes[size]} ${variants[variant]} ${className}`}
+          {...rest}
+        >
+          {children}
+        </As>
+      );
+    }
+
+    // ========================================
+    // 🎨 Design System — Card
+    // ========================================
+    function Card({ children, className = '', as: As = 'div', ...rest }) {
+      return (
+        <As
+          className={`bg-white rounded-2xl shadow-sm shadow-slate-200/60 border border-slate-100 ${className}`}
+          {...rest}
+        >
+          {children}
+        </As>
+      );
+    }
+
+    // ========================================
+    // 🎨 Design System — Badge
+    // ========================================
+    function Badge({ children, color = 'indigo', className = '' }) {
+      const colors = {
+        indigo: 'bg-indigo-50 text-indigo-700 ring-indigo-200',
+        emerald: 'bg-emerald-50 text-emerald-700 ring-emerald-200',
+        amber: 'bg-amber-50 text-amber-800 ring-amber-200',
+        slate: 'bg-slate-100 text-slate-700 ring-slate-200',
+        rose: 'bg-rose-50 text-rose-700 ring-rose-200',
+      };
+      return (
+        <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium ring-1 ring-inset ${colors[color]} ${className}`}>
+          {children}
+        </span>
+      );
+    }
+
+    // ========================================
+    // 🎨 Design System — Input
+    // ========================================
+    function Input({
+      label,
+      type = 'text',
+      value,
+      onChange,
+      placeholder,
+      error,
+      disabled,
+      hint,
+      className = '',
+      ...rest
+    }) {
+      return (
+        <label className={`block ${className}`}>
+          {label && <span className="block text-sm font-medium text-slate-700 mb-1.5">{label}</span>}
+          <input
+            type={type}
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+            disabled={disabled}
+            className={`w-full px-4 py-3 rounded-xl border bg-white text-slate-900 placeholder-slate-400
+              focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400
+              disabled:bg-slate-50 disabled:text-slate-500 transition
+              ${error ? 'border-rose-300 focus:ring-rose-300 focus:border-rose-300' : 'border-slate-200'}`}
+            {...rest}
+          />
+          {hint && !error && <span className="block text-xs text-slate-500 mt-1.5">{hint}</span>}
+          {error && <span className="block text-xs text-rose-600 mt-1.5">{error}</span>}
+        </label>
+      );
+    }
+
+    // ========================================
+    // 🧩 Header (with demo paid-toggle)
+    // ========================================
+    function Header() {
+      const { paidCount, markAllPaid, resetAll } = usePayment();
+      const { user, isAuthenticated, logout, loading } = useAuth();
+      const { navigate } = useRouter();
+
+      const handleLogout = () => {
+        logout();
+        navigate('/');
+      };
+
+      const totalCount = PRODUCTS.length;
+      const allPaid = paidCount === totalCount;
+      const toggleDemo = () => { allPaid ? resetAll() : markAllPaid(); };
+
+      return (
+        <header className="sticky top-0 z-20 backdrop-blur bg-white/80 border-b border-slate-200/70">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+            <Link to="/" className="flex items-center gap-2 group">
+              <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 grid place-items-center text-white font-black shadow-sm">P</span>
+              <span className="font-bold text-slate-900 group-hover:text-indigo-600 transition">Pixel Studio</span>
+            </Link>
+
+            <div className="flex items-center gap-2 sm:gap-3">
+              {/* 인증 영역 */}
+              {loading ? (
+                <span className="text-xs text-slate-400">불러오는 중…</span>
+              ) : isAuthenticated ? (
+                <div className="flex items-center gap-2">
+                  <span className="hidden sm:inline text-xs text-slate-500">안녕하세요,</span>
+                  <span className="text-sm font-medium text-slate-800 max-w-[140px] sm:max-w-[200px] truncate" title={user?.email}>
+                    {user?.email}
+                  </span>
+                  <Button size="sm" variant="ghost" onClick={handleLogout}>로그아웃</Button>
+                </div>
+              ) : (
+                <div className="flex items-center gap-1">
+                  <Link to="/login">
+                    <Button size="sm" variant="ghost" as="span">로그인</Button>
+                  </Link>
+                  <Link to="/signup">
+                    <Button size="sm" as="span">회원가입</Button>
+                  </Link>
+                </div>
+              )}
+
+              {/* 데모 결제 토글 (구분선) */}
+              <span className="hidden sm:inline-block h-5 w-px bg-slate-200 mx-1"></span>
+              <button
+                onClick={toggleDemo}
+                className={`hidden sm:inline-flex items-center text-xs px-3 py-1.5 rounded-full ring-1 ring-inset transition
+                  ${allPaid
+                    ? 'bg-emerald-50 text-emerald-700 ring-emerald-200 hover:bg-emerald-100'
+                    : 'bg-slate-100 text-slate-700 ring-slate-200 hover:bg-slate-200'}`}
+                title="데모용: 전체 상품의 결제 상태를 토글합니다"
+              >
+                [데모] {paidCount}/{totalCount} 결제됨 ▸ {allPaid ? '전체 해제' : '전체 결제'}
+              </button>
+            </div>
+          </div>
+        </header>
+      );
+    }
+
+    // ========================================
+    // 🧩 Footer
+    // ========================================
+    function Footer() {
+      return (
+        <footer className="mt-16 border-t border-slate-200/70 bg-white/60">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 text-xs text-slate-500 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+            <div>© 2026 Pixel Studio · 사업자/약관/환불정책 (데모)</div>
+            <div className="flex items-center gap-3">
+              <span>고객센터 help@pixelstudio.demo</span>
+              <Badge color="emerald">🔒 SSL 보호</Badge>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    // ========================================
+    // 🧩 Locked / Unlocked Preview (상세 페이지 큰 미리보기)
+    // ========================================
+    function ProductPreview({ product }) {
+      const { isPaid } = usePayment();
+      const paid = isPaid(product.id);
+      return (
+        <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-slate-100 ring-1 ring-slate-200">
+          <img
+            src={product.previewUrl}
+            alt={product.title}
+            className={`w-full h-full object-cover transition-all duration-500
+              ${paid ? 'blur-0 scale-100' : 'blur-lg scale-105 brightness-90'}`}
+            draggable={false}
+          />
+          {!paid && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+              <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/60" />
+              <div className="relative z-10 flex flex-col items-center text-center px-6">
+                <div className="lock-pulse w-16 h-16 rounded-full bg-white/15 ring-1 ring-white/30 backdrop-blur grid place-items-center text-3xl">
+                  🔒
+                </div>
+                <p className="mt-4 font-semibold text-base sm:text-lg drop-shadow">결제 후 다운로드 가능합니다</p>
+                <p className="mt-1 text-sm text-white/80">미리보기는 흐림 처리되어 있어요</p>
+              </div>
+            </div>
+          )}
+          {paid && (
+            <div className="absolute top-3 left-3 z-10 fade-in">
+              <Badge color="emerald" className="shadow-sm bg-white/95">✓ 구매 완료 · 고화질</Badge>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    // ========================================
+    // 🧩 Product Card (그리드 카드)
+    // ========================================
+    function ProductCard({ product }) {
+      const { isPaid } = usePayment();
+      const { navigate } = useRouter();
+      const paid = isPaid(product.id);
+
+      const goDetail = () => navigate(`/product/${product.id}`);
+
+      return (
+        <Card className="overflow-hidden group cursor-pointer hover:shadow-md hover:-translate-y-0.5 transition-all duration-200" onClick={goDetail}>
+          <div className="relative aspect-square overflow-hidden bg-slate-100">
+            <img
+              src={product.previewUrl}
+              alt={product.title}
+              className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105
+                ${paid ? 'blur-0' : 'blur-md brightness-95'}`}
+              draggable={false}
+              loading="lazy"
+            />
+            {!paid && (
+              <>
+                <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black/50" />
+                <div className="absolute inset-0 grid place-items-center">
+                  <div className="w-12 h-12 rounded-full bg-white/15 ring-1 ring-white/30 backdrop-blur grid place-items-center text-xl text-white">🔒</div>
+                </div>
+              </>
+            )}
+            {paid && (
+              <div className="absolute top-2 left-2 fade-in">
+                <Badge color="emerald" className="shadow-sm bg-white/95">✓ 구매 완료</Badge>
+              </div>
+            )}
+            {product.tag && !paid && (
+              <div className="absolute top-2 right-2">
+                <Badge color={product.tag === '베스트' ? 'rose' : product.tag === '신상' ? 'indigo' : 'amber'} className="shadow-sm bg-white/95">
+                  {product.tag}
+                </Badge>
+              </div>
+            )}
+          </div>
+          <div className="p-4">
+            <p className="text-[11px] text-slate-400 font-medium uppercase tracking-wide">{product.category}</p>
+            <h3 className="mt-1 font-bold text-slate-900 truncate">{product.title}</h3>
+            <p className="text-sm text-slate-500 truncate">{product.tagline}</p>
+            <div className="mt-3 flex items-baseline gap-2">
+              <span className="text-lg font-extrabold text-slate-900">{formatKRW(product.price)}</span>
+              {product.originalPrice && (
+                <span className="text-xs text-slate-400 line-through">{formatKRW(product.originalPrice)}</span>
+              )}
+            </div>
+          </div>
+        </Card>
+      );
+    }
+
+    // ========================================
+    // 🧩 Download Helper
+    // ========================================
+    async function downloadPng(url, filename) {
+      try {
+        const res = await fetch(url, { mode: 'cors' });
+        const blob = await res.blob();
+        const objectUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = objectUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(objectUrl), 1500);
+      } catch (_) {
+        // Fallback: open in new tab
+        window.open(url, '_blank', 'noopener');
+      }
+    }
+
+    // ========================================
+    // 📄 Page — Products List (메인, 그리드)
+    // ========================================
+    function ProductsListPage() {
+      const { paidCount } = usePayment();
+      const totalCount = PRODUCTS.length;
+
+      return (
+        <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+          {/* Hero banner */}
+          <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-500 via-violet-600 to-purple-600 text-white p-8 sm:p-12 mb-8">
+            <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-white/10 blur-2xl" />
+            <div className="absolute -bottom-16 -left-16 w-60 h-60 rounded-full bg-pink-300/20 blur-3xl" />
+            <div className="relative">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 ring-1 ring-white/20 text-xs font-medium mb-3">
+                ✨ Premium PNG Collection
+              </div>
+              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                바로 쓰는 프리미엄 PNG 9종
+              </h1>
+              <p className="mt-3 text-white/85 text-sm sm:text-base max-w-xl">
+                AI로 생성한 상업용 사용 가능한 고해상도 일러스트. 결제 즉시 다운로드.
+              </p>
+              <div className="mt-5 flex flex-wrap items-center gap-2 text-xs">
+                <Badge color="emerald" className="!bg-white/95">⚡ 즉시 다운로드</Badge>
+                <Badge color="amber" className="!bg-white/95">상업적 사용 가능</Badge>
+                <Badge color="indigo" className="!bg-white/95">PNG 1024×1024</Badge>
+              </div>
+            </div>
+          </section>
+
+          {/* Section header */}
+          <section className="flex items-end justify-between mb-5">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900">전체 상품</h2>
+              <p className="text-sm text-slate-500 mt-0.5">총 {totalCount}개의 상품 · 구매한 상품 {paidCount}개</p>
+            </div>
+            <div className="hidden sm:flex items-center gap-1 text-xs text-slate-500">
+              <span className="inline-flex items-center gap-1">🔒 미리보기 흐림 · 결제 후 고화질</span>
+            </div>
+          </section>
+
+          {/* Products grid */}
+          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {PRODUCTS.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </section>
+
+          {/* Trust block */}
+          <section className="mt-12">
+            <Card className="p-5 sm:p-6 bg-gradient-to-br from-indigo-50 to-violet-50 border-indigo-100">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-white grid place-items-center text-2xl shadow-sm">🛡️</div>
+                <div>
+                  <h3 className="font-semibold text-slate-900">안전한 결제 시스템</h3>
+                  <p className="mt-1 text-sm text-slate-600 leading-6">
+                    카드 정보는 PG사를 통해 암호화되어 처리되며, 본 사이트에는 저장되지 않습니다. 결제 완료 즉시 다운로드 링크가 이메일로 발송됩니다.
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <Badge color="slate">VISA</Badge>
+                    <Badge color="slate">Mastercard</Badge>
+                    <Badge color="amber">카카오페이</Badge>
+                    <Badge color="indigo">토스페이</Badge>
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </section>
+        </main>
+      );
+    }
+
+    // ========================================
+    // 📄 Page — Product Detail
+    // ========================================
+    function ProductDetailPage({ params }) {
+      const product = getProduct(params?.id);
+      const { isPaid } = usePayment();
+      const { navigate } = useRouter();
+      const [downloading, setDownloading] = useState(false);
+
+      if (!product) return <NotFoundPage />;
+
+      const paid = isPaid(product.id);
+
+      const handleDownload = async () => {
+        setDownloading(true);
+        await downloadPng(product.previewUrl, `${product.id}.png`);
+        setDownloading(false);
+      };
+
+      return (
+        <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+          <div className="flex items-center gap-2 text-sm text-slate-500 mb-4">
+            <Link to="/" className="hover:text-indigo-600">← 전체 상품으로</Link>
+          </div>
+
+          <section className="grid md:grid-cols-2 gap-8 md:gap-10 items-start">
+            <ProductPreview product={product} />
+
+            <div>
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <Badge color="indigo">{product.category}</Badge>
+                <Badge color="amber">상업적 사용 가능</Badge>
+                {paid && <Badge color="emerald">구매 완료</Badge>}
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+                {product.title}
+              </h1>
+              <p className="mt-2 text-slate-600">{product.tagline}</p>
+
+              <div className="mt-6 flex items-end gap-3">
+                <div className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
+                  {formatKRW(product.price)}
+                </div>
+                {product.originalPrice && (
+                  <>
+                    <div className="text-sm text-slate-400 line-through pb-1">{formatKRW(product.originalPrice)}</div>
+                    <Badge color="rose" className="pb-1">
+                      {Math.round((1 - product.price / product.originalPrice) * 100)}% OFF
+                    </Badge>
+                  </>
+                )}
+              </div>
+
+              <p className="mt-4 text-sm leading-6 text-slate-600">{product.description}</p>
+
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                {paid ? (
+                  <>
+                    <Button size="lg" onClick={handleDownload} disabled={downloading} className="w-full sm:w-auto">
+                      {downloading ? '다운로드 중…' : '⬇  PNG 다운로드'}
+                    </Button>
+                    <Button size="lg" variant="secondary" onClick={() => navigate(`/success/${product.id}`)} className="w-full sm:w-auto">
+                      영수증 보기
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button size="lg" onClick={() => navigate(`/checkout/${product.id}`)} className="w-full sm:w-auto">
+                      결제하고 다운로드하기 →
+                    </Button>
+                    <Button size="lg" variant="ghost" onClick={() => navigate('/')} className="w-full sm:w-auto">
+                      다른 상품 보기
+                    </Button>
+                  </>
+                )}
+              </div>
+
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-500">
+                <span className="inline-flex items-center gap-1.5">🔒 SSL 안전한 결제</span>
+                <span className="inline-flex items-center gap-1.5">⚡ 결제 즉시 다운로드</span>
+                <span className="inline-flex items-center gap-1.5">📩 이메일 영수증 발송</span>
+              </div>
+            </div>
+          </section>
+
+          <section className="mt-12">
+            <h2 className="text-lg font-bold text-slate-900 mb-4">상품 정보</h2>
+            <Card className="divide-y divide-slate-100">
+              {[
+                ['파일 형식', DEFAULT_PRODUCT_META.format],
+                ['해상도', DEFAULT_PRODUCT_META.resolution],
+                ['라이선스', DEFAULT_PRODUCT_META.license],
+                ['전달 방식', DEFAULT_PRODUCT_META.delivery],
+              ].map(([k, v]) => (
+                <div key={k} className="px-5 sm:px-6 py-4 flex items-center justify-between text-sm">
+                  <span className="text-slate-500">{k}</span>
+                  <span className="font-medium text-slate-800">{v}</span>
+                </div>
+              ))}
+            </Card>
+          </section>
+
+          {/* Related products */}
+          <section className="mt-12">
+            <h2 className="text-lg font-bold text-slate-900 mb-4">함께 보기 좋은 상품</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {PRODUCTS.filter((p) => p.id !== product.id).slice(0, 4).map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+          </section>
+        </main>
+      );
+    }
+
+    // ========================================
+    // 📄 Page — Checkout (mock, 상품 단위)
+    // ========================================
+    function CheckoutPage({ params }) {
+      const product = getProduct(params?.id);
+      const { markPaid } = usePayment();
+      const { isAuthenticated, user, loading: authLoading } = useAuth();
+      const { navigate } = useRouter();
+
+      // 로그인 안 된 경우 로그인 페이지로
+      useEffect(() => {
+        if (!authLoading && !isAuthenticated) navigate('/login');
+      }, [authLoading, isAuthenticated]);
+
+      const [method, setMethod] = useState('card');
+      const [email, setEmail] = useState(user?.email || '');
+      const [emailError, setEmailError] = useState('');
+      const [agree, setAgree] = useState(false);
+      const [processing, setProcessing] = useState(false);
+
+      useEffect(() => {
+        if (user?.email && !email) setEmail(user.email);
+      }, [user]);
+
+      if (!product) return <NotFoundPage />;
+
+      const validate = () => {
+        if (!email) { setEmailError('이메일을 입력해주세요'); return false; }
+        const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        if (!ok) { setEmailError('올바른 이메일 형식이 아닙니다'); return false; }
+        setEmailError('');
+        return true;
+      };
+
+      const handlePay = (e) => {
+        e.preventDefault();
+        if (!validate()) return;
+        if (!agree) { alert('약관에 동의해주세요'); return; }
+
+        // NOTE: 실제 결제는 PG SDK 호출 자리. 데모는 잠시 로딩 후 markPaid(product.id)
+        setProcessing(true);
+        setTimeout(() => {
+          markPaid(product.id);
+          navigate(`/success/${product.id}`);
+        }, 900);
+      };
+
+      const PaymentMethodButton = ({ id, label, emoji }) => (
+        <button
+          type="button"
+          onClick={() => setMethod(id)}
+          className={`flex flex-col items-center justify-center gap-1 py-4 rounded-xl border-2 transition
+            ${method === id
+              ? 'border-indigo-500 bg-indigo-50/60 text-indigo-700'
+              : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'}`}
+        >
+          <span className="text-2xl">{emoji}</span>
+          <span className="text-xs font-medium">{label}</span>
+        </button>
+      );
+
+      return (
+        <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+          <div className="flex items-center gap-2 text-sm text-slate-500 mb-4">
+            <Link to={`/product/${product.id}`} className="hover:text-indigo-600">← 상품으로</Link>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">결제하기</h1>
+          <p className="mt-1 text-slate-500 text-sm">결제 완료 즉시 다운로드 링크가 이메일로 전송됩니다.</p>
+
+          <div className="mt-8 grid md:grid-cols-5 gap-6">
+            <form onSubmit={handlePay} className="md:col-span-3 space-y-4">
+              <Card className="p-5 sm:p-6">
+                <h2 className="font-semibold text-slate-900 mb-3">결제 수단</h2>
+                <div className="grid grid-cols-3 gap-3">
+                  <PaymentMethodButton id="card"  label="카드"     emoji="💳" />
+                  <PaymentMethodButton id="kakao" label="카카오페이" emoji="🟡" />
+                  <PaymentMethodButton id="toss"  label="토스페이"   emoji="🔵" />
+                </div>
+              </Card>
+
+              <Card className="p-5 sm:p-6 space-y-4">
+                <h2 className="font-semibold text-slate-900">받는 이메일</h2>
+                <Input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  error={emailError}
+                  hint="이 주소로 다운로드 링크와 영수증을 보내드려요."
+                />
+              </Card>
+
+              <Card className="p-5 sm:p-6">
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={agree}
+                    onChange={(e) => setAgree(e.target.checked)}
+                    className="mt-1 w-4 h-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-400"
+                  />
+                  <span className="text-sm text-slate-700 leading-6">
+                    <b>(필수)</b> 디지털 콘텐츠 특성상 결제 후 환불이 제한될 수 있음에 동의합니다. 약관/개인정보 처리방침을 확인했습니다.
+                  </span>
+                </label>
+              </Card>
+
+              <Button type="submit" size="lg" className="w-full" disabled={processing}>
+                {processing ? '결제 처리 중…' : `${formatKRW(product.price)} 결제하기`}
+              </Button>
+
+              <p className="text-xs text-slate-400 text-center">
+                * 데모 환경입니다. 실제 결제는 발생하지 않습니다.
+              </p>
+            </form>
+
+            <aside className="md:col-span-2">
+              <Card className="p-5 sm:p-6 sticky top-20">
+                <h2 className="font-semibold text-slate-900 mb-4">주문 요약</h2>
+                <div className="flex gap-3 items-start">
+                  <img
+                    src={product.previewUrl}
+                    alt=""
+                    className="w-16 h-16 rounded-lg object-cover ring-1 ring-slate-200 blur-sm"
+                  />
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-slate-900 truncate">{product.title}</p>
+                    <p className="text-xs text-slate-500 mt-0.5">{DEFAULT_PRODUCT_META.format}</p>
+                  </div>
+                </div>
+
+                <div className="mt-5 space-y-2 text-sm">
+                  <div className="flex justify-between text-slate-600">
+                    <span>상품 금액</span>
+                    <span>{formatKRW(product.originalPrice || product.price)}</span>
+                  </div>
+                  <div className="flex justify-between text-slate-600">
+                    <span>할인</span>
+                    <span className="text-rose-500">
+                      −{formatKRW((product.originalPrice || product.price) - product.price)}
+                    </span>
+                  </div>
+                  <div className="border-t border-slate-100 my-2"></div>
+                  <div className="flex justify-between items-baseline">
+                    <span className="font-semibold text-slate-900">총 결제 금액</span>
+                    <span className="text-xl font-black bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
+                      {formatKRW(product.price)}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-5 p-3 rounded-lg bg-indigo-50/70 text-xs text-indigo-700 leading-5">
+                  🔒 모든 결제 정보는 암호화되어 안전하게 처리됩니다.
+                </div>
+              </Card>
+            </aside>
+          </div>
+        </main>
+      );
+    }
+
+    // ========================================
+    // 📄 Page — Success (상품 단위)
+    // ========================================
+    function SuccessPage({ params }) {
+      const product = getProduct(params?.id);
+      const { isPaid } = usePayment();
+      const { navigate } = useRouter();
+      const [downloading, setDownloading] = useState(false);
+
+      // 결제 안 된 상품에 직접 진입 시 상세 페이지로
+      useEffect(() => {
+        if (!product) { navigate('/'); return; }
+        if (!isPaid(product.id)) navigate(`/product/${product.id}`);
+      }, [product, isPaid]);
+
+      if (!product) return null;
+
+      const handleDownload = async () => {
+        setDownloading(true);
+        await downloadPng(product.previewUrl, `${product.id}.png`);
+        setDownloading(false);
+      };
+
+      return (
+        <main className="max-w-xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+          <Card className="p-8 sm:p-10 text-center fade-in">
+            <div className="mx-auto w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 grid place-items-center text-white text-4xl shadow-lg shadow-emerald-500/30">
+              ✓
+            </div>
+            <h1 className="mt-6 text-2xl sm:text-3xl font-extrabold text-slate-900">결제가 완료되었습니다</h1>
+            <p className="mt-2 text-slate-600">이제 콘텐츠를 자유롭게 다운로드할 수 있어요.</p>
+
+            <div className="mt-6 p-4 rounded-xl bg-slate-50 border border-slate-100 text-left">
+              <div className="flex items-center gap-3">
+                <img src={product.previewUrl} alt="" className="w-14 h-14 rounded-lg object-cover ring-1 ring-slate-200" />
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-slate-900 truncate">{product.title}</p>
+                  <p className="text-xs text-slate-500">{DEFAULT_PRODUCT_META.format}</p>
+                </div>
+                <div className="ml-auto text-sm font-bold text-slate-900">{formatKRW(product.price)}</div>
+              </div>
+            </div>
+
+            <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Button size="lg" onClick={handleDownload} disabled={downloading}>
+                {downloading ? '다운로드 중…' : '⬇  PNG 다운로드'}
+              </Button>
+              <Button size="lg" variant="secondary" onClick={() => navigate('/')}>
+                다른 상품 보기
+              </Button>
+            </div>
+
+            <p className="mt-6 text-xs text-slate-400">
+              영수증과 다운로드 링크가 입력하신 이메일로도 발송되었습니다. (데모)
+            </p>
+          </Card>
+        </main>
+      );
+    }
+
+    // ========================================
+    // 📄 Page — Login
+    // ========================================
+    function LoginPage() {
+      const { login, isAuthenticated } = useAuth();
+      const { navigate } = useRouter();
+
+      const [email, setEmail] = useState('');
+      const [password, setPassword] = useState('');
+      const [emailError, setEmailError] = useState('');
+      const [passwordError, setPasswordError] = useState('');
+      const [serverError, setServerError] = useState('');
+      const [submitting, setSubmitting] = useState(false);
+
+      // 이미 로그인된 경우 메인으로
+      useEffect(() => {
+        if (isAuthenticated) navigate('/');
+      }, [isAuthenticated]);
+
+      const validate = () => {
+        let ok = true;
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          setEmailError('올바른 이메일 형식이 아닙니다'); ok = false;
+        } else setEmailError('');
+        if (!password) {
+          setPasswordError('비밀번호를 입력해주세요'); ok = false;
+        } else setPasswordError('');
+        return ok;
+      };
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        setServerError('');
+        if (!validate()) return;
+        setSubmitting(true);
+        try {
+          await login(email.trim(), password);
+          navigate('/');
+        } catch (err) {
+          setServerError(err.message || '로그인에 실패했습니다.');
+        } finally {
+          setSubmitting(false);
+        }
+      };
+
+      return (
+        <main className="max-w-md mx-auto px-4 sm:px-6 py-10 sm:py-14">
+          <div className="text-center mb-8">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">로그인</h1>
+            <p className="mt-1 text-sm text-slate-500">계정에 로그인하고 결제한 콘텐츠를 받아보세요.</p>
+          </div>
+
+          <Card className="p-6 sm:p-8">
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              <Input
+                label="이메일"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                error={emailError}
+                autoComplete="email"
+                autoFocus
+              />
+              <Input
+                label="비밀번호"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="비밀번호 입력"
+                error={passwordError}
+                autoComplete="current-password"
+              />
+
+              {serverError && (
+                <div className="px-4 py-3 rounded-xl bg-rose-50 border border-rose-100 text-sm text-rose-700">
+                  {serverError}
+                </div>
+              )}
+
+              <Button type="submit" size="lg" className="w-full" disabled={submitting}>
+                {submitting ? '로그인 중…' : '로그인'}
+              </Button>
+            </form>
+
+            <div className="mt-6 text-center text-sm text-slate-500">
+              아직 계정이 없으신가요?{' '}
+              <Link to="/signup" className="font-semibold text-indigo-600 hover:text-indigo-700">
+                회원가입
+              </Link>
+            </div>
+          </Card>
+        </main>
+      );
+    }
+
+    // ========================================
+    // 📄 Page — Signup
+    // ========================================
+    function SignupPage() {
+      const { signup, isAuthenticated } = useAuth();
+      const { navigate } = useRouter();
+
+      const [email, setEmail] = useState('');
+      const [password, setPassword] = useState('');
+      const [passwordConfirm, setPasswordConfirm] = useState('');
+      const [emailError, setEmailError] = useState('');
+      const [passwordError, setPasswordError] = useState('');
+      const [confirmError, setConfirmError] = useState('');
+      const [serverError, setServerError] = useState('');
+      const [submitting, setSubmitting] = useState(false);
+
+      useEffect(() => {
+        if (isAuthenticated) navigate('/');
+      }, [isAuthenticated]);
+
+      const validate = () => {
+        let ok = true;
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          setEmailError('올바른 이메일 형식이 아닙니다'); ok = false;
+        } else setEmailError('');
+        if (!password || password.length < 8) {
+          setPasswordError('비밀번호는 최소 8자 이상이어야 합니다'); ok = false;
+        } else setPasswordError('');
+        if (password !== passwordConfirm) {
+          setConfirmError('비밀번호가 일치하지 않습니다'); ok = false;
+        } else setConfirmError('');
+        return ok;
+      };
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        setServerError('');
+        if (!validate()) return;
+        setSubmitting(true);
+        try {
+          await signup(email.trim(), password);
+          navigate('/');
+        } catch (err) {
+          setServerError(err.message || '회원가입에 실패했습니다.');
+        } finally {
+          setSubmitting(false);
+        }
+      };
+
+      return (
+        <main className="max-w-md mx-auto px-4 sm:px-6 py-10 sm:py-14">
+          <div className="text-center mb-8">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">회원가입</h1>
+            <p className="mt-1 text-sm text-slate-500">이메일과 비밀번호로 빠르게 가입할 수 있어요.</p>
+          </div>
+
+          <Card className="p-6 sm:p-8">
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              <Input
+                label="이메일"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                error={emailError}
+                autoComplete="email"
+                autoFocus
+              />
+              <Input
+                label="비밀번호"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="8자 이상"
+                error={passwordError}
+                hint="영문/숫자/특수문자를 조합하면 더 안전합니다."
+                autoComplete="new-password"
+              />
+              <Input
+                label="비밀번호 확인"
+                type="password"
+                value={passwordConfirm}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
+                placeholder="비밀번호 재입력"
+                error={confirmError}
+                autoComplete="new-password"
+              />
+
+              {serverError && (
+                <div className="px-4 py-3 rounded-xl bg-rose-50 border border-rose-100 text-sm text-rose-700">
+                  {serverError}
+                </div>
+              )}
+
+              <Button type="submit" size="lg" className="w-full" disabled={submitting}>
+                {submitting ? '가입 처리 중…' : '회원가입'}
+              </Button>
+
+              <p className="text-xs text-slate-400 text-center leading-5">
+                가입 시 서비스 이용약관 및 개인정보 처리방침에 동의한 것으로 간주합니다.
+              </p>
+            </form>
+
+            <div className="mt-6 text-center text-sm text-slate-500">
+              이미 계정이 있으신가요?{' '}
+              <Link to="/login" className="font-semibold text-indigo-600 hover:text-indigo-700">
+                로그인
+              </Link>
+            </div>
+          </Card>
+        </main>
+      );
+    }
+
+    // ========================================
+    // 📄 Page — Not Found
+    // ========================================
+    function NotFoundPage() {
+      return (
+        <main className="max-w-xl mx-auto px-4 py-16 text-center">
+          <div className="text-6xl">🔍</div>
+          <h1 className="mt-4 text-2xl font-bold text-slate-900">페이지를 찾을 수 없어요</h1>
+          <p className="mt-2 text-slate-500">주소를 다시 확인해 주세요.</p>
+          <div className="mt-6">
+            <Link to="/" className="inline-block">
+              <Button>메인으로 돌아가기</Button>
+            </Link>
+          </div>
+        </main>
+      );
+    }
+
+    // ========================================
+    // 🚀 App Root
+    // ========================================
+    function App() {
+      return (
+        <AuthProvider>
+          <PaymentProvider>
+            <Router>
+              <div className="min-h-screen flex flex-col">
+                <Header />
+                <div className="flex-1">
+                  <Routes>
+                    <Route path="/"               element={<ProductsListPage />} />
+                    <Route path="/product/:id"    element={<ProductDetailPage />} />
+                    <Route path="/login"          element={<LoginPage />} />
+                    <Route path="/signup"         element={<SignupPage />} />
+                    <Route path="/checkout/:id"   element={<CheckoutPage />} />
+                    <Route path="/success/:id"    element={<SuccessPage />} />
+                    <Route path="*"               element={<NotFoundPage />} />
+                  </Routes>
+                </div>
+                <Footer />
+              </div>
+            </Router>
+          </PaymentProvider>
+        </AuthProvider>
+      );
+    }
+
+    // ========================================
+    // 🖼️ Render
+    // ========================================
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
