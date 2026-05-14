@@ -1,0 +1,122 @@
+- generic [ref=e4]:
+  - banner [ref=e5]:
+    - generic [ref=e6]:
+      - heading [level=1] [ref=e8]:
+        - link [ref=e9] [cursor=pointer]:
+          - /url: /
+      - button "메뉴 버튼" [ref=e10] [cursor=pointer]:
+        - img [ref=e11]
+  - article [ref=e12]:
+    - article [ref=e13]:
+      - generic:
+        - paragraph: Dark Chocolate · Brown Sugar
+        - generic:
+          - paragraph: 블렌드 아메리카노
+          - generic:
+            - paragraph: 고소한 견과류 풍미와
+            - paragraph: 초콜릿처럼 달콤쌉싸름한 향미가
+            - paragraph: 밸런스 있게 어우러진 균형 잡힌
+            - paragraph: 바디감의 커피
+      - button "이전" [ref=e20] [cursor=pointer]:
+        - img "이전 버튼" [ref=e21]
+      - button "다음" [ref=e22] [cursor=pointer]:
+        - img "다음 버튼" [ref=e23]
+    - article [ref=e24]:
+      - generic [ref=e25]:
+        - paragraph [ref=e26]: 맞춤 로스팅
+        - paragraph [ref=e27]: BSCA 스페셜티 블렌드
+        - generic [ref=e28]:
+          - paragraph [ref=e29]: 인증 원두를 개성 있게 블렌딩·로스팅해,
+          - paragraph [ref=e30]: 특별한 당신에게 딱 맞는 커피를 바나프레소가 완성합니다.
+      - generic [ref=e31]:
+        - generic [ref=e33]:
+          - strong [ref=e34]: 블렌드 아메리카노
+          - generic [ref=e35]: 브라질·콜롬비아·엘살바도르 상급 원두와 고지대 재배 원두로 맛과 품질을 높인 블렌드
+        - generic [ref=e37]:
+          - strong [ref=e38]: 시그니처 아메리카노
+          - paragraph [ref=e40]: 브라질 인증 스페셜티와 에티오피아 최상급 원두(과일·꽃향), 콜롬비아 상급 원두 를 섞은 고품질 블렌드
+        - generic [ref=e42]:
+          - strong [ref=e43]: 디카페인 아메리카노
+          - paragraph [ref=e45]: 콜롬비아 수프리모 SW 디카페인은 화학첨가물 없이 카페인을 제거하는 안전한 공정을 적용
+    - article [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - img "아이스 커피" [ref=e50]
+          - generic [ref=e51]:
+            - generic [ref=e52]: "signature #1"
+            - img "바닐라 라떼" [ref=e53]
+            - generic [ref=e54]:
+              - strong [ref=e55]: 바닐라 라떼
+              - paragraph [ref=e56]:
+                - text: 마다가스카르산 바닐라빈이 들어가
+                - text: 맛과 향이 깊고 풍부한 라떼
+              - link "view more" [ref=e57] [cursor=pointer]:
+                - /url: https://order.banapresso.com/#COFFEE
+        - generic [ref=e58]:
+          - img "아이스 커피" [ref=e60]
+          - generic [ref=e61]:
+            - generic [ref=e62]: "signature #2"
+            - img "바닐라 라떼" [ref=e63]
+            - generic [ref=e64]:
+              - strong [ref=e65]: 크리미 라떼
+              - paragraph [ref=e66]:
+                - text: 라떼 중에 점성이 가장 높아
+                - text: 진하고 부드러운 크림이 가득한 라떼
+              - link "view more" [ref=e67] [cursor=pointer]:
+                - /url: https://order.banapresso.com/#COFFEE
+    - article [ref=e68]:
+      - generic:
+        - generic: SEASON
+        - generic: MENU
+      - generic:
+        - generic [ref=e69]:
+          - img "탐라는 감귤 요거트 드링크" [ref=e70]
+          - button "버튼" [ref=e72] [cursor=pointer]
+        - generic [ref=e73]:
+          - img "수박 생과일쥬스" [ref=e74]
+          - button "버튼" [ref=e76] [cursor=pointer]
+        - generic [ref=e77]:
+          - img "탐라는 감귤 요거트 드링크" [ref=e78]
+          - button "버튼" [ref=e80] [cursor=pointer]
+        - generic [ref=e81]:
+          - img "딸기크림 밀크티" [ref=e82]
+          - button "버튼" [ref=e84] [cursor=pointer]
+    - article [ref=e85]:
+      - generic [ref=e86]:
+        - strong [ref=e87]: 든든한 한 끼, 달콤한 간식
+        - paragraph [ref=e88]:
+          - text: 취향대로 고르는 다채로운 디저트를
+          - text: 부담 없는 가격으로 즐겨보세요.
+      - link "view more" [ref=e89] [cursor=pointer]:
+        - /url: https://order.banapresso.com/#DESSERT
+  - contentinfo [ref=e90]:
+    - generic [ref=e91]:
+      - img "Banapresso" [ref=e93]
+      - list [ref=e94]:
+        - listitem [ref=e95]:
+          - button "개인정보처리방침" [ref=e96] [cursor=pointer]
+        - listitem [ref=e97]:
+          - button "이용약관" [ref=e98] [cursor=pointer]
+        - listitem [ref=e99]:
+          - link "가맹상담 신청" [ref=e100] [cursor=pointer]:
+            - /url: /franchise_inquiry
+        - listitem [ref=e101]:
+          - button "제휴제안 및 기타문의" [ref=e102] [cursor=pointer]
+        - listitem [ref=e103]:
+          - button "매장 이용 및 고객 문의" [ref=e104] [cursor=pointer]
+        - listitem [ref=e105]:
+          - link "상품권 문의" [ref=e106] [cursor=pointer]:
+            - /url: /biz/bulk
+      - generic [ref=e107]:
+        - strong [ref=e109]: "상호명 : ㈜바나플에프엔비"
+        - generic [ref=e110]: "대표자명 : 송민기|사업장 소재지 : 서울특별시 강남구 테헤란로 81길 9 (삼성동, 바나플빌딩) 3층|사업자번호 : 358-87-00860|통신판매업 신고번호 : 2017-서울강남-04408"
+        - generic [ref=e111]:
+          - text: "대표전화 : 1811-1111|고객문의 :"
+          - link "qna@banapresso.com" [ref=e112] [cursor=pointer]:
+            - /url: mailto:qna@banapresso.com
+          - text: 또는 1811-1111
+        - generic [ref=e113]:
+          - text: "인재채용 :"
+          - link "지원하기" [ref=e114] [cursor=pointer]:
+            - /url: https://www.jobkorea.co.kr/Recruit/GI_Read/46941150?Oem_Code=C1
+        - generic [ref=e115]: © banaple F&B. All Rights Reserved.

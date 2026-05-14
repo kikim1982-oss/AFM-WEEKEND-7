@@ -1,0 +1,126 @@
+- generic [ref=e4]:
+  - banner [ref=e5]:
+    - generic [ref=e6]:
+      - heading [level=1] [ref=e8]:
+        - link [ref=e9] [cursor=pointer]:
+          - /url: /
+      - button "메뉴 버튼" [ref=e10] [cursor=pointer]:
+        - img [ref=e11]
+  - article [ref=e12]:
+    - article [ref=e13]:
+      - generic [ref=e15]:
+        - link "생과일 토마토 컵빙수, 생과일 토마토 주스" [ref=e17] [cursor=pointer]:
+          - /url: /menu_introduction
+          - img "생과일 토마토 컵빙수, 생과일 토마토 주스" [ref=e19]
+        - link "모닝오렌지커피, 오렌지아메리카노 오렌지라떼" [ref=e21] [cursor=pointer]:
+          - /url: /menu_introduction
+          - img "모닝오렌지커피, 오렌지아메리카노 오렌지라떼" [ref=e23]
+        - link "빙수의정석, 홍시컵빙수 오리지널컵빙수 후르츠컵빙수" [ref=e25] [cursor=pointer]:
+          - /url: /menu_introduction
+          - img "빙수의정석, 홍시컵빙수 오리지널컵빙수 후르츠컵빙수" [ref=e27]
+        - link "과채의 세계, 생케일망고주스 당근홍시주스" [ref=e29] [cursor=pointer]:
+          - /url: /menu_introduction
+          - generic [ref=e30]:
+            - img "과채의 세계, 생케일망고주스 당근홍시주스"
+        - link "생과일 토마토 컵빙수, 생과일 토마토 주스" [ref=e32] [cursor=pointer]:
+          - /url: /menu_introduction
+          - img "생과일 토마토 컵빙수, 생과일 토마토 주스" [ref=e34]
+        - link "모닝오렌지커피, 오렌지아메리카노 오렌지라떼" [ref=e36] [cursor=pointer]:
+          - /url: /menu_introduction
+          - img "모닝오렌지커피, 오렌지아메리카노 오렌지라떼" [ref=e38]
+    - article [ref=e44]:
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - paragraph [ref=e47]: RUN LEAN, EARN MORE
+          - paragraph [ref=e48]:
+            - text: 최소 운영,
+            - strong [ref=e49]: 최대 수익
+          - paragraph [ref=e50]:
+            - text: 바나프레소의 창업정보가
+            - generic [ref=e51]: 궁금하신가요?
+        - generic [ref=e52]:
+          - img "바나프레소 매장 건물" [ref=e53]
+          - link "MORE" [ref=e54] [cursor=pointer]:
+            - /url: /franchise_inquiry
+      - generic [ref=e56]:
+        - generic [ref=e60]:
+          - paragraph [ref=e61]: "3"
+          - paragraph [ref=e62]: 나만의 복숭아 나무,
+          - strong [ref=e63]:
+            - text: 이제 과수원까지
+            - text: 꾸밀 수 있습니다.
+          - generic [ref=e64]:
+            - paragraph [ref=e65]: 출석과 음료 구매로 키운 나만의 복숭아!
+            - paragraph [ref=e66]: 이제 전용 아이템으로 과수원을 꾸며볼까요?
+            - paragraph [ref=e67]: 상위 랭킹에 도전하고 할인 쿠폰도 놓치지 마세요.
+        - generic [ref=e72]:
+          - paragraph [ref=e73]: "1"
+          - paragraph [ref=e74]: 실물 법인카드 선결제 충전,
+          - strong [ref=e75]:
+            - text: 이제 키오스크에서
+            - text: 가능합니다.
+          - generic [ref=e76]:
+            - paragraph [ref=e77]: POS 말고 키오스크에서 바로 충전하세요.
+            - paragraph [ref=e78]: 충전 포인트는 앱/키오스크에서 자유롭게 사용해요.
+            - paragraph [ref=e79]: 법인카드, 바나프레소가 더 합리적이에요.
+        - generic [ref=e84]:
+          - paragraph [ref=e85]: "2"
+          - paragraph [ref=e86]: 브랜드 미션 수행하고,
+          - strong [ref=e87]:
+            - text: 이제 Lv.3 배지
+            - text: 획득 가능합니다.
+          - generic [ref=e88]:
+            - paragraph [ref=e89]: 미션 수행하고 브랜드 활동 배지를 모아보세요.
+            - paragraph [ref=e90]: 이번에 레벨3까지 등급이 확정되었습니다.
+            - paragraph [ref=e91]: 차곡차곡 쌓이는 배지로 나의 팬심을 증명해 보세요.
+        - generic [ref=e96]:
+          - paragraph [ref=e97]: "3"
+          - paragraph [ref=e98]: 나만의 복숭아 나무,
+          - strong [ref=e99]:
+            - text: 이제 과수원까지
+            - text: 꾸밀 수 있습니다.
+          - generic [ref=e100]:
+            - paragraph [ref=e101]: 출석과 음료 구매로 키운 나만의 복숭아!
+            - paragraph [ref=e102]: 이제 전용 아이템으로 과수원을 꾸며볼까요?
+            - paragraph [ref=e103]: 상위 랭킹에 도전하고 할인 쿠폰도 놓치지 마세요.
+        - generic [ref=e108]:
+          - paragraph [ref=e109]: "1"
+          - paragraph [ref=e110]: 실물 법인카드 선결제 충전,
+          - strong [ref=e111]:
+            - text: 이제 키오스크에서
+            - text: 가능합니다.
+          - generic [ref=e112]:
+            - paragraph [ref=e113]: POS 말고 키오스크에서 바로 충전하세요.
+            - paragraph [ref=e114]: 충전 포인트는 앱/키오스크에서 자유롭게 사용해요.
+            - paragraph [ref=e115]: 법인카드, 바나프레소가 더 합리적이에요.
+  - contentinfo [ref=e121]:
+    - generic [ref=e122]:
+      - img "Banapresso" [ref=e124]
+      - list [ref=e125]:
+        - listitem [ref=e126]:
+          - button "개인정보처리방침" [ref=e127] [cursor=pointer]
+        - listitem [ref=e128]:
+          - button "이용약관" [ref=e129] [cursor=pointer]
+        - listitem [ref=e130]:
+          - link "가맹상담 신청" [ref=e131] [cursor=pointer]:
+            - /url: /franchise_inquiry
+        - listitem [ref=e132]:
+          - button "제휴제안 및 기타문의" [ref=e133] [cursor=pointer]
+        - listitem [ref=e134]:
+          - button "매장 이용 및 고객 문의" [ref=e135] [cursor=pointer]
+        - listitem [ref=e136]:
+          - link "상품권 문의" [ref=e137] [cursor=pointer]:
+            - /url: /biz/bulk
+      - generic [ref=e138]:
+        - strong [ref=e140]: "상호명 : ㈜바나플에프엔비"
+        - generic [ref=e141]: "대표자명 : 송민기|사업장 소재지 : 서울특별시 강남구 테헤란로 81길 9 (삼성동, 바나플빌딩) 3층|사업자번호 : 358-87-00860|통신판매업 신고번호 : 2017-서울강남-04408"
+        - generic [ref=e142]:
+          - text: "대표전화 : 1811-1111|고객문의 :"
+          - link "qna@banapresso.com" [ref=e143] [cursor=pointer]:
+            - /url: mailto:qna@banapresso.com
+          - text: 또는 1811-1111
+        - generic [ref=e144]:
+          - text: "인재채용 :"
+          - link "지원하기" [ref=e145] [cursor=pointer]:
+            - /url: https://www.jobkorea.co.kr/Recruit/GI_Read/46941150?Oem_Code=C1
+        - generic [ref=e146]: © banaple F&B. All Rights Reserved.

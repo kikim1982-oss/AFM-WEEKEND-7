@@ -1,0 +1,1816 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "메뉴바로가기" [ref=e4] [cursor=pointer]:
+      - /url: "#gnb"
+    - link "콘텐츠 바로가기" [ref=e5] [cursor=pointer]:
+      - /url: "#container"
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - heading "스타벅스 코리아" [level=1] [ref=e9]:
+        - link "스타벅스 코리아" [ref=e10] [cursor=pointer]:
+          - /url: /
+      - navigation [ref=e11]:
+        - list:
+          - listitem [ref=e12]:
+            - link "Sign In" [ref=e13] [cursor=pointer]:
+              - /url: javascript:void(0);
+          - listitem [ref=e14]:
+            - link "My Starbucks" [ref=e15] [cursor=pointer]:
+              - /url: javascript:void(0);
+          - listitem [ref=e16]:
+            - link "Customer Service & Ideas" [ref=e17] [cursor=pointer]:
+              - /url: /util/index.do
+          - listitem [ref=e18]:
+            - link "Find a Store" [ref=e19] [cursor=pointer]:
+              - /url: /store/store_map.do
+      - paragraph [ref=e20]:
+        - link "통합검색" [ref=e21] [cursor=pointer]:
+          - /url: javascript:void(0);
+          - img "통합검색" [ref=e22]
+        - generic [ref=e23]: 통합검색
+      - button "마이 리워드 레이어 열기" [ref=e24] [cursor=pointer]
+    - navigation [ref=e25]:
+      - list [ref=e27]:
+        - listitem [ref=e28]:
+          - heading "COFFEE" [level=2] [ref=e29]:
+            - link "COFFEE" [ref=e30] [cursor=pointer]:
+              - /url: /coffee/index.do
+        - listitem [ref=e31]:
+          - heading "MENU" [level=2] [ref=e32]:
+            - link "MENU" [ref=e33] [cursor=pointer]:
+              - /url: /menu/index.do
+        - listitem [ref=e34]:
+          - heading "STORE" [level=2] [ref=e35]:
+            - link "STORE" [ref=e36] [cursor=pointer]:
+              - /url: /store/index.do
+        - listitem [ref=e37]:
+          - heading "ESG" [level=2] [ref=e38]:
+            - link "ESG" [ref=e39] [cursor=pointer]:
+              - /url: /responsibility/index.do
+        - listitem [ref=e40]:
+          - heading "STARBUCKS REWARDS" [level=2] [ref=e41]:
+            - link "STARBUCKS REWARDS" [ref=e42] [cursor=pointer]:
+              - /url: /msr/index.do
+        - listitem [ref=e43]:
+          - heading "CORPORATE SALES" [level=2] [ref=e44]:
+            - link "CORPORATE SALES" [ref=e45] [cursor=pointer]:
+              - /url: /footer/co_sales/index.do
+        - listitem [ref=e46]:
+          - heading "WHAT'S NEW" [level=2] [ref=e47]:
+            - link "WHAT'S NEW" [ref=e48] [cursor=pointer]:
+              - /url: /whats_new/index.do
+  - generic [ref=e49]:
+    - generic [ref=e51]:
+      - heading "음료" [level=2] [ref=e52]:
+        - img "음료" [ref=e53]
+      - list [ref=e54]:
+        - listitem [ref=e55]:
+          - link "홈으로" [ref=e56] [cursor=pointer]:
+            - /url: /
+            - img "홈으로" [ref=e57]
+        - listitem [ref=e58]:
+          - img "하위메뉴" [ref=e59]
+        - listitem [ref=e60]:
+          - link "MENU" [ref=e61] [cursor=pointer]:
+            - /url: /menu/index.do
+        - listitem [ref=e62]:
+          - img "하위메뉴" [ref=e63]
+        - listitem [ref=e64]:
+          - link "음료" [ref=e65] [cursor=pointer]:
+            - /url: /menu/drink_list.do
+    - generic [ref=e66]:
+      - generic [ref=e67]:
+        - paragraph [ref=e68]: 분류 보기
+        - button "분류보기 메뉴 접기" [ref=e70] [cursor=pointer]:
+          - img "분류보기 메뉴 접기" [ref=e71]
+        - generic [ref=e73]:
+          - term [ref=e74]:
+            - button "카테고리" [ref=e75] [cursor=pointer]
+          - definition [ref=e76]:
+            - group "음료 카테고리 별 분류 보기" [ref=e79]:
+              - generic: 음료 카테고리 별 분류 보기
+              - list [ref=e80]:
+                - generic [ref=e82]:
+                  - listitem [ref=e83]:
+                    - checkbox "전체 상품보기" [checked] [ref=e84] [cursor=pointer]
+                    - generic [ref=e85] [cursor=pointer]: 전체 상품보기
+                  - listitem [ref=e86]:
+                    - checkbox "콜드 브루 커피" [ref=e87] [cursor=pointer]
+                    - generic [ref=e88] [cursor=pointer]: 콜드 브루 커피
+                  - listitem [ref=e89]:
+                    - checkbox "브루드 커피" [ref=e90] [cursor=pointer]
+                    - generic [ref=e91] [cursor=pointer]: 브루드 커피
+                  - listitem [ref=e92]:
+                    - checkbox "에스프레소" [ref=e93] [cursor=pointer]
+                    - generic [ref=e94] [cursor=pointer]: 에스프레소
+                  - listitem [ref=e95]:
+                    - checkbox "프라푸치노" [ref=e96] [cursor=pointer]
+                    - generic [ref=e97] [cursor=pointer]: 프라푸치노
+                  - listitem [ref=e98]:
+                    - checkbox "블렌디드" [ref=e99] [cursor=pointer]
+                    - generic [ref=e100] [cursor=pointer]: 블렌디드
+                  - listitem [ref=e101]:
+                    - checkbox "스타벅스 리프레셔" [ref=e102] [cursor=pointer]
+                    - generic [ref=e103] [cursor=pointer]: 스타벅스 리프레셔
+                  - listitem [ref=e104]:
+                    - checkbox "스타벅스 피지오" [ref=e105] [cursor=pointer]
+                    - generic [ref=e106] [cursor=pointer]: 스타벅스 피지오
+                  - listitem [ref=e107]:
+                    - checkbox "티(티바나)" [ref=e108] [cursor=pointer]
+                    - generic [ref=e109] [cursor=pointer]: 티(티바나)
+                  - listitem [ref=e110]:
+                    - checkbox "기타 제조 음료" [ref=e111] [cursor=pointer]
+                    - generic [ref=e112] [cursor=pointer]: 기타 제조 음료
+                  - listitem [ref=e113]:
+                    - checkbox "스타벅스 주스(병음료)" [ref=e114] [cursor=pointer]
+                    - generic [ref=e115] [cursor=pointer]: 스타벅스 주스(병음료)
+          - term [ref=e116]:
+            - link "테마" [ref=e117] [cursor=pointer]:
+              - /url: javascript:void(0)
+      - generic [ref=e119]:
+        - paragraph [ref=e121]:
+          - button "상세분류 옵션 선택하기" [ref=e122]
+          - generic [ref=e123]: 상세분류
+        - generic [ref=e124]:
+          - term [ref=e125]:
+            - button "사진으로 보기" [ref=e126] [cursor=pointer]
+          - definition [ref=e127]:
+            - generic [ref=e129]:
+              - term [ref=e130]:
+                - link "콜드 브루 커피" [ref=e131] [cursor=pointer]:
+                  - /url: javascript:void(0);
+                - generic [ref=e133]: 디카페인 에스프레소 샷 추가 가능 (일부 음료 제외)
+              - definition [ref=e134]:
+                - list [ref=e135]:
+                  - listitem [ref=e136]:
+                    - generic [ref=e137]:
+                      - term [ref=e138]:
+                        - link "바닐라 아인슈페너 콜드브루" [ref=e139] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "바닐라 아인슈페너 콜드브루" [ref=e140]
+                        - list [ref=e141]:
+                          - listitem [ref=e142]:
+                            - img "NEW" [ref=e143]
+                      - definition [ref=e144]: 바닐라 아인슈페너 콜드브루
+                  - listitem [ref=e145]:
+                    - generic [ref=e146]:
+                      - term [ref=e147]:
+                        - link "서울 막걸리향 콜드브루" [ref=e148] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "서울 막걸리향 콜드브루" [ref=e149]
+                        - list [ref=e150]:
+                          - listitem [ref=e151]:
+                            - img "NEW" [ref=e152]
+                      - definition [ref=e153]: 서울 막걸리향 콜드브루
+                  - listitem [ref=e154]:
+                    - generic [ref=e155]:
+                      - term [ref=e156]:
+                        - link "우디 카우보이 쿠키 콜드 브루" [ref=e157] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "우디 카우보이 쿠키 콜드 브루" [ref=e158]
+                        - list [ref=e159]:
+                          - listitem [ref=e160]:
+                            - img "NEW" [ref=e161]
+                      - definition [ref=e162]: 우디 카우보이 쿠키 콜드 브루
+                  - listitem [ref=e163]:
+                    - generic [ref=e164]:
+                      - term [ref=e165]:
+                        - link "프렌치 바닐라 콜드 브루" [ref=e166] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "프렌치 바닐라 콜드 브루" [ref=e167]
+                        - list [ref=e168]:
+                          - listitem [ref=e169]:
+                            - img "NEW" [ref=e170]
+                      - definition [ref=e171]: 프렌치 바닐라 콜드 브루
+                  - listitem [ref=e172]:
+                    - generic [ref=e173]:
+                      - term [ref=e174]:
+                        - link "나이트로 바닐라 크림" [ref=e175] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "나이트로 바닐라 크림" [ref=e176]
+                      - definition [ref=e177]: 나이트로 바닐라 크림
+                  - listitem [ref=e178]:
+                    - generic [ref=e179]:
+                      - term [ref=e180]:
+                        - link "나이트로 콜드 브루" [ref=e181] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "나이트로 콜드 브루" [ref=e182]
+                      - definition [ref=e183]: 나이트로 콜드 브루
+                  - listitem [ref=e184]:
+                    - generic [ref=e185]:
+                      - term [ref=e186]:
+                        - link "돌체 콜드 브루" [ref=e187] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "돌체 콜드 브루" [ref=e188]
+                      - definition [ref=e189]: 돌체 콜드 브루
+                  - listitem [ref=e190]:
+                    - generic [ref=e191]:
+                      - term [ref=e192]:
+                        - link "리저브 나이트로" [ref=e193] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "리저브 나이트로" [ref=e194]
+                      - definition [ref=e195]: 리저브 나이트로
+                  - listitem [ref=e196]:
+                    - generic [ref=e197]:
+                      - term [ref=e198]:
+                        - link "리저브 콜드 브루" [ref=e199] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "리저브 콜드 브루" [ref=e200]
+                      - definition [ref=e201]: 리저브 콜드 브루
+                  - listitem [ref=e202]:
+                    - generic [ref=e203]:
+                      - term [ref=e204]:
+                        - link "막걸리향 크림 콜드 브루" [ref=e205] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "막걸리향 크림 콜드 브루" [ref=e206]
+                      - definition [ref=e207]: 막걸리향 크림 콜드 브루
+                  - listitem [ref=e208]:
+                    - generic [ref=e209]:
+                      - term [ref=e210]:
+                        - link "민트 콜드 브루" [ref=e211] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "민트 콜드 브루" [ref=e212]
+                      - definition [ref=e213]: 민트 콜드 브루
+                  - listitem [ref=e214]:
+                    - generic [ref=e215]:
+                      - term [ref=e216]:
+                        - link "바닐라 크림 콜드 브루" [ref=e217] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "바닐라 크림 콜드 브루" [ref=e218]
+                      - definition [ref=e219]: 바닐라 크림 콜드 브루
+                  - listitem [ref=e220]:
+                    - generic [ref=e221]:
+                      - term [ref=e222]:
+                        - link "베르가못 콜드 브루" [ref=e223] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "베르가못 콜드 브루" [ref=e224]
+                      - definition [ref=e225]: 베르가못 콜드 브루
+                  - listitem [ref=e226]:
+                    - generic [ref=e227]:
+                      - term [ref=e228]:
+                        - link "블랙&화이트 콜드 브루" [ref=e229] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "블랙&화이트 콜드 브루" [ref=e230]
+                      - definition [ref=e231]: 블랙&화이트 콜드 브루
+                  - listitem [ref=e232]:
+                    - generic [ref=e233]:
+                      - term [ref=e234]:
+                        - link "스모크드 콜드 패션드" [ref=e235] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스모크드 콜드 패션드" [ref=e236]
+                      - definition [ref=e237]: 스모크드 콜드 패션드
+                  - listitem [ref=e238]:
+                    - generic [ref=e239]:
+                      - term [ref=e240]:
+                        - link "시그니처 더 블랙 콜드 브루" [ref=e241] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "시그니처 더 블랙 콜드 브루" [ref=e242]
+                      - definition [ref=e243]: 시그니처 더 블랙 콜드 브루
+                  - listitem [ref=e244]:
+                    - generic [ref=e245]:
+                      - term [ref=e246]:
+                        - link "여수 윤슬 헤이즐넛 콜드브루" [ref=e247] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "여수 윤슬 헤이즐넛 콜드브루" [ref=e248]
+                      - definition [ref=e249]: 여수 윤슬 헤이즐넛 콜드브루
+                  - listitem [ref=e250]:
+                    - generic [ref=e251]:
+                      - term [ref=e252]:
+                        - link "오트 콜드 브루" [ref=e253] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "오트 콜드 브루" [ref=e254]
+                      - definition [ref=e255]: 오트 콜드 브루
+                  - listitem [ref=e256]:
+                    - generic [ref=e257]:
+                      - term [ref=e258]:
+                        - link "제주 비자림 리저브 콜드 브루" [ref=e259] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "제주 비자림 리저브 콜드 브루" [ref=e260]
+                      - definition [ref=e261]: 제주 비자림 리저브 콜드 브루
+                  - listitem [ref=e262]:
+                    - generic [ref=e263]:
+                      - term [ref=e264]:
+                        - link "콜드 브루" [ref=e265] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "콜드 브루" [ref=e266]
+                      - definition [ref=e267]: 콜드 브루
+                  - listitem [ref=e268]:
+                    - generic [ref=e269]:
+                      - term [ref=e270]:
+                        - link "콜드 브루" [ref=e271] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "콜드 브루" [ref=e272]
+                      - definition [ref=e273]: 콜드 브루
+                  - listitem [ref=e274]:
+                    - generic [ref=e275]:
+                      - term [ref=e276]:
+                        - link "콜드 브루 몰트" [ref=e277] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "콜드 브루 몰트" [ref=e278]
+                      - definition [ref=e279]: 콜드 브루 몰트
+                  - listitem [ref=e280]:
+                    - generic [ref=e281]:
+                      - term [ref=e282]:
+                        - link "콜드 브루 플로트" [ref=e283] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "콜드 브루 플로트" [ref=e284]
+                      - definition [ref=e285]: 콜드 브루 플로트
+              - term [ref=e286]:
+                - link "브루드 커피" [ref=e287] [cursor=pointer]:
+                  - /url: javascript:void(0);
+                - generic [ref=e289]: 디카페인 에스프레소 샷 추가 가능 (일부 음료 제외)
+              - definition [ref=e290]:
+                - list [ref=e291]:
+                  - listitem [ref=e292]:
+                    - generic [ref=e293]:
+                      - term [ref=e294]:
+                        - link "브루드 커피" [ref=e295] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "브루드 커피" [ref=e296]
+                      - definition [ref=e297]: 브루드 커피
+                  - listitem [ref=e298]:
+                    - generic [ref=e299]:
+                      - term [ref=e300]:
+                        - link "스위트 밀크 커피" [ref=e301] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스위트 밀크 커피" [ref=e302]
+                      - definition [ref=e303]: 스위트 밀크 커피
+                  - listitem [ref=e304]:
+                    - generic [ref=e305]:
+                      - term [ref=e306]:
+                        - link "아이스 브루드 커피" [ref=e307] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 브루드 커피" [ref=e308]
+                      - definition [ref=e309]: 아이스 브루드 커피
+              - term [ref=e310]:
+                - link "에스프레소" [ref=e311] [cursor=pointer]:
+                  - /url: javascript:void(0)
+                - generic [ref=e313]: 디카페인 에스프레소 샷 선택 가능 (일부 음료 제외)
+              - definition [ref=e314]:
+                - list [ref=e315]:
+                  - listitem [ref=e316]:
+                    - generic [ref=e317]:
+                      - term [ref=e318]:
+                        - link "스타벅스 에어로카노" [ref=e319] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스타벅스 에어로카노" [ref=e320]
+                        - list [ref=e321]:
+                          - listitem [ref=e322]:
+                            - img "NEW" [ref=e323]
+                      - definition [ref=e324]: 스타벅스 에어로카노
+                  - listitem [ref=e325]:
+                    - generic [ref=e326]:
+                      - term [ref=e327]:
+                        - link "슈 폼 라떼" [ref=e328] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "슈 폼 라떼" [ref=e329]
+                        - list [ref=e330]:
+                          - listitem [ref=e331]:
+                            - img "NEW" [ref=e332]
+                      - definition [ref=e333]: 슈 폼 라떼
+                  - listitem [ref=e334]:
+                    - generic [ref=e335]:
+                      - term [ref=e336]:
+                        - link "슈크림 라떼" [ref=e337] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "슈크림 라떼" [ref=e338]
+                        - list [ref=e339]:
+                          - listitem [ref=e340]:
+                            - img "NEW" [ref=e341]
+                          - listitem [ref=e342]:
+                            - img "시즌 한정" [ref=e343]
+                      - definition [ref=e344]: 슈크림 라떼
+                  - listitem [ref=e345]:
+                    - generic [ref=e346]:
+                      - term [ref=e347]:
+                        - link "아이스 슈 폼 라떼" [ref=e348] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 슈 폼 라떼" [ref=e349]
+                        - list [ref=e350]:
+                          - listitem [ref=e351]:
+                            - img "NEW" [ref=e352]
+                      - definition [ref=e353]: 아이스 슈 폼 라떼
+                  - listitem [ref=e354]:
+                    - generic [ref=e355]:
+                      - term [ref=e356]:
+                        - link "아이스 슈크림 라떼" [ref=e357] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 슈크림 라떼" [ref=e358]
+                        - list [ref=e359]:
+                          - listitem [ref=e360]:
+                            - img "NEW" [ref=e361]
+                          - listitem [ref=e362]:
+                            - img "시즌 한정" [ref=e363]
+                      - definition [ref=e364]: 아이스 슈크림 라떼
+                  - listitem [ref=e365]:
+                    - generic [ref=e366]:
+                      - term [ref=e367]:
+                        - link "에스프레소 콘 파나" [ref=e368] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "에스프레소 콘 파나" [ref=e369]
+                      - definition [ref=e370]: 에스프레소 콘 파나
+                  - listitem [ref=e371]:
+                    - generic [ref=e372]:
+                      - term [ref=e373]:
+                        - link "에스프레소 마키아또" [ref=e374] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "에스프레소 마키아또" [ref=e375]
+                      - definition [ref=e376]: 에스프레소 마키아또
+                  - listitem [ref=e377]:
+                    - generic [ref=e378]:
+                      - term [ref=e379]:
+                        - link "스타벅스 1호점 카페 아메리카노" [ref=e380] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스타벅스 1호점 카페 아메리카노" [ref=e381]
+                      - definition [ref=e382]: 스타벅스 1호점 카페 아메리카노
+                  - listitem [ref=e383]:
+                    - generic [ref=e384]:
+                      - term [ref=e385]:
+                        - link "아이스 스타벅스 1호점 카페 아메리카노" [ref=e386] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 스타벅스 1호점 카페 아메리카노" [ref=e387]
+                      - definition [ref=e388]: 아이스 스타벅스 1호점 카페 아메리카노
+                  - listitem [ref=e389]:
+                    - generic [ref=e390]:
+                      - term [ref=e391]:
+                        - link "아이스 카페 아메리카노" [ref=e392] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 카페 아메리카노" [ref=e393]
+                      - definition [ref=e394]: 아이스 카페 아메리카노
+                  - listitem [ref=e395]:
+                    - generic [ref=e396]:
+                      - term [ref=e397]:
+                        - link "카페 아메리카노" [ref=e398] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "카페 아메리카노" [ref=e399]
+                      - definition [ref=e400]: 카페 아메리카노
+                  - listitem [ref=e401]:
+                    - generic [ref=e402]:
+                      - term [ref=e403]:
+                        - link "아이스 카라멜 마키아또" [ref=e404] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 카라멜 마키아또" [ref=e405]
+                      - definition [ref=e406]: 아이스 카라멜 마키아또
+                  - listitem [ref=e407]:
+                    - generic [ref=e408]:
+                      - term [ref=e409]:
+                        - link "카라멜 마키아또" [ref=e410] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "카라멜 마키아또" [ref=e411]
+                      - definition [ref=e412]: 카라멜 마키아또
+                  - listitem [ref=e413]:
+                    - generic [ref=e414]:
+                      - term [ref=e415]:
+                        - link "아이스 카푸치노" [ref=e416] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 카푸치노" [ref=e417]
+                      - definition [ref=e418]: 아이스 카푸치노
+                  - listitem [ref=e419]:
+                    - generic [ref=e420]:
+                      - term [ref=e421]:
+                        - link "카푸치노" [ref=e422] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "카푸치노" [ref=e423]
+                      - definition [ref=e424]: 카푸치노
+                  - listitem [ref=e425]:
+                    - generic [ref=e426]:
+                      - term [ref=e427]:
+                        - link "라벤더 카페 브레베" [ref=e428] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "라벤더 카페 브레베" [ref=e429]
+                      - definition [ref=e430]: 라벤더 카페 브레베
+                  - listitem [ref=e431]:
+                    - generic [ref=e432]:
+                      - term [ref=e433]:
+                        - link "밀크카라멜 라떼" [ref=e434] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "밀크카라멜 라떼" [ref=e435]
+                      - definition [ref=e436]: 밀크카라멜 라떼
+                  - listitem [ref=e437]:
+                    - generic [ref=e438]:
+                      - term [ref=e439]:
+                        - link "바닐라 라떼" [ref=e440] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "바닐라 라떼" [ref=e441]
+                      - definition [ref=e442]: 바닐라 라떼
+                  - listitem [ref=e443]:
+                    - generic [ref=e444]:
+                      - term [ref=e445]:
+                        - link "바닐라 빈 라떼" [ref=e446] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "바닐라 빈 라떼" [ref=e447]
+                      - definition [ref=e448]: 바닐라 빈 라떼
+                  - listitem [ref=e449]:
+                    - generic [ref=e450]:
+                      - term [ref=e451]:
+                        - link "번트 카라멜 라떼" [ref=e452] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "번트 카라멜 라떼" [ref=e453]
+                      - definition [ref=e454]: 번트 카라멜 라떼
+                  - listitem [ref=e455]:
+                    - generic [ref=e456]:
+                      - term [ref=e457]:
+                        - link "사케라또 비안코 오버 아이스" [ref=e458] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "사케라또 비안코 오버 아이스" [ref=e459]
+                      - definition [ref=e460]: 사케라또 비안코 오버 아이스
+                  - listitem [ref=e461]:
+                    - generic [ref=e462]:
+                      - term [ref=e463]:
+                        - link "스타벅스 1호점 카페 라떼" [ref=e464] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스타벅스 1호점 카페 라떼" [ref=e465]
+                      - definition [ref=e466]: 스타벅스 1호점 카페 라떼
+                  - listitem [ref=e467]:
+                    - generic [ref=e468]:
+                      - term [ref=e469]:
+                        - link "스타벅스 1호점 크림 라떼" [ref=e470] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스타벅스 1호점 크림 라떼" [ref=e471]
+                      - definition [ref=e472]: 스타벅스 1호점 크림 라떼
+                  - listitem [ref=e473]:
+                    - generic [ref=e474]:
+                      - term [ref=e475]:
+                        - link "스타벅스 꿀 호떡 라떼" [ref=e476] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스타벅스 꿀 호떡 라떼" [ref=e477]
+                      - definition [ref=e478]: 스타벅스 꿀 호떡 라떼
+                  - listitem [ref=e479]:
+                    - generic [ref=e480]:
+                      - term [ref=e481]:
+                        - link "스타벅스 돌체 라떼" [ref=e482] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스타벅스 돌체 라떼" [ref=e483]
+                      - definition [ref=e484]: 스타벅스 돌체 라떼
+                  - listitem [ref=e485]:
+                    - generic [ref=e486]:
+                      - term [ref=e487]:
+                        - link "아이스 라벤더 카페 브레베" [ref=e488] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 라벤더 카페 브레베" [ref=e489]
+                      - definition [ref=e490]: 아이스 라벤더 카페 브레베
+                  - listitem [ref=e491]:
+                    - generic [ref=e492]:
+                      - term [ref=e493]:
+                        - link "아이스 밀크카라멜 라떼" [ref=e494] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 밀크카라멜 라떼" [ref=e495]
+                      - definition [ref=e496]: 아이스 밀크카라멜 라떼
+                  - listitem [ref=e497]:
+                    - generic [ref=e498]:
+                      - term [ref=e499]:
+                        - link "아이스 바닐라 라떼" [ref=e500] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 바닐라 라떼" [ref=e501]
+                      - definition [ref=e502]: 아이스 바닐라 라떼
+                  - listitem [ref=e503]:
+                    - generic [ref=e504]:
+                      - term [ref=e505]:
+                        - link "아이스 바닐라 빈 라떼" [ref=e506] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 바닐라 빈 라떼" [ref=e507]
+                      - definition [ref=e508]: 아이스 바닐라 빈 라떼
+                  - listitem [ref=e509]:
+                    - generic [ref=e510]:
+                      - term [ref=e511]:
+                        - link "아이스 스타벅스 1호점 카페 라떼" [ref=e512] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 스타벅스 1호점 카페 라떼" [ref=e513]
+                      - definition [ref=e514]: 아이스 스타벅스 1호점 카페 라떼
+                  - listitem [ref=e515]:
+                    - generic [ref=e516]:
+                      - term [ref=e517]:
+                        - link "아이스 스타벅스 1호점 크림 라떼" [ref=e518] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 스타벅스 1호점 크림 라떼" [ref=e519]
+                      - definition [ref=e520]: 아이스 스타벅스 1호점 크림 라떼
+                  - listitem [ref=e521]:
+                    - generic [ref=e522]:
+                      - term [ref=e523]:
+                        - link "아이스 스타벅스 꿀 호떡 라떼" [ref=e524] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 스타벅스 꿀 호떡 라떼" [ref=e525]
+                      - definition [ref=e526]: 아이스 스타벅스 꿀 호떡 라떼
+                  - listitem [ref=e527]:
+                    - generic [ref=e528]:
+                      - term [ref=e529]:
+                        - link "아이스 스타벅스 돌체 라떼" [ref=e530] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 스타벅스 돌체 라떼" [ref=e531]
+                      - definition [ref=e532]: 아이스 스타벅스 돌체 라떼
+                  - listitem [ref=e533]:
+                    - generic [ref=e534]:
+                      - term [ref=e535]:
+                        - link "아이스 인절미 크림 라떼" [ref=e536] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 인절미 크림 라떼" [ref=e537]
+                      - definition [ref=e538]: 아이스 인절미 크림 라떼
+                  - listitem [ref=e539]:
+                    - generic [ref=e540]:
+                      - term [ref=e541]:
+                        - link "아이스 카페 라떼" [ref=e542] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 카페 라떼" [ref=e543]
+                      - definition [ref=e544]: 아이스 카페 라떼
+                  - listitem [ref=e545]:
+                    - generic [ref=e546]:
+                      - term [ref=e547]:
+                        - link "인절미 크림 라떼" [ref=e548] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "인절미 크림 라떼" [ref=e549]
+                      - definition [ref=e550]: 인절미 크림 라떼
+                  - listitem [ref=e551]:
+                    - generic [ref=e552]:
+                      - term [ref=e553]:
+                        - link "제주 비자림 리저브 에스프레소 라떼" [ref=e554] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "제주 비자림 리저브 에스프레소 라떼" [ref=e555]
+                      - definition [ref=e556]: 제주 비자림 리저브 에스프레소 라떼
+                  - listitem [ref=e557]:
+                    - generic [ref=e558]:
+                      - term [ref=e559]:
+                        - link "카페 라떼" [ref=e560] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "카페 라떼" [ref=e561]
+                      - definition [ref=e562]: 카페 라떼
+                  - listitem [ref=e563]:
+                    - generic [ref=e564]:
+                      - term [ref=e565]:
+                        - link "코르타도" [ref=e566] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "코르타도" [ref=e567]
+                      - definition [ref=e568]: 코르타도
+                  - listitem [ref=e569]:
+                    - generic [ref=e570]:
+                      - term [ref=e571]:
+                        - link "아이스 카페 모카" [ref=e572] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 카페 모카" [ref=e573]
+                      - definition [ref=e574]: 아이스 카페 모카
+                  - listitem [ref=e575]:
+                    - generic [ref=e576]:
+                      - term [ref=e577]:
+                        - link "아이스 화이트 초콜릿 모카" [ref=e578] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 화이트 초콜릿 모카" [ref=e579]
+                      - definition [ref=e580]: 아이스 화이트 초콜릿 모카
+                  - listitem [ref=e581]:
+                    - generic [ref=e582]:
+                      - term [ref=e583]:
+                        - link "카페 모카" [ref=e584] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "카페 모카" [ref=e585]
+                      - definition [ref=e586]: 카페 모카
+                  - listitem [ref=e587]:
+                    - generic [ref=e588]:
+                      - term [ref=e589]:
+                        - link "클래식 민트 모카" [ref=e590] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "클래식 민트 모카" [ref=e591]
+                      - definition [ref=e592]: 클래식 민트 모카
+                  - listitem [ref=e593]:
+                    - generic [ref=e594]:
+                      - term [ref=e595]:
+                        - link "화이트 초콜릿 모카" [ref=e596] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "화이트 초콜릿 모카" [ref=e597]
+                      - definition [ref=e598]: 화이트 초콜릿 모카
+                  - listitem [ref=e599]:
+                    - generic [ref=e600]:
+                      - term [ref=e601]:
+                        - link "아이스 플랫 화이트" [ref=e602] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 플랫 화이트" [ref=e603]
+                      - definition [ref=e604]: 아이스 플랫 화이트
+                  - listitem [ref=e605]:
+                    - generic [ref=e606]:
+                      - term [ref=e607]:
+                        - link "플랫 화이트" [ref=e608] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "플랫 화이트" [ref=e609]
+                      - definition [ref=e610]: 플랫 화이트
+                  - listitem [ref=e611]:
+                    - generic [ref=e612]:
+                      - term [ref=e613]:
+                        - link "바닐라 스타벅스 더블 샷" [ref=e614] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "바닐라 스타벅스 더블 샷" [ref=e615]
+                      - definition [ref=e616]: 바닐라 스타벅스 더블 샷
+                  - listitem [ref=e617]:
+                    - generic [ref=e618]:
+                      - term [ref=e619]:
+                        - link "사케라또 아포가토" [ref=e620] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "사케라또 아포가토" [ref=e621]
+                      - definition [ref=e622]: 사케라또 아포가토
+                  - listitem [ref=e623]:
+                    - generic [ref=e624]:
+                      - term [ref=e625]:
+                        - link "스파클링 시트러스 에스프레소" [ref=e626] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스파클링 시트러스 에스프레소" [ref=e627]
+                      - definition [ref=e628]: 스파클링 시트러스 에스프레소
+                  - listitem [ref=e629]:
+                    - generic [ref=e630]:
+                      - term [ref=e631]:
+                        - link "에스프레소" [ref=e632] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "에스프레소" [ref=e633]
+                      - definition [ref=e634]: 에스프레소
+                  - listitem [ref=e635]:
+                    - generic [ref=e636]:
+                      - term [ref=e637]:
+                        - link "에스프레소 플라이트" [ref=e638] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "에스프레소 플라이트" [ref=e639]
+                      - definition [ref=e640]: 에스프레소 플라이트
+                  - listitem [ref=e641]:
+                    - generic [ref=e642]:
+                      - term [ref=e643]:
+                        - link "에스프레소 플라이트 도산" [ref=e644] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "에스프레소 플라이트 도산" [ref=e645]
+                      - definition [ref=e646]: 에스프레소 플라이트 도산
+                  - listitem [ref=e647]:
+                    - generic [ref=e648]:
+                      - term [ref=e649]:
+                        - link "커피 스타벅스 더블 샷" [ref=e650] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "커피 스타벅스 더블 샷" [ref=e651]
+                      - definition [ref=e652]: 커피 스타벅스 더블 샷
+                  - listitem [ref=e653]:
+                    - generic [ref=e654]:
+                      - term [ref=e655]:
+                        - link "클래식 아포가토" [ref=e656] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "클래식 아포가토" [ref=e657]
+                      - definition [ref=e658]: 클래식 아포가토
+                  - listitem [ref=e659]:
+                    - generic [ref=e660]:
+                      - term [ref=e661]:
+                        - link "헤이즐넛 스타벅스 더블 샷" [ref=e662] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "헤이즐넛 스타벅스 더블 샷" [ref=e663]
+                      - definition [ref=e664]: 헤이즐넛 스타벅스 더블 샷
+              - term [ref=e665]:
+                - link "프라푸치노" [ref=e666] [cursor=pointer]:
+                  - /url: javascript:void(0)
+                - generic [ref=e668]: 디카페인 에스프레소 샷 추가 가능 (일부 음료 제외)
+              - definition [ref=e669]:
+                - list [ref=e670]:
+                  - listitem [ref=e671]:
+                    - generic [ref=e672]:
+                      - term [ref=e673]:
+                        - link "바나나 마카다미아 오트 프라푸치노" [ref=e674] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "바나나 마카다미아 오트 프라푸치노" [ref=e675]
+                        - list [ref=e676]:
+                          - listitem [ref=e677]:
+                            - img "NEW" [ref=e678]
+                      - definition [ref=e679]: 바나나 마카다미아 오트 프라푸치노
+                  - listitem [ref=e680]:
+                    - generic [ref=e681]:
+                      - term [ref=e682]:
+                        - link "제시 슈트로베리 프라푸치노" [ref=e683] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "제시 슈트로베리 프라푸치노" [ref=e684]
+                        - list [ref=e685]:
+                          - listitem [ref=e686]:
+                            - img "NEW" [ref=e687]
+                      - definition [ref=e688]: 제시 슈트로베리 프라푸치노
+                  - listitem [ref=e689]:
+                    - generic [ref=e690]:
+                      - term [ref=e691]:
+                        - link "초코 바나나 마카다미아 오트 프라푸치노" [ref=e692] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "초코 바나나 마카다미아 오트 프라푸치노" [ref=e693]
+                        - list [ref=e694]:
+                          - listitem [ref=e695]:
+                            - img "NEW" [ref=e696]
+                      - definition [ref=e697]: 초코 바나나 마카다미아 오트 프라푸치노
+                  - listitem [ref=e698]:
+                    - generic [ref=e699]:
+                      - term [ref=e700]:
+                        - link "더블 에스프레소 칩 프라푸치노" [ref=e701] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "더블 에스프레소 칩 프라푸치노" [ref=e702]
+                      - definition [ref=e703]: 더블 에스프레소 칩 프라푸치노
+                  - listitem [ref=e704]:
+                    - generic [ref=e705]:
+                      - term [ref=e706]:
+                        - link "스타벅스 꿀 호떡 크림 프라푸치노" [ref=e707] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스타벅스 꿀 호떡 크림 프라푸치노" [ref=e708]
+                      - definition [ref=e709]: 스타벅스 꿀 호떡 크림 프라푸치노
+                  - listitem [ref=e710]:
+                    - generic [ref=e711]:
+                      - term [ref=e712]:
+                        - link "에스프레소 프라푸치노" [ref=e713] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "에스프레소 프라푸치노" [ref=e714]
+                      - definition [ref=e715]: 에스프레소 프라푸치노
+                  - listitem [ref=e716]:
+                    - generic [ref=e717]:
+                      - term [ref=e718]:
+                        - link "자바 칩 프라푸치노" [ref=e719] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "자바 칩 프라푸치노" [ref=e720]
+                      - definition [ref=e721]: 자바 칩 프라푸치노
+                  - listitem [ref=e722]:
+                    - generic [ref=e723]:
+                      - term [ref=e724]:
+                        - link "카라멜 프라푸치노" [ref=e725] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "카라멜 프라푸치노" [ref=e726]
+                      - definition [ref=e727]: 카라멜 프라푸치노
+                  - listitem [ref=e728]:
+                    - generic [ref=e729]:
+                      - term [ref=e730]:
+                        - link "딸기 글레이즈드 크림 프라푸치노" [ref=e731] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "딸기 글레이즈드 크림 프라푸치노" [ref=e732]
+                      - definition [ref=e733]: 딸기 글레이즈드 크림 프라푸치노
+                  - listitem [ref=e734]:
+                    - generic [ref=e735]:
+                      - term [ref=e736]:
+                        - link "베르가못 딸기 크림 프라푸치노" [ref=e737] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "베르가못 딸기 크림 프라푸치노" [ref=e738]
+                      - definition [ref=e739]: 베르가못 딸기 크림 프라푸치노
+                  - listitem [ref=e740]:
+                    - generic [ref=e741]:
+                      - term [ref=e742]:
+                        - link "베르가못 제주 말차 크림 프라푸치노" [ref=e743] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "베르가못 제주 말차 크림 프라푸치노" [ref=e744]
+                      - definition [ref=e745]: 베르가못 제주 말차 크림 프라푸치노
+                  - listitem [ref=e746]:
+                    - generic [ref=e747]:
+                      - term [ref=e748]:
+                        - link "인절미 제주 말차 크림 프라푸치노" [ref=e749] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "인절미 제주 말차 크림 프라푸치노" [ref=e750]
+                      - definition [ref=e751]: 인절미 제주 말차 크림 프라푸치노
+                  - listitem [ref=e752]:
+                    - generic [ref=e753]:
+                      - term [ref=e754]:
+                        - link "자몽 망고 코코 프라푸치노" [ref=e755] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "자몽 망고 코코 프라푸치노" [ref=e756]
+                      - definition [ref=e757]: 자몽 망고 코코 프라푸치노
+                  - listitem [ref=e758]:
+                    - generic [ref=e759]:
+                      - term [ref=e760]:
+                        - link "제주 까망 크림 프라푸치노" [ref=e761] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "제주 까망 크림 프라푸치노" [ref=e762]
+                      - definition [ref=e763]: 제주 까망 크림 프라푸치노
+                  - listitem [ref=e764]:
+                    - generic [ref=e765]:
+                      - term [ref=e766]:
+                        - link "제주 말차 크림 프라푸치노" [ref=e767] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "제주 말차 크림 프라푸치노" [ref=e768]
+                      - definition [ref=e769]: 제주 말차 크림 프라푸치노
+                  - listitem [ref=e770]:
+                    - generic [ref=e771]:
+                      - term [ref=e772]:
+                        - link "제주 쑥떡 크림 프라푸치노" [ref=e773] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "제주 쑥떡 크림 프라푸치노" [ref=e774]
+                      - definition [ref=e775]: 제주 쑥떡 크림 프라푸치노
+                  - listitem [ref=e776]:
+                    - generic [ref=e777]:
+                      - term [ref=e778]:
+                        - link "초콜릿 크림 칩 프라푸치노" [ref=e779] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "초콜릿 크림 칩 프라푸치노" [ref=e780]
+                      - definition [ref=e781]: 초콜릿 크림 칩 프라푸치노
+                  - listitem [ref=e782]:
+                    - generic [ref=e783]:
+                      - term [ref=e784]:
+                        - link "화이트 타이거 프라푸치노" [ref=e785] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "화이트 타이거 프라푸치노" [ref=e786]
+                      - definition [ref=e787]: 화이트 타이거 프라푸치노
+              - term [ref=e788]:
+                - link "블렌디드" [ref=e789] [cursor=pointer]:
+                  - /url: javascript:void(0)
+                - generic [ref=e791]: 디카페인 에스프레소 샷 추가 가능 (일부 음료 제외)
+              - definition [ref=e792]:
+                - list [ref=e793]:
+                  - listitem [ref=e794]:
+                    - generic [ref=e795]:
+                      - term [ref=e796]:
+                        - link "레드빈 빙수 블렌디드" [ref=e797] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "레드빈 빙수 블렌디드" [ref=e798]
+                        - list [ref=e799]:
+                          - listitem [ref=e800]:
+                            - img "NEW" [ref=e801]
+                      - definition [ref=e802]: 레드빈 빙수 블렌디드
+                  - listitem [ref=e803]:
+                    - generic [ref=e804]:
+                      - term [ref=e805]:
+                        - link "수박 주스 블렌디드" [ref=e806] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "수박 주스 블렌디드" [ref=e807]
+                        - list [ref=e808]:
+                          - listitem [ref=e809]:
+                            - img "NEW" [ref=e810]
+                      - definition [ref=e811]: 수박 주스 블렌디드
+                  - listitem [ref=e812]:
+                    - generic [ref=e813]:
+                      - term [ref=e814]:
+                        - link "애플망고 빙수 블렌디드" [ref=e815] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "애플망고 빙수 블렌디드" [ref=e816]
+                        - list [ref=e817]:
+                          - listitem [ref=e818]:
+                            - img "NEW" [ref=e819]
+                      - definition [ref=e820]: 애플망고 빙수 블렌디드
+                  - listitem [ref=e821]:
+                    - generic [ref=e822]:
+                      - term [ref=e823]:
+                        - link "망고 패션 프루트 블렌디드" [ref=e824] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "망고 패션 프루트 블렌디드" [ref=e825]
+                      - definition [ref=e826]: 망고 패션 프루트 블렌디드
+                  - listitem [ref=e827]:
+                    - generic [ref=e828]:
+                      - term [ref=e829]:
+                        - link "북한산 레몬 얼 그레이 블렌디드" [ref=e830] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "북한산 레몬 얼 그레이 블렌디드" [ref=e831]
+                      - definition [ref=e832]: 북한산 레몬 얼 그레이 블렌디드
+                  - listitem [ref=e833]:
+                    - generic [ref=e834]:
+                      - term [ref=e835]:
+                        - link "스타벅스 클래식 밀크티 블렌디드" [ref=e836] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스타벅스 클래식 밀크티 블렌디드" [ref=e837]
+                      - definition [ref=e838]: 스타벅스 클래식 밀크티 블렌디드
+                  - listitem [ref=e839]:
+                    - generic [ref=e840]:
+                      - term [ref=e841]:
+                        - link "여수 바다 유자 블렌디드" [ref=e842] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "여수 바다 유자 블렌디드" [ref=e843]
+                      - definition [ref=e844]: 여수 바다 유자 블렌디드
+                  - listitem [ref=e845]:
+                    - generic [ref=e846]:
+                      - term [ref=e847]:
+                        - link "제주 탄제린 블렌디드" [ref=e848] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "제주 탄제린 블렌디드" [ref=e849]
+                      - definition [ref=e850]: 제주 탄제린 블렌디드
+                  - listitem [ref=e851]:
+                    - generic [ref=e852]:
+                      - term [ref=e853]:
+                        - link "딸기 딜라이트 요거트 블렌디드" [ref=e854] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "딸기 딜라이트 요거트 블렌디드" [ref=e855]
+                      - definition [ref=e856]: 딸기 딜라이트 요거트 블렌디드
+                  - listitem [ref=e857]:
+                    - generic [ref=e858]:
+                      - term [ref=e859]:
+                        - link "말차 폭포 유자 블렌디드" [ref=e860] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "말차 폭포 유자 블렌디드" [ref=e861]
+                      - definition [ref=e862]: 말차 폭포 유자 블렌디드
+                  - listitem [ref=e863]:
+                    - generic [ref=e864]:
+                      - term [ref=e865]:
+                        - link "망고 바나나 블렌디드" [ref=e866] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "망고 바나나 블렌디드" [ref=e867]
+                      - definition [ref=e868]: 망고 바나나 블렌디드
+                  - listitem [ref=e869]:
+                    - generic [ref=e870]:
+                      - term [ref=e871]:
+                        - link "블랙 글레이즈드 셔벗 플레이트" [ref=e872] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "블랙 글레이즈드 셔벗 플레이트" [ref=e873]
+                      - definition [ref=e874]: 블랙 글레이즈드 셔벗 플레이트
+                  - listitem [ref=e875]:
+                    - generic [ref=e876]:
+                      - term [ref=e877]:
+                        - link "자몽 허니 레몬 블렌디드" [ref=e878] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "자몽 허니 레몬 블렌디드" [ref=e879]
+                      - definition [ref=e880]: 자몽 허니 레몬 블렌디드
+                  - listitem [ref=e881]:
+                    - generic [ref=e882]:
+                      - term [ref=e883]:
+                        - link "피치 망고 블렌디드" [ref=e884] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "피치 망고 블렌디드" [ref=e885]
+                      - definition [ref=e886]: 피치 망고 블렌디드
+              - term [ref=e887]:
+                - link "스타벅스 리프레셔" [ref=e888] [cursor=pointer]:
+                  - /url: javascript:void(0)
+                - generic [ref=e890]: 디카페인 에스프레소 샷 추가 가능 (일부 음료 제외)
+              - definition [ref=e891]:
+                - list [ref=e892]:
+                  - listitem [ref=e893]:
+                    - generic [ref=e894]:
+                      - term [ref=e895]:
+                        - link "딸기 아사이 레모네이드 스타벅스 리프레셔" [ref=e896] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "딸기 아사이 레모네이드 스타벅스 리프레셔" [ref=e897]
+                      - definition [ref=e898]: 딸기 아사이 레모네이드 스타벅스 리프레셔
+                  - listitem [ref=e899]:
+                    - generic [ref=e900]:
+                      - term [ref=e901]:
+                        - link "딸기 아사이 레모네이드 스타벅스 리프레셔" [ref=e902] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "딸기 아사이 레모네이드 스타벅스 리프레셔" [ref=e903]
+                      - definition [ref=e904]: 딸기 아사이 레모네이드 스타벅스 리프레셔
+              - term [ref=e905]:
+                - link "스타벅스 피지오" [ref=e906] [cursor=pointer]:
+                  - /url: javascript:void(0)
+                - generic [ref=e908]: 디카페인 에스프레소 샷 추가 가능 (일부 음료 제외)
+              - definition [ref=e909]:
+                - list [ref=e910]:
+                  - listitem [ref=e911]:
+                    - generic [ref=e912]:
+                      - term [ref=e913]:
+                        - link "버즈 키위 팝 에너지 피지오" [ref=e914] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "버즈 키위 팝 에너지 피지오" [ref=e915]
+                        - list [ref=e916]:
+                          - listitem [ref=e917]:
+                            - img "NEW" [ref=e918]
+                      - definition [ref=e919]: 버즈 키위 팝 에너지 피지오
+                  - listitem [ref=e920]:
+                    - generic [ref=e921]:
+                      - term [ref=e922]:
+                        - link "서울 석양 오미자 피지오" [ref=e923] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "서울 석양 오미자 피지오" [ref=e924]
+                        - list [ref=e925]:
+                          - listitem [ref=e926]:
+                            - img "NEW" [ref=e927]
+                      - definition [ref=e928]: 서울 석양 오미자 피지오
+                  - listitem [ref=e929]:
+                    - generic [ref=e930]:
+                      - term [ref=e931]:
+                        - link "골든 만다린 홉 피지오" [ref=e932] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "골든 만다린 홉 피지오" [ref=e933]
+                      - definition [ref=e934]: 골든 만다린 홉 피지오
+                  - listitem [ref=e935]:
+                    - generic [ref=e936]:
+                      - term [ref=e937]:
+                        - link "라이트 핑크 자몽 피지오" [ref=e938] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "라이트 핑크 자몽 피지오" [ref=e939]
+                        - list [ref=e940]:
+                          - listitem [ref=e941]:
+                            - img "시즌 한정" [ref=e942]
+                      - definition [ref=e943]: 라이트 핑크 자몽 피지오
+                  - listitem [ref=e944]:
+                    - generic [ref=e945]:
+                      - term [ref=e946]:
+                        - link "리버 피치 피지오" [ref=e947] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "리버 피치 피지오" [ref=e948]
+                      - definition [ref=e949]: 리버 피치 피지오
+                  - listitem [ref=e950]:
+                    - generic [ref=e951]:
+                      - term [ref=e952]:
+                        - link "여수 바다 자몽 피지오" [ref=e953] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "여수 바다 자몽 피지오" [ref=e954]
+                      - definition [ref=e955]: 여수 바다 자몽 피지오
+                  - listitem [ref=e956]:
+                    - generic [ref=e957]:
+                      - term [ref=e958]:
+                        - link "의암호의 초록빛 자몽 피지오" [ref=e959] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "의암호의 초록빛 자몽 피지오" [ref=e960]
+                      - definition [ref=e961]: 의암호의 초록빛 자몽 피지오
+                  - listitem [ref=e962]:
+                    - generic [ref=e963]:
+                      - term [ref=e964]:
+                        - link "제주팔삭 셔벗 피지오" [ref=e965] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "제주팔삭 셔벗 피지오" [ref=e966]
+                      - definition [ref=e967]: 제주팔삭 셔벗 피지오
+                  - listitem [ref=e968]:
+                    - generic [ref=e969]:
+                      - term [ref=e970]:
+                        - link "제주팔삭 피지오" [ref=e971] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "제주팔삭 피지오" [ref=e972]
+                      - definition [ref=e973]: 제주팔삭 피지오
+                  - listitem [ref=e974]:
+                    - generic [ref=e975]:
+                      - term [ref=e976]:
+                        - link "체리&자두 에너지 피지오" [ref=e977] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "체리&자두 에너지 피지오" [ref=e978]
+                      - definition [ref=e979]: 체리&자두 에너지 피지오
+                  - listitem [ref=e980]:
+                    - generic [ref=e981]:
+                      - term [ref=e982]:
+                        - link "쿨 라임 피지오" [ref=e983] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "쿨 라임 피지오" [ref=e984]
+                      - definition [ref=e985]: 쿨 라임 피지오
+                  - listitem [ref=e986]:
+                    - generic [ref=e987]:
+                      - term [ref=e988]:
+                        - link "피치 딸기 피지오" [ref=e989] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "피치 딸기 피지오" [ref=e990]
+                      - definition [ref=e991]: 피치 딸기 피지오
+              - term [ref=e992]:
+                - link "티(티바나)" [ref=e993] [cursor=pointer]:
+                  - /url: javascript:void(0)
+                - generic [ref=e995]: 디카페인 에스프레소 샷 추가 가능 (일부 음료 제외)
+              - definition [ref=e996]:
+                - list [ref=e997]:
+                  - listitem [ref=e998]:
+                    - generic [ref=e999]:
+                      - term [ref=e1000]:
+                        - link "민트 블렌드 티" [ref=e1001] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "민트 블렌드 티" [ref=e1002]
+                      - definition [ref=e1003]: 민트 블렌드 티
+                  - listitem [ref=e1004]:
+                    - generic [ref=e1005]:
+                      - term [ref=e1006]:
+                        - link "아이스 민트 블렌드 티" [ref=e1007] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 민트 블렌드 티" [ref=e1008]
+                      - definition [ref=e1009]: 아이스 민트 블렌드 티
+                  - listitem [ref=e1010]:
+                    - generic [ref=e1011]:
+                      - term [ref=e1012]:
+                        - link "아이스 얼 그레이 티" [ref=e1013] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 얼 그레이 티" [ref=e1014]
+                      - definition [ref=e1015]: 아이스 얼 그레이 티
+                  - listitem [ref=e1016]:
+                    - generic [ref=e1017]:
+                      - term [ref=e1018]:
+                        - link "아이스 유스베리 티" [ref=e1019] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 유스베리 티" [ref=e1020]
+                      - definition [ref=e1021]: 아이스 유스베리 티
+                  - listitem [ref=e1022]:
+                    - generic [ref=e1023]:
+                      - term [ref=e1024]:
+                        - link "아이스 유자 민트 티" [ref=e1025] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 유자 민트 티" [ref=e1026]
+                      - definition [ref=e1027]: 아이스 유자 민트 티
+                  - listitem [ref=e1028]:
+                    - generic [ref=e1029]:
+                      - term [ref=e1030]:
+                        - link "아이스 잉글리쉬 브렉퍼스트 티" [ref=e1031] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 잉글리쉬 브렉퍼스트 티" [ref=e1032]
+                      - definition [ref=e1033]: 아이스 잉글리쉬 브렉퍼스트 티
+                  - listitem [ref=e1034]:
+                    - generic [ref=e1035]:
+                      - term [ref=e1036]:
+                        - link "아이스 제주 유기농 녹차로 만든 티" [ref=e1037] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 제주 유기농 녹차로 만든 티" [ref=e1038]
+                      - definition [ref=e1039]: 아이스 제주 유기농 녹차로 만든 티
+                  - listitem [ref=e1040]:
+                    - generic [ref=e1041]:
+                      - term [ref=e1042]:
+                        - link "아이스 제주팔삭 & 자몽 허니 블랙 티" [ref=e1043] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 제주팔삭 & 자몽 허니 블랙 티" [ref=e1044]
+                      - definition [ref=e1045]: 아이스 제주팔삭 & 자몽 허니 블랙 티
+                  - listitem [ref=e1046]:
+                    - generic [ref=e1047]:
+                      - term [ref=e1048]:
+                        - link "아이스 캐모마일 블렌드 티" [ref=e1049] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 캐모마일 블렌드 티" [ref=e1050]
+                      - definition [ref=e1051]: 아이스 캐모마일 블렌드 티
+                  - listitem [ref=e1052]:
+                    - generic [ref=e1053]:
+                      - term [ref=e1054]:
+                        - link "아이스 히비스커스 블렌드 티" [ref=e1055] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 히비스커스 블렌드 티" [ref=e1056]
+                      - definition [ref=e1057]: 아이스 히비스커스 블렌드 티
+                  - listitem [ref=e1058]:
+                    - generic [ref=e1059]:
+                      - term [ref=e1060]:
+                        - link "얼 그레이 티" [ref=e1061] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "얼 그레이 티" [ref=e1062]
+                      - definition [ref=e1063]: 얼 그레이 티
+                  - listitem [ref=e1064]:
+                    - generic [ref=e1065]:
+                      - term [ref=e1066]:
+                        - link "유스베리 티" [ref=e1067] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "유스베리 티" [ref=e1068]
+                      - definition [ref=e1069]: 유스베리 티
+                  - listitem [ref=e1070]:
+                    - generic [ref=e1071]:
+                      - term [ref=e1072]:
+                        - link "유자 민트 티" [ref=e1073] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "유자 민트 티" [ref=e1074]
+                      - definition [ref=e1075]: 유자 민트 티
+                  - listitem [ref=e1076]:
+                    - generic [ref=e1077]:
+                      - term [ref=e1078]:
+                        - link "잉글리쉬 브렉퍼스트 티" [ref=e1079] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "잉글리쉬 브렉퍼스트 티" [ref=e1080]
+                      - definition [ref=e1081]: 잉글리쉬 브렉퍼스트 티
+                  - listitem [ref=e1082]:
+                    - generic [ref=e1083]:
+                      - term [ref=e1084]:
+                        - link "자몽 허니 블랙 티" [ref=e1085] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "자몽 허니 블랙 티" [ref=e1086]
+                      - definition [ref=e1087]: 자몽 허니 블랙 티
+                  - listitem [ref=e1088]:
+                    - generic [ref=e1089]:
+                      - term [ref=e1090]:
+                        - link "제주 유기농 녹차로 만든 티" [ref=e1091] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "제주 유기농 녹차로 만든 티" [ref=e1092]
+                      - definition [ref=e1093]: 제주 유기농 녹차로 만든 티
+                  - listitem [ref=e1094]:
+                    - generic [ref=e1095]:
+                      - term [ref=e1096]:
+                        - link "제주팔삭 & 자몽 허니 블랙 티" [ref=e1097] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "제주팔삭 & 자몽 허니 블랙 티" [ref=e1098]
+                      - definition [ref=e1099]: 제주팔삭 & 자몽 허니 블랙 티
+                  - listitem [ref=e1100]:
+                    - generic [ref=e1101]:
+                      - term [ref=e1102]:
+                        - link "캐모마일 블렌드 티" [ref=e1103] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "캐모마일 블렌드 티" [ref=e1104]
+                      - definition [ref=e1105]: 캐모마일 블렌드 티
+                  - listitem [ref=e1106]:
+                    - generic [ref=e1107]:
+                      - term [ref=e1108]:
+                        - link "히비스커스 블렌드 티" [ref=e1109] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "히비스커스 블렌드 티" [ref=e1110]
+                      - definition [ref=e1111]: 히비스커스 블렌드 티
+                  - listitem [ref=e1112]:
+                    - generic [ref=e1113]:
+                      - term [ref=e1114]:
+                        - link "레드 파워 패션 티" [ref=e1115] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "레드 파워 패션 티" [ref=e1116]
+                      - definition [ref=e1117]: 레드 파워 패션 티
+                  - listitem [ref=e1118]:
+                    - generic [ref=e1119]:
+                      - term [ref=e1120]:
+                        - link "레몬 캐모마일 블렌드 티" [ref=e1121] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "레몬 캐모마일 블렌드 티" [ref=e1122]
+                      - definition [ref=e1123]: 레몬 캐모마일 블렌드 티
+                  - listitem [ref=e1124]:
+                    - generic [ref=e1125]:
+                      - term [ref=e1126]:
+                        - link "복숭아 아이스 티" [ref=e1127] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "복숭아 아이스 티" [ref=e1128]
+                      - definition [ref=e1129]: 복숭아 아이스 티
+                  - listitem [ref=e1130]:
+                    - generic [ref=e1131]:
+                      - term [ref=e1132]:
+                        - link "복숭아 아이스 티" [ref=e1133] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "복숭아 아이스 티" [ref=e1134]
+                      - definition [ref=e1135]: 복숭아 아이스 티
+                  - listitem [ref=e1136]:
+                    - generic [ref=e1137]:
+                      - term [ref=e1138]:
+                        - link "복숭아 핫 티" [ref=e1139] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "복숭아 핫 티" [ref=e1140]
+                      - definition [ref=e1141]: 복숭아 핫 티
+                  - listitem [ref=e1142]:
+                    - generic [ref=e1143]:
+                      - term [ref=e1144]:
+                        - link "시트러스 가든 민트 티" [ref=e1145] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "시트러스 가든 민트 티" [ref=e1146]
+                      - definition [ref=e1147]: 시트러스 가든 민트 티
+                  - listitem [ref=e1148]:
+                    - generic [ref=e1149]:
+                      - term [ref=e1150]:
+                        - link "아이스 레몬 캐모마일 블렌드 티" [ref=e1151] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 레몬 캐모마일 블렌드 티" [ref=e1152]
+                      - definition [ref=e1153]: 아이스 레몬 캐모마일 블렌드 티
+                  - listitem [ref=e1154]:
+                    - generic [ref=e1155]:
+                      - term [ref=e1156]:
+                        - link "아이스 자몽 허니 블랙 티" [ref=e1157] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 자몽 허니 블랙 티" [ref=e1158]
+                      - definition [ref=e1159]: 아이스 자몽 허니 블랙 티
+                  - listitem [ref=e1160]:
+                    - generic [ref=e1161]:
+                      - term [ref=e1162]:
+                        - link "아이스 자몽 허니 블랙 티" [ref=e1163] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 자몽 허니 블랙 티" [ref=e1164]
+                      - definition [ref=e1165]: 아이스 자몽 허니 블랙 티
+                  - listitem [ref=e1166]:
+                    - generic [ref=e1167]:
+                      - term [ref=e1168]:
+                        - link "말차 티라미수 라떼" [ref=e1169] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "말차 티라미수 라떼" [ref=e1170]
+                      - definition [ref=e1171]: 말차 티라미수 라떼
+                  - listitem [ref=e1172]:
+                    - generic [ref=e1173]:
+                      - term [ref=e1174]:
+                        - link "슈 폼 말차 라떼" [ref=e1175] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "슈 폼 말차 라떼" [ref=e1176]
+                      - definition [ref=e1177]: 슈 폼 말차 라떼
+                  - listitem [ref=e1178]:
+                    - generic [ref=e1179]:
+                      - term [ref=e1180]:
+                        - link "슈크림 말차 라떼" [ref=e1181] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "슈크림 말차 라떼" [ref=e1182]
+                      - definition [ref=e1183]: 슈크림 말차 라떼
+                  - listitem [ref=e1184]:
+                    - generic [ref=e1185]:
+                      - term [ref=e1186]:
+                        - link "스타벅스 클래식 밀크 티" [ref=e1187] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스타벅스 클래식 밀크 티" [ref=e1188]
+                      - definition [ref=e1189]: 스타벅스 클래식 밀크 티
+                  - listitem [ref=e1190]:
+                    - generic [ref=e1191]:
+                      - term [ref=e1192]:
+                        - link "스타벅스 클래식 밀크 티 보틀" [ref=e1193] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스타벅스 클래식 밀크 티 보틀" [ref=e1194]
+                      - definition [ref=e1195]: 스타벅스 클래식 밀크 티 보틀
+                  - listitem [ref=e1196]:
+                    - generic [ref=e1197]:
+                      - term [ref=e1198]:
+                        - link "아이스 말차 티라미수 라떼" [ref=e1199] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 말차 티라미수 라떼" [ref=e1200]
+                      - definition [ref=e1201]: 아이스 말차 티라미수 라떼
+                  - listitem [ref=e1202]:
+                    - generic [ref=e1203]:
+                      - term [ref=e1204]:
+                        - link "아이스 슈 폼 말차 라떼" [ref=e1205] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 슈 폼 말차 라떼" [ref=e1206]
+                      - definition [ref=e1207]: 아이스 슈 폼 말차 라떼
+                  - listitem [ref=e1208]:
+                    - generic [ref=e1209]:
+                      - term [ref=e1210]:
+                        - link "아이스 슈크림 말차 라떼" [ref=e1211] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 슈크림 말차 라떼" [ref=e1212]
+                      - definition [ref=e1213]: 아이스 슈크림 말차 라떼
+                  - listitem [ref=e1214]:
+                    - generic [ref=e1215]:
+                      - term [ref=e1216]:
+                        - link "아이스 스타벅스 클래식 밀크 티" [ref=e1217] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 스타벅스 클래식 밀크 티" [ref=e1218]
+                      - definition [ref=e1219]: 아이스 스타벅스 클래식 밀크 티
+                  - listitem [ref=e1220]:
+                    - generic [ref=e1221]:
+                      - term [ref=e1222]:
+                        - link "아이스 얼 그레이 바닐라 티 라떼" [ref=e1223] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 얼 그레이 바닐라 티 라떼" [ref=e1224]
+                      - definition [ref=e1225]: 아이스 얼 그레이 바닐라 티 라떼
+                  - listitem [ref=e1226]:
+                    - generic [ref=e1227]:
+                      - term [ref=e1228]:
+                        - link "아이스 의암호의 보랏빛 라벤더 티 라떼" [ref=e1229] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 의암호의 보랏빛 라벤더 티 라떼" [ref=e1230]
+                      - definition [ref=e1231]: 아이스 의암호의 보랏빛 라벤더 티 라떼
+                  - listitem [ref=e1232]:
+                    - generic [ref=e1233]:
+                      - term [ref=e1234]:
+                        - link "아이스 인절미 제주 말차 라떼" [ref=e1235] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 인절미 제주 말차 라떼" [ref=e1236]
+                      - definition [ref=e1237]: 아이스 인절미 제주 말차 라떼
+                  - listitem [ref=e1238]:
+                    - generic [ref=e1239]:
+                      - term [ref=e1240]:
+                        - link "아이스 제주 말차 라떼" [ref=e1241] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 제주 말차 라떼" [ref=e1242]
+                      - definition [ref=e1243]: 아이스 제주 말차 라떼
+                  - listitem [ref=e1244]:
+                    - generic [ref=e1245]:
+                      - term [ref=e1246]:
+                        - link "아이스 프렌치 바닐라 말차 라떼" [ref=e1247] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 프렌치 바닐라 말차 라떼" [ref=e1248]
+                      - definition [ref=e1249]: 아이스 프렌치 바닐라 말차 라떼
+                  - listitem [ref=e1250]:
+                    - generic [ref=e1251]:
+                      - term [ref=e1252]:
+                        - link "얼 그레이 바닐라 티 라떼" [ref=e1253] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "얼 그레이 바닐라 티 라떼" [ref=e1254]
+                      - definition [ref=e1255]: 얼 그레이 바닐라 티 라떼
+                  - listitem [ref=e1256]:
+                    - generic [ref=e1257]:
+                      - term [ref=e1258]:
+                        - link "의암호의 보랏빛 라벤더 티 라떼" [ref=e1259] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "의암호의 보랏빛 라벤더 티 라떼" [ref=e1260]
+                      - definition [ref=e1261]: 의암호의 보랏빛 라벤더 티 라떼
+                  - listitem [ref=e1262]:
+                    - generic [ref=e1263]:
+                      - term [ref=e1264]:
+                        - link "인절미 제주 말차 라떼" [ref=e1265] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "인절미 제주 말차 라떼" [ref=e1266]
+                      - definition [ref=e1267]: 인절미 제주 말차 라떼
+                  - listitem [ref=e1268]:
+                    - generic [ref=e1269]:
+                      - term [ref=e1270]:
+                        - link "제주 말차 라떼" [ref=e1271] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "제주 말차 라떼" [ref=e1272]
+                      - definition [ref=e1273]: 제주 말차 라떼
+                  - listitem [ref=e1274]:
+                    - generic [ref=e1275]:
+                      - term [ref=e1276]:
+                        - link "클라우드 코코 말차" [ref=e1277] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "클라우드 코코 말차" [ref=e1278]
+                      - definition [ref=e1279]: 클라우드 코코 말차
+                  - listitem [ref=e1280]:
+                    - generic [ref=e1281]:
+                      - term [ref=e1282]:
+                        - link "프렌치 바닐라 말차 라떼" [ref=e1283] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "프렌치 바닐라 말차 라떼" [ref=e1284]
+                      - definition [ref=e1285]: 프렌치 바닐라 말차 라떼
+              - term [ref=e1286]:
+                - link "기타 제조 음료" [ref=e1287] [cursor=pointer]:
+                  - /url: javascript:void(0)
+                - generic [ref=e1289]: 디카페인 에스프레소 샷 추가 가능 (일부 음료 제외)
+              - definition [ref=e1290]:
+                - list [ref=e1291]:
+                  - listitem [ref=e1292]:
+                    - generic [ref=e1293]:
+                      - term [ref=e1294]:
+                        - link "딸기 콜드폼 초콜릿" [ref=e1295] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "딸기 콜드폼 초콜릿" [ref=e1296]
+                      - definition [ref=e1297]: 딸기 콜드폼 초콜릿
+                  - listitem [ref=e1298]:
+                    - generic [ref=e1299]:
+                      - term [ref=e1300]:
+                        - link "시그니처 핫 초콜릿" [ref=e1301] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "시그니처 핫 초콜릿" [ref=e1302]
+                      - definition [ref=e1303]: 시그니처 핫 초콜릿
+                  - listitem [ref=e1304]:
+                    - generic [ref=e1305]:
+                      - term [ref=e1306]:
+                        - link "아이스 시그니처 초콜릿" [ref=e1307] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 시그니처 초콜릿" [ref=e1308]
+                      - definition [ref=e1309]: 아이스 시그니처 초콜릿
+                  - listitem [ref=e1310]:
+                    - generic [ref=e1311]:
+                      - term [ref=e1312]:
+                        - link "아이스 티라미수 초콜릿" [ref=e1313] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "아이스 티라미수 초콜릿" [ref=e1314]
+                      - definition [ref=e1315]: 아이스 티라미수 초콜릿
+                  - listitem [ref=e1316]:
+                    - generic [ref=e1317]:
+                      - term [ref=e1318]:
+                        - link "티라미수 초콜릿" [ref=e1319] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "티라미수 초콜릿" [ref=e1320]
+                      - definition [ref=e1321]: 티라미수 초콜릿
+                  - listitem [ref=e1322]:
+                    - generic [ref=e1323]:
+                      - term [ref=e1324]:
+                        - link "플러피 판다 아이스 초콜릿" [ref=e1325] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "플러피 판다 아이스 초콜릿" [ref=e1326]
+                      - definition [ref=e1327]: 플러피 판다 아이스 초콜릿
+                  - listitem [ref=e1328]:
+                    - generic [ref=e1329]:
+                      - term [ref=e1330]:
+                        - link "플러피 판다 핫 초콜릿" [ref=e1331] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "플러피 판다 핫 초콜릿" [ref=e1332]
+                      - definition [ref=e1333]: 플러피 판다 핫 초콜릿
+                  - listitem [ref=e1334]:
+                    - generic [ref=e1335]:
+                      - term [ref=e1336]:
+                        - link "딸기 콜드폼 딸기 라떼" [ref=e1337] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "딸기 콜드폼 딸기 라떼" [ref=e1338]
+                      - definition [ref=e1339]: 딸기 콜드폼 딸기 라떼
+                  - listitem [ref=e1340]:
+                    - generic [ref=e1341]:
+                      - term [ref=e1342]:
+                        - link "스타벅스 슬래머" [ref=e1343] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스타벅스 슬래머" [ref=e1344]
+                      - definition [ref=e1345]: 스타벅스 슬래머
+                  - listitem [ref=e1346]:
+                    - generic [ref=e1347]:
+                      - term [ref=e1348]:
+                        - link "스팀 우유" [ref=e1349] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스팀 우유" [ref=e1350]
+                      - definition [ref=e1351]: 스팀 우유
+                  - listitem [ref=e1352]:
+                    - generic [ref=e1353]:
+                      - term [ref=e1354]:
+                        - link "우유" [ref=e1355] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "우유" [ref=e1356]
+                      - definition [ref=e1357]: 우유
+                  - listitem [ref=e1358]:
+                    - generic [ref=e1359]:
+                      - term [ref=e1360]:
+                        - link "제주팔삭 셔벗" [ref=e1361] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "제주팔삭 셔벗" [ref=e1362]
+                      - definition [ref=e1363]: 제주팔삭 셔벗
+              - term [ref=e1364]:
+                - link "스타벅스 주스(병음료)" [ref=e1365] [cursor=pointer]:
+                  - /url: javascript:void(0)
+              - definition [ref=e1366]:
+                - list [ref=e1367]:
+                  - listitem [ref=e1368]:
+                    - generic [ref=e1369]:
+                      - term [ref=e1370]:
+                        - link "ABC 클렌즈 190ML" [ref=e1371] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "ABC 클렌즈 190ML" [ref=e1372]
+                      - definition [ref=e1373]: ABC 클렌즈 190ML
+                  - listitem [ref=e1374]:
+                    - generic [ref=e1375]:
+                      - term [ref=e1376]:
+                        - link "스퀴즈드 오렌지 주스 100ML" [ref=e1377] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "스퀴즈드 오렌지 주스 100ML" [ref=e1378]
+                      - definition [ref=e1379]: 스퀴즈드 오렌지 주스 100ML
+                  - listitem [ref=e1380]:
+                    - generic [ref=e1381]:
+                      - term [ref=e1382]:
+                        - link "케일 클렌즈 190ML" [ref=e1383] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "케일 클렌즈 190ML" [ref=e1384]
+                      - definition [ref=e1385]: 케일 클렌즈 190ML
+                  - listitem [ref=e1386]:
+                    - generic [ref=e1387]:
+                      - term [ref=e1388]:
+                        - link "딸기주스 190ML" [ref=e1389] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "딸기주스 190ML" [ref=e1390]
+                      - definition [ref=e1391]: 딸기주스 190ML
+                  - listitem [ref=e1392]:
+                    - generic [ref=e1393]:
+                      - term [ref=e1394]:
+                        - link "망고주스 190ML" [ref=e1395] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "망고주스 190ML" [ref=e1396]
+                      - definition [ref=e1397]: 망고주스 190ML
+                  - listitem [ref=e1398]:
+                    - generic [ref=e1399]:
+                      - term [ref=e1400]:
+                        - link "수박 주스 190ML" [ref=e1401] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "수박 주스 190ML" [ref=e1402]
+                      - definition [ref=e1403]: 수박 주스 190ML
+                  - listitem [ref=e1404]:
+                    - generic [ref=e1405]:
+                      - term [ref=e1406]:
+                        - link "유기농 오렌지 100% 주스 190ML" [ref=e1407] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "유기농 오렌지 100% 주스 190ML" [ref=e1408]
+                      - definition [ref=e1409]: 유기농 오렌지 100% 주스 190ML
+                  - listitem [ref=e1410]:
+                    - generic [ref=e1411]:
+                      - term [ref=e1412]:
+                        - link "케일&사과주스 190ML" [ref=e1413] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "케일&사과주스 190ML" [ref=e1414]
+                      - definition [ref=e1415]: 케일&사과주스 190ML
+                  - listitem [ref=e1416]:
+                    - generic [ref=e1417]:
+                      - term [ref=e1418]:
+                        - link "한라봉주스 190ML" [ref=e1419] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "한라봉주스 190ML" [ref=e1420]
+                      - definition [ref=e1421]: 한라봉주스 190ML
+                  - listitem [ref=e1422]:
+                    - generic [ref=e1423]:
+                      - term [ref=e1424]:
+                        - link "햇사과 주스 190ML" [ref=e1425] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "햇사과 주스 190ML" [ref=e1426]
+                      - definition [ref=e1427]: 햇사과 주스 190ML
+                  - listitem [ref=e1428]:
+                    - generic [ref=e1429]:
+                      - term [ref=e1430]:
+                        - link "딸기 가득 요거트 190ML" [ref=e1431] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "딸기 가득 요거트 190ML" [ref=e1432]
+                      - definition [ref=e1433]: 딸기 가득 요거트 190ML
+                  - listitem [ref=e1434]:
+                    - generic [ref=e1435]:
+                      - term [ref=e1436]:
+                        - link "블루베리 요거트 190ML" [ref=e1437] [cursor=pointer]:
+                          - /url: javascript:void(0)
+                          - img "블루베리 요거트 190ML" [ref=e1438]
+                      - definition [ref=e1439]: 블루베리 요거트 190ML
+          - term [ref=e1440]:
+            - button "영양정보로 보기" [ref=e1441] [cursor=pointer]
+  - contentinfo [ref=e1442]:
+    - generic [ref=e1444]:
+      - list [ref=e1445]:
+        - listitem [ref=e1446]:
+          - link "COMPANY" [ref=e1447]:
+            - /url: javascript:void(0);
+            - text: COMPANY
+        - listitem [ref=e1448]:
+          - link "한눈에 보기" [ref=e1449] [cursor=pointer]:
+            - /url: /footer/company/index.do
+        - listitem [ref=e1450]:
+          - link "스타벅스 사명" [ref=e1451] [cursor=pointer]:
+            - /url: /footer/company/mission.do
+        - listitem [ref=e1452]:
+          - link "스타벅스 소개" [ref=e1453] [cursor=pointer]:
+            - /url: javascript:void(0)
+            - text: 스타벅스 소개
+        - listitem [ref=e1454]:
+          - link "컴플라이언스" [ref=e1455] [cursor=pointer]:
+            - /url: javascript:void(0)
+            - text: 컴플라이언스
+        - listitem [ref=e1456]:
+          - link "국내 뉴스룸" [ref=e1457] [cursor=pointer]:
+            - /url: /footer/company/news_list.do
+        - listitem [ref=e1458]:
+          - link "세계의 스타벅스" [ref=e1459] [cursor=pointer]:
+            - /url: /footer/company/global_starbucks.do
+        - listitem [ref=e1460]:
+          - link "글로벌 뉴스룸" [ref=e1461] [cursor=pointer]:
+            - /url: https://news.starbucks.com
+      - list [ref=e1462]:
+        - listitem [ref=e1463]:
+          - link "CORPORATE SALES" [ref=e1464]:
+            - /url: javascript:void(0);
+            - text: CORPORATE SALES
+        - listitem [ref=e1465]:
+          - link "단체 및 기업 구매 안내" [ref=e1466] [cursor=pointer]:
+            - /url: /footer/co_sales/index.do
+        - listitem [ref=e1467]:
+          - link "단체 주문 배달 안내" [ref=e1468] [cursor=pointer]:
+            - /url: /footer/group_order/index.do
+      - list [ref=e1469]:
+        - listitem [ref=e1470]:
+          - link "PARTNERSHIP" [ref=e1471]:
+            - /url: javascript:void(0);
+            - text: PARTNERSHIP
+        - listitem [ref=e1472]:
+          - link "신규 입점 제의" [ref=e1473] [cursor=pointer]:
+            - /url: /footer/partnership/new_partner.do
+        - listitem [ref=e1474]:
+          - link "협력 고객사 등록신청" [ref=e1475] [cursor=pointer]:
+            - /url: /srm/login.do
+        - listitem [ref=e1476]:
+          - link "중개업체 확인" [ref=e1477] [cursor=pointer]:
+            - /url: /srm/agency.do
+      - list [ref=e1478]:
+        - listitem [ref=e1479]:
+          - link "ONLINE COMMUNITY" [ref=e1480]:
+            - /url: javascript:void(0);
+            - text: ONLINE COMMUNITY
+        - listitem [ref=e1481]:
+          - link "페이스북" [ref=e1482] [cursor=pointer]:
+            - /url: https://www.facebook.com/starbuckskorea
+        - listitem [ref=e1483]:
+          - link "트위터" [ref=e1484] [cursor=pointer]:
+            - /url: https://twitter.com/StarbucksKorea
+        - listitem [ref=e1485]:
+          - link "유튜브" [ref=e1486] [cursor=pointer]:
+            - /url: https://www.youtube.com/user/starbuckskorea
+        - listitem [ref=e1487]:
+          - link "인스타그램" [ref=e1488] [cursor=pointer]:
+            - /url: https://instagram.com/starbuckskorea/
+      - list [ref=e1489]:
+        - listitem [ref=e1490]:
+          - link "RECRUIT" [ref=e1491]:
+            - /url: javascript:void(0);
+            - text: RECRUIT
+        - listitem [ref=e1492]:
+          - link "채용 소개" [ref=e1493] [cursor=pointer]:
+            - /url: https://job.shinsegae.com/job_intro/starbucks/starbucks01.jsp
+        - listitem [ref=e1494]:
+          - link "채용 지원하기" [ref=e1495] [cursor=pointer]:
+            - /url: https://job.shinsegae.com/recruit_info/notice/notice02_list.jsp?isSearch=Y&tabKey0=&notino=&searchWord0=&orderKey0=1&strCareerVals=&strRtlVals=&strFodhtlVals=&strFshnlvngVals=&strFbbsnsVals=&strRtlsprtVals=&rtlTogYn=Y&fodhtlTogYn=Y&FshnlvngTogYn=Y&fbbsnsTogYn=Y&rtlsprtTogYn=Y&searchWord1=&careerAllVal=&affFbbsnsVal=EE0
+    - generic [ref=e1497]:
+      - list [ref=e1500]:
+        - listitem
+        - listitem [ref=e1501]:
+          - link "소비자중심경영 CCM인증획득" [ref=e1502] [cursor=pointer]:
+            - /url: /util/ccm.do
+            - img "소비자중심경영 CCM인증획득" [ref=e1503]
+        - listitem
+        - listitem [ref=e1504]:
+          - link "여섯가족부 2020 대한민국 일자리대상 여성가족부장관상" [ref=e1505] [cursor=pointer]:
+            - /url: javascript:void(0);
+            - img "여섯가족부 2020 대한민국 일자리대상 여성가족부장관상" [ref=e1506]
+        - listitem [ref=e1507]:
+          - link "행정안전부 2020 소방의 날 행정안전부장관 표창" [ref=e1508] [cursor=pointer]:
+            - /url: javascript:void(0);
+            - img "행정안전부 2020 소방의 날 행정안전부장관 표창" [ref=e1509]
+        - listitem [ref=e1510]:
+          - link "농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상" [ref=e1511] [cursor=pointer]:
+            - /url: javascript:void(0);
+            - img "농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상" [ref=e1512]
+        - listitem [ref=e1513]:
+          - link "산업통상자원부 2020 대한민국 중소중견기업혁신 대상 국회산업통상자원중소벤처위원회장상" [ref=e1514] [cursor=pointer]:
+            - /url: javascript:void(0);
+            - img "산업통상자원부 2020 대한민국 중소중견기업혁신 대상 국회산업통상자원중소벤처위원회장상" [ref=e1515]
+        - listitem [ref=e1516]:
+          - link "일자리위원회 2020 대한민국 일자리 유공 표창 대통령직속 일자리위원회 부위원장상" [ref=e1517] [cursor=pointer]:
+            - /url: javascript:void(0);
+            - img "일자리위원회 2020 대한민국 일자리 유공 표창 대통령직속 일자리위원회 부위원장상" [ref=e1518]
+        - listitem [ref=e1519]:
+          - link "동반성장위원회 2020 사랑나눔 사회공헌대상 동반성장위원회 위원장상" [ref=e1520] [cursor=pointer]:
+            - /url: javascript:void(0);
+            - img "동반성장위원회 2020 사랑나눔 사회공헌대상 동반성장위원회 위원장상" [ref=e1521]
+        - listitem
+        - listitem [ref=e1522]:
+          - link "소비자중심경영 CCM인증획득" [ref=e1523] [cursor=pointer]:
+            - /url: /util/ccm.do
+            - img "소비자중심경영 CCM인증획득" [ref=e1524]
+        - listitem
+        - listitem [ref=e1525]:
+          - link "여섯가족부 2020 대한민국 일자리대상 여성가족부장관상" [ref=e1526] [cursor=pointer]:
+            - /url: javascript:void(0);
+            - img "여섯가족부 2020 대한민국 일자리대상 여성가족부장관상" [ref=e1527]
+        - listitem [ref=e1528]:
+          - link "행정안전부 2020 소방의 날 행정안전부장관 표창" [ref=e1529] [cursor=pointer]:
+            - /url: javascript:void(0);
+            - img "행정안전부 2020 소방의 날 행정안전부장관 표창" [ref=e1530]
+        - listitem [ref=e1531]:
+          - link "농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상" [ref=e1532] [cursor=pointer]:
+            - /url: javascript:void(0);
+            - img "농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상" [ref=e1533]
+      - link "Stop" [ref=e1538] [cursor=pointer]:
+        - /url: ""
+    - complementary [ref=e1539]:
+      - link "개인정보처리방침" [ref=e1540] [cursor=pointer]:
+        - /url: /footer/etc/privacy.do
+      - link "영상정보처리기기 운영관리 방침" [ref=e1541] [cursor=pointer]:
+        - /url: /footer/etc/rules_vod.do
+      - link "홈페이지 이용약관" [ref=e1542] [cursor=pointer]:
+        - /url: /footer/etc/rules.do
+      - link "위치정보 이용약관" [ref=e1543] [cursor=pointer]:
+        - /url: /footer/etc/rules_loc.do
+      - link "스타벅스 카드 이용약관" [ref=e1544] [cursor=pointer]:
+        - /url: /footer/etc/rules_msr.do
+      - link "신세계 유니버스 클럽 이용약관" [ref=e1545] [cursor=pointer]:
+        - /url: /footer/etc/rules_membership.do
+      - link "비회원 이용약관" [ref=e1546] [cursor=pointer]:
+        - /url: /footer/etc/rules_non.do
+      - link "My DT Pass 서비스 이용약관" [ref=e1548] [cursor=pointer]:
+        - /url: /footer/etc/rules_mdp.do
+      - link "윤리경영 핫라인" [ref=e1549] [cursor=pointer]:
+        - /url: /footer/etc/hotline.do
+      - link "찾아오시는 길" [ref=e1550] [cursor=pointer]:
+        - /url: /footer/etc/coming_route.do
+      - link "신규입점제의" [ref=e1551] [cursor=pointer]:
+        - /url: /footer/partnership/new_partner.do
+      - link "사이트 맵" [ref=e1552] [cursor=pointer]:
+        - /url: /footer/etc/sitemap.do
+      - list [ref=e1553]:
+        - listitem [ref=e1554]: "사업자등록번호 : 201-81-21515"
+        - listitem [ref=e1555]: "주식회사 에스씨케이컴퍼니 대표이사 : 손정현"
+        - listitem [ref=e1556]: "TEL : 1522-3232"
+        - listitem [ref=e1557]: "개인정보 보호책임자 : 이찬우"
+      - generic [ref=e1558]: ⓒ 2026 Starbucks Coffee Company. All Rights Reserved.

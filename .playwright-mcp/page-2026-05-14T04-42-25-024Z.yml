@@ -1,0 +1,35 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - article [ref=e4]:
+      - link "바나프레소 로고" [ref=e9] [cursor=pointer]:
+        - /url: https://www.banapresso.com/
+        - img "바나프레소 로고"
+      - generic [ref=e16]:
+        - button "검색" [ref=e17]:
+          - link "찾고 싶은 메뉴를 검색하세요" [ref=e18] [cursor=pointer]:
+            - /url: /menuSearch
+        - button "장바구니" [ref=e19]:
+          - link [ref=e20] [cursor=pointer]:
+            - /url: /cart
+        - button "메뉴 열기" [ref=e21] [cursor=pointer]
+    - article [ref=e22]
+  - article [ref=e26]
+  - contentinfo [ref=e30]:
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - img "바나프레소 로고"
+        - generic [ref=e33]:
+          - button "바나프레소 홈페이지" [ref=e35] [cursor=pointer]
+          - button "개인(위치)정보 처리방침" [ref=e37] [cursor=pointer]
+          - button "이용약관" [ref=e39] [cursor=pointer]
+      - generic [ref=e40]:
+        - generic [ref=e41]: "상호명 : (주)바나플에프엔비"
+        - generic [ref=e42]:
+          - paragraph [ref=e43]: "대표자명 : 송민기"
+          - paragraph [ref=e44]: "사업장 소재지 : 서울특별시 강남구 테헤란로 81길 9 (삼성동, 바나플빌딩) 3층"
+          - paragraph [ref=e45]: "사업자번호 : 358-87-00860"
+          - paragraph [ref=e46]: "통신판매업 신고번호 : 2017-서울강남-04408"
+        - generic [ref=e47]:
+          - paragraph [ref=e48]: "대표전화 : 1811-1111"
+          - paragraph [ref=e49]: "고객문의 : qna@banapresso.com 또는 1811-1111"
+        - generic [ref=e50]: © banaple F&B. All Rights Reserved.

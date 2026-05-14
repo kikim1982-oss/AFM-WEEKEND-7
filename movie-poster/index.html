@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>기리고 (If Wishes Could Kill) — 포스터 3종</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    /* ===========================================
+       Custom CSS — 호러 글리치 / 스캔라인 / 노이즈
+       =========================================== */
+    @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Butcherman&family=Creepster&family=Eater&family=Gugi&family=Major+Mono+Display&family=Nanum+Gothic+Coding:wght@400;700&family=Nosifer&family=Noto+Sans+KR:wght@400;700;900&family=Rubik+Glitch&family=Rubik+Wet+Paint&family=Share+Tech+Mono&family=Single+Day&family=Special+Elite&family=VT323&display=swap');
+
+    html, body {
+      background: #0A0D10;
+      color: #E5E7EB;
+      font-family: 'Noto Sans KR', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== 폰트 시스템 =====
+       han      — Black Han Sans (한글 임팩트 타이틀)
+       gugi     — Gugi (날카로운 칼날 한글 — 위협적 문구)
+       eerie    — Single Day (얇은 손글씨 — 음산한 분위기)
+       horror   — Nosifer (피 흘리는 듯한 호러 디스플레이)
+       creep    — Creepster (고전 호러 영화 포스터 폰트)
+       slasher  — Butcherman (도살자 / 슬래셔 호러)
+       eater    — Eater (녹아 흘러내리는 호러)
+       wet      — Rubik Wet Paint (피 페인트 흘림)
+       glitch-rk — Rubik Glitch (디지털 글리치 내장)
+       tw       — Special Elite (타자기 / 파운드 푸티지 호러)
+       major    — Major Mono Display (굵은 모노 디스플레이)
+       mono-h   — Share Tech Mono (디지털 모노)
+       vt       — VT323 (디지털 카운터)
+    */
+    .font-han       { font-family: 'Black Han Sans', sans-serif; letter-spacing: 0.02em; }
+    .font-gugi      { font-family: 'Gugi', 'Black Han Sans', cursive; letter-spacing: 0.01em; }
+    .font-eerie     { font-family: 'Single Day', 'Black Han Sans', cursive; letter-spacing: 0.03em; }
+    .font-horror    { font-family: 'Nosifer', 'Creepster', cursive; letter-spacing: 0.04em; }
+    .font-creep     { font-family: 'Creepster', 'Black Han Sans', cursive; letter-spacing: 0.08em; }
+    .font-slasher   { font-family: 'Butcherman', 'Creepster', cursive; letter-spacing: 0.03em; }
+    .font-eater     { font-family: 'Eater', 'Creepster', cursive; letter-spacing: 0.04em; }
+    .font-wet       { font-family: 'Rubik Wet Paint', 'Nosifer', cursive; letter-spacing: 0.02em; }
+    .font-glitch-rk { font-family: 'Rubik Glitch', 'Share Tech Mono', monospace; letter-spacing: 0.05em; }
+    .font-tw        { font-family: 'Special Elite', 'Nanum Gothic Coding', monospace; letter-spacing: 0.04em; }
+    .font-major     { font-family: 'Major Mono Display', 'Share Tech Mono', monospace; letter-spacing: 0.08em; }
+    .font-mono-h    { font-family: 'Share Tech Mono', 'Nanum Gothic Coding', monospace; }
+    .font-vt        { font-family: 'VT323', monospace; }
+
+    /* ----- 스캔라인 ----- */
+    .scanlines::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) 0px,
+        rgba(0,0,0,0) 2px,
+        rgba(0,0,0,0.35) 3px,
+        rgba(0,0,0,0) 4px
+      );
+      mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: 25;
+    }
+
+    /* ----- 비네트 ----- */
+    .vignette::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.9) 100%);
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    /* ----- 노이즈 ----- */
+    .noise::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+      opacity: 0.18;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+      z-index: 22;
+    }
+
+    /* ----- RGB 분리 + 글리치 텍스트 ----- */
+    .glitch {
+      position: relative;
+      display: inline-block;
+      color: #fff;
+      text-shadow:
+        2px 0 #FF1F2D,
+        -2px 0 #18C7FF;
+      animation: glitchShift 3.6s infinite steps(1);
+    }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0; top: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+    .glitch::before {
+      color: #FF1F2D;
+      transform: translate(2px, 0);
+      clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+      animation: glitchTop 2.4s infinite linear alternate-reverse;
+      opacity: 0.85;
+    }
+    .glitch::after {
+      color: #18C7FF;
+      transform: translate(-2px, 0);
+      clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+      animation: glitchBot 2.7s infinite linear alternate-reverse;
+      opacity: 0.85;
+    }
+    @keyframes glitchShift {
+      0%, 96%, 100% { transform: translate(0,0); }
+      97% { transform: translate(-2px, 1px); }
+      98% { transform: translate(3px, -1px); }
+      99% { transform: translate(-1px, 2px); }
+    }
+    @keyframes glitchTop {
+      0% { clip-path: polygon(0 0, 100% 0, 100% 12%, 0 12%); }
+      40% { clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%); }
+      75% { clip-path: polygon(0 8%, 100% 8%, 100% 22%, 0 22%); }
+      100% { clip-path: polygon(0 0, 100% 0, 100% 18%, 0 18%); }
+    }
+    @keyframes glitchBot {
+      0% { clip-path: polygon(0 70%, 100% 70%, 100% 100%, 0 100%); }
+      40% { clip-path: polygon(0 60%, 100% 60%, 100% 88%, 0 88%); }
+      75% { clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%); }
+      100% { clip-path: polygon(0 80%, 100% 80%, 100% 95%, 0 95%); }
+    }
+
+    /* ----- 플리커 ----- */
+    .flicker {
+      animation: flicker 4.2s infinite;
+    }
+    @keyframes flicker {
+      0%, 19%, 22%, 62%, 64%, 100% { opacity: 1; }
+      20%, 21% { opacity: 0.35; }
+      63% { opacity: 0.2; }
+      82% { opacity: 0.55; }
+    }
+
+    /* ----- 디지털 카운터 깜빡임 ----- */
+    .digital-glow {
+      color: #FF1F2D;
+      text-shadow:
+        0 0 6px rgba(255,31,45,0.95),
+        0 0 18px rgba(255,31,45,0.65),
+        0 0 36px rgba(255,31,45,0.35);
+    }
+
+    /* ----- 카드 호버 글리치 ----- */
+    .poster-card {
+      transition: transform 0.5s cubic-bezier(.2,.7,.2,1.2), filter 0.5s;
+      will-change: transform, filter;
+    }
+    .poster-card:hover {
+      transform: translateY(-6px) scale(1.015);
+      filter: contrast(1.05) saturate(1.1);
+    }
+    .poster-card:hover .poster-inner {
+      animation: hoverGlitch 0.6s steps(2) 1;
+    }
+    @keyframes hoverGlitch {
+      0%   { transform: translate(0,0); filter: hue-rotate(0deg); }
+      20%  { transform: translate(-3px, 1px); filter: hue-rotate(-8deg); }
+      40%  { transform: translate(3px, -1px); filter: hue-rotate(6deg); }
+      60%  { transform: translate(-2px, 2px); }
+      100% { transform: translate(0,0); filter: hue-rotate(0deg); }
+    }
+
+    /* ----- 액정 균열 SVG 라인 애니메이션 ----- */
+    .crack-line {
+      stroke-dasharray: 2000;
+      stroke-dashoffset: 2000;
+      animation: drawCrack 4s ease-out infinite;
+    }
+    @keyframes drawCrack {
+      0% { stroke-dashoffset: 2000; opacity: 0; }
+      10% { opacity: 1; }
+      70% { stroke-dashoffset: 0; opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 0.6; }
+    }
+
+    /* ----- 흔들림 (jitter) ----- */
+    .jitter {
+      animation: jitter 0.18s infinite;
+    }
+    @keyframes jitter {
+      0% { transform: translate(0,0); }
+      25% { transform: translate(0.5px, -0.5px); }
+      50% { transform: translate(-0.5px, 0.5px); }
+      75% { transform: translate(0.5px, 0.5px); }
+      100% { transform: translate(0,0); }
+    }
+
+    /* ----- 호러 그라데이션 ----- */
+    .blood-fade {
+      background: linear-gradient(180deg,
+        rgba(10,13,16,0) 0%,
+        rgba(26,32,38,0.4) 40%,
+        rgba(215,35,46,0.55) 80%,
+        rgba(255,31,45,0.8) 100%);
+    }
+    .dark-fade {
+      background: linear-gradient(180deg,
+        rgba(0,0,0,0.1) 0%,
+        rgba(0,0,0,0.55) 55%,
+        rgba(0,0,0,0.95) 100%);
+    }
+
+    /* ----- 모달 진입 ----- */
+    .modal-fade {
+      animation: modalFade 0.25s ease-out;
+    }
+    @keyframes modalFade {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ----- 스크롤바 ----- */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #1A2026; }
+    ::-webkit-scrollbar-thumb { background: #D7232E; border-radius: 4px; }
+
+    /* =====================================================
+       A3 페이지 — 297mm × 420mm (포트레이트, 인쇄 정확치)
+       화면에서는 뷰포트에 맞춰 transform: scale 로 축소
+       ===================================================== */
+    .a3-stage {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 80px;
+      perspective: 2400px;
+    }
+    .a3-page {
+      position: relative;
+      width: 297mm;
+      height: 420mm;
+      background: #0A0D10;
+      overflow: hidden;
+      box-shadow:
+        0 40px 90px rgba(255,31,45,0.18),
+        0 0 0 1px rgba(255,31,45,0.35),
+        0 0 80px rgba(0,0,0,0.6);
+      transform-origin: top center;
+      flex: 0 0 auto;
+    }
+    .a3-page::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+      z-index: 90;
+    }
+
+    /* A3 코너 마크 (실제 인쇄용 가이드 — 화면에서만 표시) */
+    .a3-mark {
+      position: absolute;
+      width: 18px; height: 18px;
+      border: 1px solid rgba(255,31,45,0.55);
+      z-index: 95;
+      pointer-events: none;
+    }
+    .a3-mark.tl { top: -22px; left: -22px; border-right: 0; border-bottom: 0; }
+    .a3-mark.tr { top: -22px; right: -22px; border-left: 0; border-bottom: 0; }
+    .a3-mark.bl { bottom: -22px; left: -22px; border-right: 0; border-top: 0; }
+    .a3-mark.br { bottom: -22px; right: -22px; border-left: 0; border-top: 0; }
+
+    /* 토글 슬라이드 전환 */
+    .toggle-fade {
+      animation: toggleFade 0.45s cubic-bezier(.2,.7,.2,1.2);
+    }
+    @keyframes toggleFade {
+      0%   { opacity: 0; transform: translateY(20px) scale(0.96); filter: blur(8px); }
+      60%  { filter: blur(0); }
+      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    }
+
+    /* 토글 탭 버튼 */
+    .tab-btn {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+    .tab-btn::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,31,45,0.25) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+    .tab-btn:hover::before { transform: translateX(100%); }
+    .tab-btn.active {
+      background: linear-gradient(180deg, #D7232E, #FF1F2D) !important;
+      color: #fff !important;
+      border-color: #FF1F2D !important;
+      box-shadow: 0 0 22px rgba(255,31,45,0.6), inset 0 0 12px rgba(0,0,0,0.4);
+    }
+
+    /* ----- 인쇄 (실제 A3 출력용) ----- */
+    @media print {
+      @page { size: A3 portrait; margin: 0; }
+      html, body { background: #0A0D10 !important; }
+      body * { visibility: hidden; }
+      .print-target, .print-target * { visibility: visible; }
+      .print-target {
+        position: absolute;
+        left: 0; top: 0;
+        width: 297mm; height: 420mm;
+        transform: none !important;
+        box-shadow: none !important;
+      }
+      .no-print { display: none !important; }
+      .a3-mark { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-[#0A0D10] text-gray-200 min-h-screen">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // ========================================
+    // React Hooks Destructuring
+    // ========================================
+    const { useState, useEffect, useRef, useMemo, useCallback } = React;
+
+    // ========================================
+    // 🎨 Design System Components
+    // ========================================
+
+    // ----- Badge: 메타 정보 칩 -----
+    function Badge({ children, variant = 'default', className = '' }) {
+      const variants = {
+        default: 'bg-white/10 text-gray-200 border-white/15',
+        danger:  'bg-[#D7232E]/20 text-[#FF6B73] border-[#FF1F2D]/40',
+        netflix: 'bg-[#E50914] text-white border-[#E50914]',
+        outline: 'bg-transparent text-gray-300 border-gray-500/40',
+      };
+      return (
+        <span className={`inline-flex items-center gap-1 px-2.5 py-1 text-[11px] tracking-wider uppercase border rounded-sm font-mono-h ${variants[variant]} ${className}`}>
+          {children}
+        </span>
+      );
+    }
+
+    // ----- Button -----
+    function Button({ children, variant = 'primary', size = 'md', onClick, disabled, className = '' }) {
+      const variants = {
+        primary: 'bg-[#D7232E] hover:bg-[#FF1F2D] text-white border-[#FF1F2D]',
+        ghost:   'bg-transparent hover:bg-white/10 text-white border-white/20',
+        danger:  'bg-black hover:bg-[#1A2026] text-[#FF1F2D] border-[#FF1F2D]',
+      };
+      const sizes = { sm: 'px-3 py-1.5 text-xs', md: 'px-4 py-2 text-sm', lg: 'px-6 py-3 text-base' };
+      return (
+        <button
+          onClick={onClick}
+          disabled={disabled}
+          className={`inline-flex items-center gap-2 border rounded-sm font-bold tracking-wider transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed ${variants[variant]} ${sizes[size]} ${className}`}
+        >
+          {children}
+        </button>
+      );
+    }
+
+    // ----- Card: 포스터 컨테이너 -----
+    function Card({ children, className = '', onClick }) {
+      return (
+        <div
+          onClick={onClick}
+          className={`relative overflow-hidden bg-[#1A2026] border border-white/10 rounded-sm shadow-2xl ${onClick ? 'cursor-pointer' : ''} ${className}`}
+        >
+          {children}
+        </div>
+      );
+    }
+
+    // ----- Modal: 포스터 확대 보기 -----
+    function Modal({ isOpen, onClose, children }) {
+      useEffect(() => {
+        const handleEsc = (e) => { if (e.key === 'Escape') onClose(); };
+        if (isOpen) {
+          window.addEventListener('keydown', handleEsc);
+          document.body.style.overflow = 'hidden';
+        }
+        return () => {
+          window.removeEventListener('keydown', handleEsc);
+          document.body.style.overflow = '';
+        };
+      }, [isOpen, onClose]);
+
+      if (!isOpen) return null;
+      return (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-8"
+          onClick={onClose}
+        >
+          <div className="relative max-w-3xl w-full modal-fade" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={onClose}
+              className="absolute -top-12 right-0 text-white/80 hover:text-[#FF1F2D] text-sm font-mono-h tracking-wider"
+              aria-label="닫기"
+            >
+              ✕ CLOSE [ESC]
+            </button>
+            {children}
+          </div>
+        </div>
+      );
+    }
+
+    // ----- GlitchTitle: 큰 한글 타이틀 -----
+    function GlitchTitle({ children, className = '', size = 'text-7xl' }) {
+      return (
+        <h1
+          className={`glitch font-han ${size} ${className}`}
+          data-text={children}
+        >
+          {children}
+        </h1>
+      );
+    }
+
+    // ----- LiquidCrack: SVG 액정 균열 오버레이 -----
+    function LiquidCrack({ className = '' }) {
+      return (
+        <svg
+          viewBox="0 0 400 600"
+          preserveAspectRatio="none"
+          className={`absolute inset-0 w-full h-full pointer-events-none ${className}`}
+        >
+          <defs>
+            <filter id="glowR" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="1.2" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          {/* 메인 균열 */}
+          <g stroke="#FF1F2D" strokeWidth="1.2" fill="none" filter="url(#glowR)" opacity="0.95">
+            <polyline className="crack-line" points="200,90 215,160 198,220 230,280 205,340 240,410 215,470 245,540"/>
+            <polyline className="crack-line" style={{animationDelay:'0.3s'}} points="215,160 165,190 140,230 105,250 65,260"/>
+            <polyline className="crack-line" style={{animationDelay:'0.6s'}} points="198,220 240,235 290,232 340,245 380,260"/>
+            <polyline className="crack-line" style={{animationDelay:'0.9s'}} points="230,280 200,310 175,355 140,390 110,440"/>
+            <polyline className="crack-line" style={{animationDelay:'1.2s'}} points="205,340 250,360 295,395 330,450 360,510"/>
+            <polyline className="crack-line" style={{animationDelay:'1.5s'}} points="215,470 180,490 150,520 130,560"/>
+            <polyline className="crack-line" style={{animationDelay:'0.45s'}} points="140,230 130,200 115,170 90,140 60,120"/>
+            <polyline className="crack-line" style={{animationDelay:'1.8s'}} points="290,232 305,200 320,170 345,140 370,110"/>
+          </g>
+          {/* 잔잔한 미세 균열 */}
+          <g stroke="#FF1F2D" strokeWidth="0.5" fill="none" opacity="0.55">
+            <polyline className="crack-line" style={{animationDelay:'0.7s'}} points="165,190 145,175 125,170 100,155"/>
+            <polyline className="crack-line" style={{animationDelay:'1.1s'}} points="240,235 270,215 305,200"/>
+            <polyline className="crack-line" style={{animationDelay:'1.4s'}} points="175,355 155,365 130,380"/>
+            <polyline className="crack-line" style={{animationDelay:'2.0s'}} points="295,395 320,400 340,415"/>
+          </g>
+          {/* 임팩트 포인트 */}
+          <circle cx="200" cy="290" r="3" fill="#FF1F2D" opacity="0.9"/>
+          <circle cx="200" cy="290" r="7" fill="none" stroke="#FF1F2D" strokeWidth="0.6" opacity="0.6"/>
+          <circle cx="200" cy="290" r="14" fill="none" stroke="#FF1F2D" strokeWidth="0.3" opacity="0.4"/>
+        </svg>
+      );
+    }
+
+    // ========================================
+    // 📄 작품 데이터
+    // ========================================
+    const SHOW = {
+      titleKo: '기리고',
+      titleEn: 'If Wishes Could Kill',
+      release: '2026.04.24',
+      platform: 'NETFLIX',
+      episodes: '전 8화',
+      genre: ['YA 호러', '미스터리', '오컬트'],
+      tagline: '넌 있어? 죽도록 빌고 싶은 소원.',
+      threat: '0이 되는 순간, 당신은 죽는다.',
+      synopsis:
+        '정체불명의 앱 ‘기리고’. 종이에 생년월일과 이름을 적고 셀카로 소원을 빌면 진짜로 이뤄진다. 단, 24시간 카운트다운이 시작되고 0이 되는 순간 — 사용자는 죽는다.',
+      director: '박윤서',
+      writer: '박중섭',
+      cast: [
+        { name: '전소영', role: '유세아' },
+        { name: '강미나', role: '임나리' },
+        { name: '백선호', role: '김건우' },
+        { name: '현우석', role: '강하준' },
+        { name: '이효제', role: '최형욱' },
+      ],
+    };
+
+    // ========================================
+    // 🧩 Hero Header
+    // ========================================
+    function HeroHeader() {
+      return (
+        <header className="relative overflow-hidden border-b border-[#FF1F2D]/30">
+          {/* 배경 */}
+          <div className="absolute inset-0">
+            <img
+              src="./stills/17_behind_scene_a.webp"
+              alt=""
+              className="w-full h-full object-cover opacity-30"
+              style={{filter:'grayscale(0.4) contrast(1.15) brightness(0.55)'}}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-[#0A0D10]/80 to-[#0A0D10]"></div>
+            <div className="absolute inset-0" style={{
+              background:'radial-gradient(ellipse at 70% 30%, rgba(215,35,46,0.25) 0%, transparent 55%)'
+            }}></div>
+          </div>
+
+          <div className="relative max-w-7xl mx-auto px-5 md:px-10 py-14 md:py-20">
+            <div className="flex items-center gap-3 mb-5">
+              <Badge variant="netflix">N · NETFLIX SERIES</Badge>
+              <Badge variant="danger">YA HORROR · OCCULT</Badge>
+              <Badge variant="outline" className="hidden sm:inline-flex">{SHOW.episodes}</Badge>
+            </div>
+
+            <div className="flex flex-col md:flex-row md:items-end gap-6 md:gap-10">
+              <div>
+                <GlitchTitle size="text-6xl md:text-8xl" className="leading-none">
+                  {SHOW.titleKo}
+                </GlitchTitle>
+                <p className="font-horror text-[#FF1F2D] tracking-[0.15em] mt-4 text-2xl md:text-4xl drop-shadow-[0_0_18px_rgba(255,31,45,0.55)]">
+                  IF · WISHES · COULD · KILL
+                </p>
+              </div>
+              <div className="md:ml-auto md:text-right space-y-1 font-mono-h text-xs md:text-sm text-gray-300">
+                <div className="text-[#FF1F2D] tracking-[0.3em]">{SHOW.release}</div>
+                <div className="tracking-[0.3em]">{SHOW.platform} · GLOBAL</div>
+                <div className="tracking-[0.2em] text-gray-500">DIR. {SHOW.director} · 각본 {SHOW.writer}</div>
+              </div>
+            </div>
+
+            <p className="mt-8 max-w-3xl text-gray-300 leading-relaxed text-sm md:text-base">
+              {SHOW.synopsis}
+            </p>
+
+            <div className="mt-6 flex items-center gap-3 text-[#FF1F2D] font-han text-lg md:text-2xl flicker">
+              <span className="inline-block w-8 h-px bg-[#FF1F2D]"></span>
+              <span>"{SHOW.tagline}"</span>
+            </div>
+          </div>
+
+          {/* 스캔라인 */}
+          <div className="absolute inset-0 pointer-events-none scanlines"></div>
+        </header>
+      );
+    }
+
+    // ========================================
+    // 📄 Poster 1 — 메인 포스터 (단체 호러 콜라주)
+    // ========================================
+    function PosterMain({ onExpand }) {
+      const stills = [
+        './stills/20_char_still_1.jpg',
+        './stills/21_char_still_2.jpg',
+        './stills/22_char_still_3.jpg',
+        './stills/23_char_still_4.jpg',
+        './stills/24_char_still_5.jpg',
+      ];
+
+      return (
+        <Card
+          className="poster-card w-full h-full"
+          onClick={onExpand}
+        >
+          <div className="poster-inner absolute inset-0">
+            {/* 5인 캐릭터 콜라주 */}
+            <div className="absolute inset-0 grid grid-cols-3 grid-rows-3 gap-[2px] bg-black">
+              {/* 큰 중앙 인물 (1열 2행 차지) */}
+              <div className="col-span-1 row-span-2 relative overflow-hidden">
+                <img src={stills[0]} alt="" className="w-full h-full object-cover" style={{filter:'grayscale(0.55) contrast(1.25) brightness(0.55)'}}/>
+              </div>
+              <div className="col-span-2 row-span-1 relative overflow-hidden">
+                <img src={stills[1]} alt="" className="w-full h-full object-cover" style={{filter:'grayscale(0.6) contrast(1.2) brightness(0.5) hue-rotate(-10deg)'}}/>
+              </div>
+              <div className="col-span-1 row-span-1 relative overflow-hidden">
+                <img src={stills[2]} alt="" className="w-full h-full object-cover" style={{filter:'grayscale(0.6) contrast(1.2) brightness(0.45)'}}/>
+              </div>
+              <div className="col-span-1 row-span-1 relative overflow-hidden">
+                <img src={stills[3]} alt="" className="w-full h-full object-cover" style={{filter:'grayscale(0.65) contrast(1.3) brightness(0.5) hue-rotate(-15deg)'}}/>
+              </div>
+              <div className="col-span-3 row-span-1 relative overflow-hidden">
+                <img src={stills[4]} alt="" className="w-full h-full object-cover object-top" style={{filter:'grayscale(0.6) contrast(1.2) brightness(0.45)'}}/>
+              </div>
+            </div>
+
+            {/* 핏빛 오버레이 */}
+            <div className="absolute inset-0" style={{
+              background:'radial-gradient(ellipse at center, rgba(215,35,46,0.35) 0%, rgba(26,32,38,0.6) 50%, rgba(0,0,0,0.95) 100%)',
+              mixBlendMode:'multiply'
+            }}></div>
+            <div className="absolute inset-0" style={{
+              background:'linear-gradient(180deg, rgba(255,31,45,0.18) 0%, transparent 30%, transparent 60%, rgba(215,35,46,0.45) 100%)'
+            }}></div>
+
+            {/* 픽셀 글리치 가로 띠 */}
+            <div className="absolute left-0 right-0 top-[31%] h-[6px] bg-[#FF1F2D] opacity-70 mix-blend-screen"></div>
+            <div className="absolute left-0 right-0 top-[62%] h-[3px] bg-[#18C7FF] opacity-50 mix-blend-screen"></div>
+
+            {/* 상단 메타 */}
+            <div className="absolute top-0 left-0 right-0 p-4 flex items-center justify-between z-30">
+              <span className="font-mono-h text-[10px] tracking-[0.3em] text-[#FF6B73]">NETFLIX · 2026</span>
+              <span className="font-mono-h text-[10px] tracking-[0.3em] text-white/70">YA HORROR</span>
+            </div>
+
+            {/* 중앙 큰 타이틀 */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center z-30 px-6 text-center">
+              <p className="font-creep text-2xl md:text-3xl tracking-[0.18em] text-[#FF1F2D] mb-3 jitter drop-shadow-[0_0_12px_rgba(255,31,45,0.7)]">
+                BIRTHDAY · NAME · SELFIE
+              </p>
+              <GlitchTitle
+                size="text-[5.5rem] sm:text-[7rem] md:text-[8.5rem] lg:text-[7rem] xl:text-[8.5rem]"
+                className="leading-[0.85] drop-shadow-[0_0_22px_rgba(255,31,45,0.55)]"
+              >
+                {SHOW.titleKo}
+              </GlitchTitle>
+              <p className="font-horror text-xl md:text-2xl tracking-[0.12em] text-[#FF1F2D] mt-4 drop-shadow-[0_0_14px_rgba(255,31,45,0.55)]">
+                IF · WISHES · COULD · KILL
+              </p>
+            </div>
+
+            {/* 하단 카피 */}
+            <div className="absolute bottom-0 left-0 right-0 p-5 z-30">
+              <div className="border-t border-[#FF1F2D]/60 pt-3">
+                <p className="font-han text-lg md:text-2xl text-white text-center tracking-tight flicker">
+                  "{SHOW.tagline}"
+                </p>
+                <div className="flex items-center justify-between mt-3 font-mono-h text-[10px] tracking-[0.3em] text-[#FF6B73]">
+                  <span>2026.04.24</span>
+                  <span>ONLY ON NETFLIX</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 효과 레이어 */}
+            <div className="noise"></div>
+            <div className="scanlines"></div>
+            <div className="vignette"></div>
+          </div>
+        </Card>
+      );
+    }
+
+    // ========================================
+    // 📄 Poster 2 — 티저 포스터 (단일 인물 + 액정 균열)
+    // ========================================
+    function PosterTeaser({ onExpand }) {
+      return (
+        <Card
+          className="poster-card w-full h-full"
+          onClick={onExpand}
+        >
+          <div className="poster-inner absolute inset-0">
+            {/* 단일 인물 */}
+            <img
+              src="./stills/14_character_still_a.jpg"
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover object-center"
+              style={{filter:'grayscale(0.7) contrast(1.3) brightness(0.55)'}}
+            />
+
+            {/* 어두운 톤 다운 */}
+            <div className="absolute inset-0" style={{
+              background:'linear-gradient(180deg, rgba(10,13,16,0.55) 0%, rgba(10,13,16,0.25) 35%, rgba(10,13,16,0.6) 75%, rgba(10,13,16,0.95) 100%)'
+            }}></div>
+            <div className="absolute inset-0" style={{
+              background:'radial-gradient(ellipse at 50% 45%, transparent 25%, rgba(0,0,0,0.85) 90%)'
+            }}></div>
+
+            {/* 핏빛 살짝 */}
+            <div className="absolute inset-0" style={{
+              background:'radial-gradient(circle at 50% 48%, rgba(215,35,46,0.25) 0%, transparent 45%)',
+              mixBlendMode:'screen'
+            }}></div>
+
+            {/* 액정 균열 (메인) */}
+            <LiquidCrack className="z-20"/>
+
+            {/* 상단 미니멀 메타 */}
+            <div className="absolute top-0 left-0 right-0 p-5 flex items-center justify-between z-30">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#FF1F2D] rounded-full flicker"></span>
+                <span className="font-mono-h text-[10px] tracking-[0.4em] text-white/85">REC · LIVE</span>
+              </div>
+              <span className="font-mono-h text-[10px] tracking-[0.4em] text-white/60">TEASER · 001</span>
+            </div>
+
+            {/* 작은 타이틀 — 위쪽 */}
+            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 text-center z-30 px-6">
+              <div className="inline-block">
+                <p className="font-glitch-rk text-lg md:text-2xl tracking-[0.18em] text-[#FF1F2D] mb-3">
+                  ERROR · 24:00:00
+                </p>
+                <h2 className="font-han text-3xl md:text-4xl text-white tracking-wider drop-shadow-[0_0_10px_rgba(255,31,45,0.6)]">
+                  기리고
+                </h2>
+                <p className="font-horror text-base md:text-lg tracking-[0.12em] text-[#FF1F2D]/85 mt-3 drop-shadow-[0_0_10px_rgba(255,31,45,0.45)]">
+                  IF WISHES COULD KILL
+                </p>
+              </div>
+            </div>
+
+            {/* 하단 영역 — 메타 + 작은 카피 */}
+            <div className="absolute bottom-0 left-0 right-0 p-5 z-30">
+              <div className="text-center">
+                <p className="font-eerie text-xl md:text-2xl text-white/90 tracking-[0.1em] mb-4 drop-shadow-[0_0_8px_rgba(255,31,45,0.45)]">
+                  화면이 깨질 때 — 소원이 깨어난다
+                </p>
+                <div className="inline-flex items-center gap-3 border border-[#FF1F2D]/60 px-3 py-1.5">
+                  <span className="font-mono-h text-[10px] tracking-[0.35em] text-[#FF1F2D]">2026.04.24</span>
+                  <span className="w-px h-3 bg-[#FF1F2D]/60"></span>
+                  <span className="font-mono-h text-[10px] tracking-[0.35em] text-white">NETFLIX</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 효과 레이어 */}
+            <div className="noise"></div>
+            <div className="scanlines"></div>
+            <div className="vignette"></div>
+          </div>
+        </Card>
+      );
+    }
+
+    // ========================================
+    // 📄 Poster 3 — 카운트다운 컨셉 (실시간)
+    // ========================================
+    function PosterCountdown({ onExpand }) {
+      const [time, setTime] = useState({ h: 23, m: 59, s: 59 });
+
+      useEffect(() => {
+        const id = setInterval(() => {
+          setTime((prev) => {
+            let { h, m, s } = prev;
+            s -= 1;
+            if (s < 0) { s = 59; m -= 1; }
+            if (m < 0) { m = 59; h -= 1; }
+            if (h < 0) { return { h: 23, m: 59, s: 59 }; }
+            return { h, m, s };
+          });
+        }, 1000);
+        return () => clearInterval(id);
+      }, []);
+
+      const pad = (n) => String(n).padStart(2, '0');
+      const isFinal = time.h === 0 && time.m < 1;
+
+      return (
+        <Card
+          className="poster-card w-full h-full"
+          onClick={onExpand}
+        >
+          <div className="poster-inner absolute inset-0">
+            {/* 배경 — 무당/활 비하인드 */}
+            <img
+              src="./stills/17_behind_scene_a.webp"
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{filter:'grayscale(0.8) contrast(1.4) brightness(0.4)'}}
+            />
+            {/* 추가 비하인드 합성 */}
+            <img
+              src="./stills/18_behind_scene_b.webp"
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-25"
+              style={{filter:'grayscale(1) contrast(1.5)'}}
+            />
+
+            {/* 어두운 톤 */}
+            <div className="absolute inset-0" style={{
+              background:'linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.45) 30%, rgba(0,0,0,0.35) 65%, rgba(0,0,0,0.95) 100%)'
+            }}></div>
+
+            {/* 핏빛 라이트 */}
+            <div className="absolute inset-0" style={{
+              background:'radial-gradient(circle at 50% 45%, rgba(255,31,45,0.32) 0%, transparent 50%)',
+              mixBlendMode:'screen'
+            }}></div>
+
+            {/* 상단 — 카운트다운 라벨 */}
+            <div className="absolute top-0 left-0 right-0 p-5 z-30 flex items-center justify-between">
+              <span className="font-creep text-base md:text-lg tracking-[0.18em] text-[#FF1F2D] flicker drop-shadow-[0_0_8px_rgba(255,31,45,0.7)]">
+                ● COUNTDOWN ACTIVE
+              </span>
+              <span className="font-mono-h text-[10px] tracking-[0.4em] text-white/70">
+                SYS · GIRIGO.APP
+              </span>
+            </div>
+
+            {/* 중앙 거대 카운터 */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center z-30 px-4">
+              <p className="font-mono-h text-[10px] md:text-xs tracking-[0.5em] text-white/80 mb-4">
+                TIME · REMAINING
+              </p>
+
+              <div className={`font-vt digital-glow ${isFinal ? 'jitter' : ''}`}
+                   style={{
+                     fontSize: 'clamp(3.5rem, 14vw, 7rem)',
+                     letterSpacing: '0.04em',
+                     lineHeight: '0.95',
+                     fontVariantNumeric: 'tabular-nums',
+                   }}>
+                <span className="relative inline-block">
+                  <span className="opacity-30 absolute inset-0">{pad(time.h)}:{pad(time.m)}:{pad(time.s)}</span>
+                  {pad(time.h)}:{pad(time.m)}:{pad(time.s)}
+                </span>
+              </div>
+
+              {/* 시간 단위 라벨 */}
+              <div className="flex items-center gap-7 md:gap-10 mt-2 font-mono-h text-[10px] tracking-[0.45em] text-[#FF6B73]">
+                <span>HOUR</span>
+                <span>MIN</span>
+                <span>SEC</span>
+              </div>
+
+              {/* 위협 카피 */}
+              <div className="mt-8 text-center">
+                <p className="font-gugi text-2xl md:text-4xl text-white drop-shadow-[0_0_10px_rgba(255,31,45,0.75)] flicker tracking-tight">
+                  0이 되는 순간,
+                </p>
+                <p className="font-gugi text-2xl md:text-4xl text-[#FF1F2D] mt-2 drop-shadow-[0_0_16px_rgba(255,31,45,0.95)] tracking-tight">
+                  당신은 죽는다.
+                </p>
+              </div>
+            </div>
+
+            {/* 하단 작은 타이틀 */}
+            <div className="absolute bottom-0 left-0 right-0 p-5 z-30">
+              <div className="border-t border-[#FF1F2D]/50 pt-3 flex items-end justify-between">
+                <div>
+                  <h3 className="font-han text-2xl md:text-3xl text-white tracking-tight">기리고</h3>
+                  <p className="font-horror text-sm md:text-base tracking-[0.1em] text-[#FF1F2D]/80 mt-1 drop-shadow-[0_0_8px_rgba(255,31,45,0.4)]">
+                    IF WISHES COULD KILL
+                  </p>
+                </div>
+                <div className="text-right font-mono-h text-[10px] tracking-[0.35em]">
+                  <div className="text-[#FF1F2D]">2026.04.24</div>
+                  <div className="text-white/70 mt-0.5">NETFLIX</div>
+                </div>
+              </div>
+            </div>
+
+            {/* 효과 */}
+            <div className="noise"></div>
+            <div className="scanlines"></div>
+            <div className="vignette"></div>
+          </div>
+        </Card>
+      );
+    }
+
+    // ========================================
+    // 🧩 ToggleTabs — 3개 포스터 페이지 전환 탭
+    // ========================================
+    function ToggleTabs({ active, onChange, items }) {
+      return (
+        <div className="no-print sticky top-0 z-50 backdrop-blur-md bg-[#0A0D10]/85 border-y border-[#FF1F2D]/30">
+          <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex items-center gap-2 md:gap-3">
+              <span className="font-creep text-lg md:text-xl tracking-[0.18em] text-[#FF1F2D] drop-shadow-[0_0_10px_rgba(255,31,45,0.6)] hidden md:inline">
+                A3 · POSTER
+              </span>
+              <span className="font-glitch-rk text-xs md:text-sm text-white/70 hidden md:inline">/ 297×420mm</span>
+            </div>
+
+            <div role="tablist" aria-label="포스터 선택" className="flex items-center gap-2 md:gap-3 overflow-x-auto">
+              {items.map((it, idx) => (
+                <button
+                  key={it.id}
+                  role="tab"
+                  aria-selected={active === it.id}
+                  onClick={() => onChange(it.id)}
+                  className={`tab-btn shrink-0 inline-flex items-center gap-2 border rounded-sm px-3 md:px-5 py-2 md:py-2.5 transition
+                    ${active === it.id
+                      ? 'active'
+                      : 'bg-transparent text-white/85 border-white/20 hover:border-[#FF1F2D]/60 hover:text-white'}`}
+                >
+                  <span className="font-mono-h text-[10px] tracking-[0.3em] opacity-70">0{idx + 1}</span>
+                  <span className="font-han text-sm md:text-base whitespace-nowrap">{it.subLabel}</span>
+                  <span className="hidden sm:inline font-creep text-xs tracking-[0.15em] opacity-80">· {it.label}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-2 no-print">
+              <button
+                onClick={() => window.print()}
+                className="inline-flex items-center gap-2 border border-[#FF1F2D]/60 hover:bg-[#FF1F2D] hover:text-white text-[#FF1F2D] px-3 py-2 text-xs font-mono-h tracking-[0.2em] transition"
+                aria-label="A3 인쇄"
+              >
+                <span>⎙</span> PRINT · A3
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // ========================================
+    // 🧩 A3PageStage — A3 297×420mm 페이지 컨테이너
+    //    뷰포트에 맞춰 자동 스케일 (인쇄 시 원본 크기)
+    // ========================================
+    function A3PageStage({ activeId, items }) {
+      const [scale, setScale] = useState(1);
+      const wrapRef = useRef(null);
+
+      useEffect(() => {
+        const A3_W_PX = 297 * 3.7795275591; // 96dpi
+        const A3_H_PX = 420 * 3.7795275591;
+        const update = () => {
+          const node = wrapRef.current;
+          if (!node) return;
+          const availW = node.clientWidth - 24;
+          const availH = window.innerHeight - 160; // 상단 탭바 등 고려
+          const s = Math.min(availW / A3_W_PX, availH / A3_H_PX, 1);
+          setScale(Math.max(0.25, s));
+        };
+        update();
+        window.addEventListener('resize', update);
+        return () => window.removeEventListener('resize', update);
+      }, []);
+
+      const active = items.find((i) => i.id === activeId) || items[0];
+      const Comp = active.component;
+
+      // 스케일된 페이지가 차지하는 실제 높이를 컨테이너에 반영
+      const A3_W_MM = 297;
+      const A3_H_MM = 420;
+      const stageHeight = `calc(${A3_H_MM}mm * ${scale} + 64px)`;
+
+      return (
+        <section ref={wrapRef} className="a3-stage" style={{ minHeight: stageHeight }}>
+          {/* 메타 라벨 */}
+          <div className="no-print w-full max-w-7xl mx-auto px-2 mb-4 flex items-center justify-between gap-3 text-xs">
+            <div className="flex items-center gap-3">
+              <Badge variant="danger">{active.label}</Badge>
+              <span className="font-han text-base md:text-lg text-white">{active.subLabel}</span>
+              <span className="font-mono-h tracking-[0.2em] text-white/50 hidden sm:inline">{active.spec}</span>
+            </div>
+            <span className="font-glitch-rk text-[#FF1F2D] text-base">
+              A3 · 297×420 · {Math.round(scale * 100)}%
+            </span>
+          </div>
+
+          {/* A3 페이지 — key를 줘서 활성 포스터 전환마다 애니메이션 재실행 */}
+          <div
+            key={active.id}
+            className="print-target toggle-fade"
+            style={{
+              transform: `scale(${scale})`,
+              transformOrigin: 'top center',
+              marginBottom: `calc(-${A3_H_MM}mm * (1 - ${scale}))`, // 스케일 후 빈 공간 보정
+            }}
+          >
+            <div className="a3-page">
+              {/* 트리밍 마크 */}
+              <span className="a3-mark tl no-print"></span>
+              <span className="a3-mark tr no-print"></span>
+              <span className="a3-mark bl no-print"></span>
+              <span className="a3-mark br no-print"></span>
+
+              <Comp onExpand={() => {}} />
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ========================================
+    // 🧩 PostersSection (A3 토글 스테이지)
+    // ========================================
+    function PostersSection() {
+      const items = [
+        { id: 'main',     label: 'KEY ART',   subLabel: '메인 포스터',     spec: '단체 호러 콜라주',     component: PosterMain },
+        { id: 'teaser',   label: 'TEASER',    subLabel: '티저 포스터',     spec: '액정 균열 · 미니멀',   component: PosterTeaser },
+        { id: 'countdown',label: 'COUNTDOWN', subLabel: '카운트다운 포스터', spec: '실시간 24:00:00',     component: PosterCountdown },
+      ];
+      const [active, setActive] = useState('main');
+
+      // 키보드 단축키: 1/2/3 — 좌/우 화살표
+      useEffect(() => {
+        const handler = (e) => {
+          if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+          if (e.key === '1') setActive('main');
+          if (e.key === '2') setActive('teaser');
+          if (e.key === '3') setActive('countdown');
+          if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+            const idx = items.findIndex((i) => i.id === active);
+            const next = e.key === 'ArrowRight'
+              ? (idx + 1) % items.length
+              : (idx - 1 + items.length) % items.length;
+            setActive(items[next].id);
+          }
+        };
+        window.addEventListener('keydown', handler);
+        return () => window.removeEventListener('keydown', handler);
+      }, [active]);
+
+      return (
+        <section className="relative">
+          <div className="no-print max-w-7xl mx-auto px-5 md:px-10 pt-12 md:pt-16 pb-2">
+            <p className="font-creep text-2xl md:text-3xl tracking-[0.18em] text-[#FF1F2D] mb-2 drop-shadow-[0_0_14px_rgba(255,31,45,0.55)]">
+              POSTER · ARTWORK · 003
+            </p>
+            <h2 className="font-gugi text-3xl md:text-5xl text-white leading-tight">3가지 컨셉, 1개의 저주</h2>
+            <p className="mt-3 text-gray-400 text-sm max-w-2xl">
+              메인 · 티저 · 카운트다운 — 각 포스터를 <span className="text-[#FF6B73]">A3 (297×420mm)</span> 사이즈 단일 페이지로 전환해 보세요.
+              <span className="text-white/55"> 단축키 1·2·3 또는 ← / →</span>
+            </p>
+          </div>
+
+          <ToggleTabs active={active} onChange={setActive} items={items} />
+          <A3PageStage activeId={active} items={items} />
+        </section>
+      );
+    }
+
+    // ========================================
+    // 🧩 Cast & Footer
+    // ========================================
+    function CastFooter() {
+      const castImgs = [
+        './stills/20_char_still_1.jpg',
+        './stills/21_char_still_2.jpg',
+        './stills/22_char_still_3.jpg',
+        './stills/23_char_still_4.jpg',
+        './stills/24_char_still_5.jpg',
+      ];
+
+      return (
+        <footer className="relative border-t border-white/10 bg-[#0A0D10]">
+          {/* 캐스트 */}
+          <section className="max-w-7xl mx-auto px-5 md:px-10 py-14 md:py-16">
+            <div className="mb-8">
+              <p className="font-creep text-2xl md:text-3xl tracking-[0.18em] text-[#FF1F2D] mb-2 drop-shadow-[0_0_12px_rgba(255,31,45,0.55)]">CAST · 005</p>
+              <h2 className="font-gugi text-3xl md:text-5xl text-white">소원을 빈 다섯 명</h2>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
+              {SHOW.cast.map((c, i) => (
+                <div key={c.name} className="group relative">
+                  <div className="aspect-[3/4] overflow-hidden bg-[#1A2026] border border-white/10 relative">
+                    <img
+                      src={castImgs[i]}
+                      alt={c.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      style={{filter:'grayscale(0.55) contrast(1.15) brightness(0.7)'}}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-3">
+                      <div className="font-han text-lg md:text-xl text-white">{c.name}</div>
+                      <div className="font-mono-h text-[10px] tracking-[0.3em] text-[#FF6B73] mt-0.5">
+                        AS · {c.role}
+                      </div>
+                    </div>
+                    <div className="absolute top-2 right-2 font-mono-h text-[9px] tracking-[0.3em] text-white/55 bg-black/50 px-1.5 py-0.5">
+                      0{i+1}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* 정보 푸터 */}
+          <section className="border-t border-white/10">
+            <div className="max-w-7xl mx-auto px-5 md:px-10 py-10 md:py-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+              <div>
+                <p className="font-mono-h text-[10px] tracking-[0.4em] text-[#FF1F2D] mb-2">CREDITS</p>
+                <div className="text-white space-y-1">
+                  <div><span className="text-white/55 mr-2">감독</span> {SHOW.director}</div>
+                  <div><span className="text-white/55 mr-2">각본</span> {SHOW.writer}</div>
+                  <div><span className="text-white/55 mr-2">에피소드</span> {SHOW.episodes}</div>
+                </div>
+              </div>
+              <div>
+                <p className="font-mono-h text-[10px] tracking-[0.4em] text-[#FF1F2D] mb-2">RELEASE</p>
+                <div className="text-white space-y-1">
+                  <div><span className="text-white/55 mr-2">공개일</span> {SHOW.release}</div>
+                  <div><span className="text-white/55 mr-2">플랫폼</span> {SHOW.platform} · GLOBAL</div>
+                  <div><span className="text-white/55 mr-2">장르</span> {SHOW.genre.join(' · ')}</div>
+                </div>
+              </div>
+              <div>
+                <p className="font-mono-h text-[10px] tracking-[0.4em] text-[#FF1F2D] mb-2">WARNING</p>
+                <p className="font-tw text-white/85 leading-relaxed text-base">
+                  본 작품은 폭력적이고 자극적인 묘사를 포함하고 있습니다.
+                  <span className="text-[#FF6B73]"> 15세 이상</span> 관람가.
+                </p>
+              </div>
+            </div>
+            <div className="border-t border-white/10 py-5 px-5 md:px-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-[10px] tracking-[0.35em] font-mono-h text-white/40">
+              <span>© 2026 NETFLIX · 기리고 IF WISHES COULD KILL</span>
+              <span>POSTER · CONCEPT · DEMO PAGE</span>
+            </div>
+          </section>
+        </footer>
+      );
+    }
+
+    // ========================================
+    // 🚀 App Component
+    // ========================================
+    function App() {
+      return (
+        <div className="relative min-h-screen">
+          <div className="no-print"><HeroHeader /></div>
+          <PostersSection />
+          <div className="no-print"><CastFooter /></div>
+        </div>
+      );
+    }
+
+    // ========================================
+    // Rendering
+    // ========================================
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

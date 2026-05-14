@@ -1,0 +1,324 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - link:
+      - /url: https://www.instagram.com/starbuckskorea
+    - link:
+      - /url: https://twitter.com/starbuckskorea
+    - link:
+      - /url: https://www.facebook.com/StarbucksKorea
+    - link:
+      - /url: https://www.youtube.com/channel/UCaxvyTYdWaDXupmgj5ttDUQ
+    - link:
+      - /url: https://play.google.com/store/apps/details?id=com.starbucks.co
+    - link:
+      - /url: https://apps.apple.com/kr/app/id466682252
+    - link:
+      - /url: https://brand.naver.com/starbucks
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - link "메뉴바로가기" [ref=e4] [cursor=pointer]:
+        - /url: "#gnb"
+      - link "콘텐츠 바로가기" [ref=e5] [cursor=pointer]:
+        - /url: "#container"
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - heading "스타벅스 코리아" [level=1] [ref=e9]:
+          - link "스타벅스 코리아" [ref=e10] [cursor=pointer]:
+            - /url: /
+        - navigation [ref=e11]:
+          - list:
+            - listitem [ref=e12]:
+              - link "Sign In" [ref=e13] [cursor=pointer]:
+                - /url: javascript:void(0);
+            - listitem [ref=e14]:
+              - link "My Starbucks" [ref=e15] [cursor=pointer]:
+                - /url: javascript:void(0);
+            - listitem [ref=e16]:
+              - link "Customer Service & Ideas" [ref=e17] [cursor=pointer]:
+                - /url: /util/index.do
+            - listitem [ref=e18]:
+              - link "Find a Store" [ref=e19] [cursor=pointer]:
+                - /url: /store/store_map.do
+        - paragraph [ref=e20]:
+          - link "통합검색" [ref=e21] [cursor=pointer]:
+            - /url: javascript:void(0);
+            - img "통합검색" [ref=e22]
+          - generic [ref=e23]: 통합검색
+        - button "마이 리워드 레이어 열기" [ref=e24] [cursor=pointer]
+      - navigation [ref=e25]:
+        - list [ref=e27]:
+          - listitem [ref=e28]:
+            - heading "COFFEE" [level=2] [ref=e29]:
+              - link "COFFEE" [ref=e30] [cursor=pointer]:
+                - /url: /coffee/index.do
+          - listitem [ref=e31]:
+            - heading "MENU" [level=2] [ref=e32]:
+              - link "MENU" [ref=e33] [cursor=pointer]:
+                - /url: /menu/index.do
+          - listitem [ref=e34]:
+            - heading "STORE" [level=2] [ref=e35]:
+              - link "STORE" [ref=e36] [cursor=pointer]:
+                - /url: /store/index.do
+          - listitem [ref=e37]:
+            - heading "ESG" [level=2] [ref=e38]:
+              - link "ESG" [ref=e39] [cursor=pointer]:
+                - /url: /responsibility/index.do
+          - listitem [ref=e40]:
+            - heading "STARBUCKS REWARDS" [level=2] [ref=e41]:
+              - link "STARBUCKS REWARDS" [ref=e42] [cursor=pointer]:
+                - /url: /msr/index.do
+          - listitem [ref=e43]:
+            - heading "CORPORATE SALES" [level=2] [ref=e44]:
+              - link "CORPORATE SALES" [ref=e45] [cursor=pointer]:
+                - /url: /footer/co_sales/index.do
+          - listitem [ref=e46]:
+            - heading "WHAT'S NEW" [level=2] [ref=e47]:
+              - link "WHAT'S NEW" [ref=e48] [cursor=pointer]:
+                - /url: /whats_new/index.do
+    - generic [ref=e49]:
+      - generic [ref=e52]:
+        - img "PLAY YOUR DAY" [ref=e54]
+        - generic [ref=e55]:
+          - img "우디 카우보이 쿠키 콜드 브루" [ref=e57]
+          - img "버즈 키위 팝 에너지 피지오" [ref=e59]
+          - img "제시 슈트로베리 프라푸치노" [ref=e61]
+          - img "슈크림 라떼" [ref=e63]
+          - img "슈 폼 라떼" [ref=e65]
+          - img "슈크림 말차 라떼" [ref=e67]
+          - img "슈 폼 말차 라떼" [ref=e69]
+        - link "자세히 보기" [ref=e71] [cursor=pointer]:
+          - /url: https://www.starbucks.co.kr/whats_new/campaign_view.do?pro_seq=3365
+      - generic [ref=e75]:
+        - generic [ref=e77]:
+          - generic [ref=e78]:
+            - term [ref=e79]:
+              - img "공지사항" [ref=e80]
+            - definition [ref=e81]:
+              - list [ref=e82]:
+                - listitem [ref=e83]:
+                  - link "개인정보처리방침 개정 안내" [ref=e84] [cursor=pointer]:
+                    - /url: /whats_new/noticeView.do?seq=6512
+          - paragraph [ref=e85]:
+            - link "더보기" [ref=e87] [cursor=pointer]:
+              - /url: /whats_new/notice_list.do
+        - link "스타벅스 프로모션 스타벅스 프로모션 펼쳐보기" [ref=e89] [cursor=pointer]:
+          - /url: javascript:void(0);
+          - paragraph [ref=e90]: 스타벅스 프로모션
+          - button "스타벅스 프로모션 펼쳐보기" [ref=e92]
+      - generic [ref=e94]:
+        - img "Starbucks Rewards" [ref=e96]
+        - generic [ref=e97]:
+          - generic [ref=e98]:
+            - generic [ref=e99]:
+              - heading "스타벅스만의 특별한 혜택, 스타벅스 리워드" [level=2] [ref=e100]:
+                - text: 스타벅스만의 특별한 혜택,
+                - strong [ref=e101]: 스타벅스 리워드
+              - paragraph [ref=e102]:
+                - strong [ref=e103]: 스타벅스 회원이세요?
+                - text: 로그인을 통해 나만의 리워드를 확인해보세요.
+                - strong [ref=e104]: 스타벅스 회원이 아니세요?
+                - text: 가입을 통해 리워드 혜택을 즐기세요.
+            - generic [ref=e105]:
+              - link "회원가입" [ref=e106] [cursor=pointer]:
+                - /url: /mem/join.do
+              - link "로그인" [ref=e107] [cursor=pointer]:
+                - /url: javascript:$.loginLib.showLayerLogin();
+          - generic [ref=e108]:
+            - paragraph [ref=e110]:
+              - text: 회원 가입 후, 스타벅스 모바일 카드를
+              - strong [ref=e111]: "\"나에게 선물하기\"로 구매하시고, 편리하게 등록하세요!"
+              - text: 카드를 등록하여 스타벅스 리워드 회원이 되신 후, 첫 구매를 하시면 무료 음료쿠폰을 드립니다!
+            - link "스타벅스 모바일 카드 선물하기" [ref=e113] [cursor=pointer]:
+              - /url: /msr/sceGift/gift_step1.do
+      - generic [ref=e115]:
+        - img "스프링 시즌 블랜드 250g" [ref=e117]
+        - generic [ref=e118]:
+          - img "스프링 시즌 블랜드 250g" [ref=e119]
+          - link "자세히 보기" [ref=e121] [cursor=pointer]:
+            - /url: https://www.starbucks.co.kr/coffee/product_view.do?PRODUCT_CD=11148767
+      - generic [ref=e123]:
+        - img "CostaRica Hacienda alsacia peaberry" [ref=e125]
+        - img "CostaRica 커피 이미지" [ref=e127]
+        - link "자세히 보기" [ref=e130] [cursor=pointer]:
+          - /url: https://www.starbucks.co.kr/whats_new/newsView.do?seq=6470
+      - generic [ref=e132]:
+        - generic [ref=e133]: PICK YOUR FAVORITE
+        - generic [ref=e134]: 다양한 메뉴를 스타벅스에서 즐겨보세요. 스타벅스만의 특별함을 경험할 수 있는 최상의 선택 음료, 스타벅스 커피와 완벽한 어울림을 자랑하는 푸드, 다양한 시도와 디자인으로 가치를 더하는 상품, 소중한 사람에게 마음을 전하는 가장 좋은 방법 스타벅스 카드
+        - link "자세히 보기" [ref=e137] [cursor=pointer]:
+          - /url: https://www.starbucks.co.kr/menu/index.do
+      - generic [ref=e140]:
+        - img "리저브 매거진에서 일상 속 특별함을 만나보세요." [ref=e142]
+        - link "자세히 보기" [ref=e146] [cursor=pointer]:
+          - /url: /coffee/reserve_magazine_list.do
+      - generic [ref=e147]:
+        - generic:
+          - generic [ref=e152]: 스타벅스를 가까이에서 경험해보세요. 고객님과 가장 가까이 있는 매장을 찾아보세요!
+          - generic [ref=e153]: 차별화된 커피 경험을 누릴 수 있는 리저브 매장, 다양한 방법으로 편리하게 즐길 수 있는 드라이브 스루 매장, 함께해서 더 따뜻할수 있는 지역사회 소통 공간 커뮤니티 매장
+          - link "매장 찾기" [ref=e155] [cursor=pointer]:
+            - /url: /store/store_map.do
+    - contentinfo [ref=e156]:
+      - generic [ref=e158]:
+        - list [ref=e159]:
+          - listitem [ref=e160]:
+            - link "COMPANY" [ref=e161]:
+              - /url: javascript:void(0);
+              - text: COMPANY
+          - listitem [ref=e162]:
+            - link "한눈에 보기" [ref=e163] [cursor=pointer]:
+              - /url: /footer/company/index.do
+          - listitem [ref=e164]:
+            - link "스타벅스 사명" [ref=e165] [cursor=pointer]:
+              - /url: /footer/company/mission.do
+          - listitem [ref=e166]:
+            - link "스타벅스 소개" [ref=e167] [cursor=pointer]:
+              - /url: javascript:void(0)
+              - text: 스타벅스 소개
+          - listitem [ref=e168]:
+            - link "컴플라이언스" [ref=e169] [cursor=pointer]:
+              - /url: javascript:void(0)
+              - text: 컴플라이언스
+          - listitem [ref=e170]:
+            - link "국내 뉴스룸" [ref=e171] [cursor=pointer]:
+              - /url: /footer/company/news_list.do
+          - listitem [ref=e172]:
+            - link "세계의 스타벅스" [ref=e173] [cursor=pointer]:
+              - /url: /footer/company/global_starbucks.do
+          - listitem [ref=e174]:
+            - link "글로벌 뉴스룸" [ref=e175] [cursor=pointer]:
+              - /url: https://news.starbucks.com
+        - list [ref=e176]:
+          - listitem [ref=e177]:
+            - link "CORPORATE SALES" [ref=e178]:
+              - /url: javascript:void(0);
+              - text: CORPORATE SALES
+          - listitem [ref=e179]:
+            - link "단체 및 기업 구매 안내" [ref=e180] [cursor=pointer]:
+              - /url: /footer/co_sales/index.do
+          - listitem [ref=e181]:
+            - link "단체 주문 배달 안내" [ref=e182] [cursor=pointer]:
+              - /url: /footer/group_order/index.do
+        - list [ref=e183]:
+          - listitem [ref=e184]:
+            - link "PARTNERSHIP" [ref=e185]:
+              - /url: javascript:void(0);
+              - text: PARTNERSHIP
+          - listitem [ref=e186]:
+            - link "신규 입점 제의" [ref=e187] [cursor=pointer]:
+              - /url: /footer/partnership/new_partner.do
+          - listitem [ref=e188]:
+            - link "협력 고객사 등록신청" [ref=e189] [cursor=pointer]:
+              - /url: /srm/login.do
+          - listitem [ref=e190]:
+            - link "중개업체 확인" [ref=e191] [cursor=pointer]:
+              - /url: /srm/agency.do
+        - list [ref=e192]:
+          - listitem [ref=e193]:
+            - link "ONLINE COMMUNITY" [ref=e194]:
+              - /url: javascript:void(0);
+              - text: ONLINE COMMUNITY
+          - listitem [ref=e195]:
+            - link "페이스북" [ref=e196] [cursor=pointer]:
+              - /url: https://www.facebook.com/starbuckskorea
+          - listitem [ref=e197]:
+            - link "트위터" [ref=e198] [cursor=pointer]:
+              - /url: https://twitter.com/StarbucksKorea
+          - listitem [ref=e199]:
+            - link "유튜브" [ref=e200] [cursor=pointer]:
+              - /url: https://www.youtube.com/user/starbuckskorea
+          - listitem [ref=e201]:
+            - link "인스타그램" [ref=e202] [cursor=pointer]:
+              - /url: https://instagram.com/starbuckskorea/
+        - list [ref=e203]:
+          - listitem [ref=e204]:
+            - link "RECRUIT" [ref=e205]:
+              - /url: javascript:void(0);
+              - text: RECRUIT
+          - listitem [ref=e206]:
+            - link "채용 소개" [ref=e207] [cursor=pointer]:
+              - /url: https://job.shinsegae.com/job_intro/starbucks/starbucks01.jsp
+          - listitem [ref=e208]:
+            - link "채용 지원하기" [ref=e209] [cursor=pointer]:
+              - /url: https://job.shinsegae.com/recruit_info/notice/notice02_list.jsp?isSearch=Y&tabKey0=&notino=&searchWord0=&orderKey0=1&strCareerVals=&strRtlVals=&strFodhtlVals=&strFshnlvngVals=&strFbbsnsVals=&strRtlsprtVals=&rtlTogYn=Y&fodhtlTogYn=Y&FshnlvngTogYn=Y&fbbsnsTogYn=Y&rtlsprtTogYn=Y&searchWord1=&careerAllVal=&affFbbsnsVal=EE0
+      - generic [ref=e211]:
+        - list [ref=e214]:
+          - listitem
+          - listitem [ref=e215]:
+            - link "소비자중심경영 CCM인증획득" [ref=e216] [cursor=pointer]:
+              - /url: /util/ccm.do
+              - img "소비자중심경영 CCM인증획득" [ref=e217]
+          - listitem
+          - listitem [ref=e218]:
+            - link "여섯가족부 2020 대한민국 일자리대상 여성가족부장관상" [ref=e219] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "여섯가족부 2020 대한민국 일자리대상 여성가족부장관상" [ref=e220]
+          - listitem [ref=e221]:
+            - link "행정안전부 2020 소방의 날 행정안전부장관 표창" [ref=e222] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "행정안전부 2020 소방의 날 행정안전부장관 표창" [ref=e223]
+          - listitem [ref=e224]:
+            - link "농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상" [ref=e225] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상" [ref=e226]
+          - listitem [ref=e227]:
+            - link "산업통상자원부 2020 대한민국 중소중견기업혁신 대상 국회산업통상자원중소벤처위원회장상" [ref=e228] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "산업통상자원부 2020 대한민국 중소중견기업혁신 대상 국회산업통상자원중소벤처위원회장상" [ref=e229]
+          - listitem [ref=e230]:
+            - link "일자리위원회 2020 대한민국 일자리 유공 표창 대통령직속 일자리위원회 부위원장상" [ref=e231] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "일자리위원회 2020 대한민국 일자리 유공 표창 대통령직속 일자리위원회 부위원장상" [ref=e232]
+          - listitem [ref=e233]:
+            - link "동반성장위원회 2020 사랑나눔 사회공헌대상 동반성장위원회 위원장상" [ref=e234] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "동반성장위원회 2020 사랑나눔 사회공헌대상 동반성장위원회 위원장상" [ref=e235]
+          - listitem
+          - listitem [ref=e236]:
+            - link "소비자중심경영 CCM인증획득" [ref=e237] [cursor=pointer]:
+              - /url: /util/ccm.do
+              - img "소비자중심경영 CCM인증획득" [ref=e238]
+          - listitem
+          - listitem [ref=e239]:
+            - link "여섯가족부 2020 대한민국 일자리대상 여성가족부장관상" [ref=e240] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "여섯가족부 2020 대한민국 일자리대상 여성가족부장관상" [ref=e241]
+          - listitem [ref=e242]:
+            - link "행정안전부 2020 소방의 날 행정안전부장관 표창" [ref=e243] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "행정안전부 2020 소방의 날 행정안전부장관 표창" [ref=e244]
+          - listitem [ref=e245]:
+            - link "농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상" [ref=e246] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상" [ref=e247]
+        - link "Stop" [ref=e252] [cursor=pointer]:
+          - /url: ""
+      - complementary [ref=e253]:
+        - link "개인정보처리방침" [ref=e254] [cursor=pointer]:
+          - /url: /footer/etc/privacy.do
+        - link "영상정보처리기기 운영관리 방침" [ref=e255] [cursor=pointer]:
+          - /url: /footer/etc/rules_vod.do
+        - link "홈페이지 이용약관" [ref=e256] [cursor=pointer]:
+          - /url: /footer/etc/rules.do
+        - link "위치정보 이용약관" [ref=e257] [cursor=pointer]:
+          - /url: /footer/etc/rules_loc.do
+        - link "스타벅스 카드 이용약관" [ref=e258] [cursor=pointer]:
+          - /url: /footer/etc/rules_msr.do
+        - link "신세계 유니버스 클럽 이용약관" [ref=e259] [cursor=pointer]:
+          - /url: /footer/etc/rules_membership.do
+        - link "비회원 이용약관" [ref=e260] [cursor=pointer]:
+          - /url: /footer/etc/rules_non.do
+        - link "My DT Pass 서비스 이용약관" [ref=e262] [cursor=pointer]:
+          - /url: /footer/etc/rules_mdp.do
+        - link "윤리경영 핫라인" [ref=e263] [cursor=pointer]:
+          - /url: /footer/etc/hotline.do
+        - link "찾아오시는 길" [ref=e264] [cursor=pointer]:
+          - /url: /footer/etc/coming_route.do
+        - link "신규입점제의" [ref=e265] [cursor=pointer]:
+          - /url: /footer/partnership/new_partner.do
+        - link "사이트 맵" [ref=e266] [cursor=pointer]:
+          - /url: /footer/etc/sitemap.do
+        - list [ref=e267]:
+          - listitem [ref=e268]: "사업자등록번호 : 201-81-21515"
+          - listitem [ref=e269]: "주식회사 에스씨케이컴퍼니 대표이사 : 손정현"
+          - listitem [ref=e270]: "TEL : 1522-3232"
+          - listitem [ref=e271]: "개인정보 보호책임자 : 이찬우"
+        - generic [ref=e272]: ⓒ 2026 Starbucks Coffee Company. All Rights Reserved.

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StarPresso · 메뉴</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    html, body {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #F4F4F2;
+      color: #1A1A1A;
+    }
+    .font-mont {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .font-mont-700 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      animation: fadeInUp 0.45s ease-out both;
+    }
+    .tab-underline {
+      box-shadow: inset 0 -3px 0 0 #F1658A;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useMemo, useEffect } = React;
+
+    // ========================================
+    // 🎨 Design System Components
+    // ========================================
+
+    function Button({ variant = "primary", size = "md", className = "", children, ...props }) {
+      const sizes = {
+        sm: "px-3 py-1.5 text-sm",
+        md: "px-5 py-2.5 text-sm",
+        lg: "px-6 py-3 text-base",
+      };
+      const variants = {
+        primary: "bg-[#F1658A] text-white hover:bg-[#e34f78] border border-[#F1658A]",
+        point:   "bg-[#FF8A4C] text-white hover:bg-[#ef7836] border border-[#FF8A4C]",
+        outline: "bg-white text-[#F1658A] hover:bg-[#F1658A] hover:text-white border border-[#F1658A]",
+        ghost:   "bg-transparent text-[#1A1A1A] hover:text-[#F1658A] border border-transparent",
+      };
+      return (
+        <button
+          {...props}
+          className={`inline-flex items-center justify-center font-semibold rounded-full transition-all duration-200 ${sizes[size]} ${variants[variant]} ${className}`}
+        >
+          {children}
+        </button>
+      );
+    }
+
+    function Badge({ kind }) {
+      if (!kind) return null;
+      const styles = kind === "NEW"
+        ? "bg-[#FF8A4C] text-white"
+        : "bg-[#2C2A29] text-white";
+      return (
+        <span className={`font-mont-700 text-[11px] tracking-wider px-2.5 py-1 rounded-full ${styles} shadow-sm`}>
+          {kind}
+        </span>
+      );
+    }
+
+    function Card({ className = "", children }) {
+      return (
+        <div className={`bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 ${className}`}>
+          {children}
+        </div>
+      );
+    }
+
+    // ========================================
+    // 📦 Menu Data
+    // ========================================
+
+    const MENU_DATA = {
+      coffee: [
+        { id: 1,  name: "시그니처 아메리카노", price: 4500, desc: "스타프레소의 시그니처 진한 에스프레소",       img: "https://ik.imagekit.io/kikim1982/starpresso/drink-01_americano.png",            badge: "NEW"  },
+        { id: 2,  name: "카페 라떼",          price: 5000, desc: "부드러운 우유와 진한 에스프레소",            img: "https://ik.imagekit.io/kikim1982/starpresso/drink-02_cafe-latte.png",           badge: null   },
+        { id: 3,  name: "카라멜 마키아또",     price: 6000, desc: "달콤한 카라멜과 바닐라의 조화",              img: "https://ik.imagekit.io/kikim1982/starpresso/drink-03_caramel-macchiato.png",    badge: null   },
+        { id: 4,  name: "돌체 라떼",          price: 6500, desc: "연유의 진한 단맛, 한국인 베스트셀러",         img: "https://ik.imagekit.io/kikim1982/starpresso/drink-04_dolce-latte.png",          badge: "BEST" },
+        { id: 5,  name: "콜드 브루",          price: 5500, desc: "12시간 저온 추출한 깊은 풍미",              img: "https://ik.imagekit.io/kikim1982/starpresso/drink-05_cold-brew.png",            badge: null   },
+        { id: 6,  name: "바닐라 라떼",        price: 5500, desc: "부드러운 바닐라 향이 가득",                 img: "https://ik.imagekit.io/kikim1982/starpresso/drink-06_vanilla-latte.png",        badge: null   },
+      ],
+      coolade: [
+        { id: 7,  name: "자몽 에이드",         price: 6000, desc: "상큼한 자몽과 톡 쏘는 탄산",               img: "https://ik.imagekit.io/kikim1982/starpresso/drink-07_grapefruit-ade.png",       badge: null   },
+        { id: 8,  name: "라임 민트 스파클러",   price: 6500, desc: "민트와 라임의 청량한 스파클링",            img: "https://ik.imagekit.io/kikim1982/starpresso/drink-08_lime-mint-sparkler.png",   badge: "NEW"  },
+        { id: 9,  name: "망고 주스",           price: 6500, desc: "진짜 망고로 만든 100% 생과일 주스",         img: "https://ik.imagekit.io/kikim1982/starpresso/drink-09_mango-juice.png",          badge: null   },
+        { id: 10, name: "자몽 허니 블랙 티",   price: 5500, desc: "꿀과 자몽의 달콤한 블랙티",                img: "https://ik.imagekit.io/kikim1982/starpresso/drink-10_grapefruit-honey-tea.png", badge: null   },
+      ],
+      dessert: [
+        { id: 11, name: "자바 칩 프라푸치노",   price: 6500, desc: "초콜릿 칩이 가득한 시그너처",              img: "https://ik.imagekit.io/kikim1982/starpresso/drink-11_java-chip-frappuccino.png",      badge: "BEST" },
+        { id: 12, name: "카라멜 프라푸치노",   price: 6500, desc: "달콤한 카라멜 디저트 음료",                 img: "https://ik.imagekit.io/kikim1982/starpresso/drink-12_caramel-frappuccino.png",        badge: null   },
+        { id: 13, name: "제주 말차 프라푸치노", price: 7000, desc: "제주산 말차의 진한 풍미",                  img: "https://ik.imagekit.io/kikim1982/starpresso/drink-13_jeju-matcha-frappuccino.png",    badge: null   },
+        { id: 14, name: "딸기 요거트 스무디",   price: 7000, desc: "신선한 딸기와 요거트의 만남",              img: "https://ik.imagekit.io/kikim1982/starpresso/drink-14_strawberry-yogurt-smoothie.png", badge: "NEW" },
+      ],
+    };
+
+    const CATEGORIES = [
+      { key: "coffee",  label: "커피",   icon: "☕" },
+      { key: "coolade", label: "쿨에이드", icon: "🧊" },
+      { key: "dessert", label: "디저트", icon: "🍰" },
+    ];
+
+    // ========================================
+    // 🧩 Layout — Header & Footer
+    // ========================================
+
+    function Header() {
+      return (
+        <header className="sticky top-0 z-50 bg-[#F1658A] h-16 shadow-md">
+          <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            <a href="#top" className="flex items-center gap-2.5">
+              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden ring-2 ring-white/20">
+                <img
+                  src="https://ik.imagekit.io/kikim1982/starpresso/starpresso-logo-male-v2_4.png"
+                  alt="StarPresso 로고"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span className="font-mont text-white text-lg sm:text-xl tracking-wide">STARPRESSO</span>
+            </a>
+
+            <nav className="flex items-center gap-1 sm:gap-2">
+              <a href="#menu" className="font-mont-700 text-white text-xs sm:text-sm px-2 sm:px-3 py-2 hover:text-[#F1658A] transition">MENU</a>
+              <a href="#store" className="font-mont-700 text-white text-xs sm:text-sm px-2 sm:px-3 py-2 hover:text-[#F1658A] transition">STORE</a>
+              <a
+                href="#order"
+                className="font-mont-700 bg-[#FF8A4C] text-white text-xs sm:text-sm px-3 sm:px-4 py-2 rounded-full hover:bg-[#ef7836] transition shadow-sm ring-2 ring-white/30"
+              >
+                ORDER
+              </a>
+            </nav>
+          </div>
+        </header>
+      );
+    }
+
+    function Footer() {
+      return (
+        <footer className="bg-[#2C2A29] text-white/90 mt-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
+              <div className="flex flex-col items-center md:items-start gap-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 bg-white rounded-full flex items-center justify-center overflow-hidden">
+                    <img src="https://ik.imagekit.io/kikim1982/starpresso/starpresso-logo-male-v2_4.png" alt="StarPresso 로고" className="w-full h-full object-cover" />
+                  </div>
+                  <span className="font-mont text-white text-lg">STARPRESSO</span>
+                </div>
+                <p className="text-xs text-white/60">© 2026 STARPRESSO. All rights reserved.</p>
+              </div>
+
+              <div className="text-center">
+                <div className="font-mont-700 text-[#FF8A4C] text-xs tracking-wider mb-1">OPENING HOURS</div>
+                <div className="text-sm">매일 07:00 - 22:00</div>
+                <div className="text-xs text-white/50 mt-1">연중무휴 · StarPresso 1호 본점</div>
+              </div>
+
+              <div className="flex flex-col items-center md:items-end gap-2">
+                <div className="font-mont-700 text-[#FF8A4C] text-xs tracking-wider">FOLLOW US</div>
+                <div className="flex items-center gap-3 text-xl">
+                  <a href="#" aria-label="Instagram" className="hover:scale-110 transition">📷</a>
+                  <a href="#" aria-label="Kakao"     className="hover:scale-110 transition">💬</a>
+                  <a href="#" aria-label="Twitter"   className="hover:scale-110 transition">🐦</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    // ========================================
+    // 📄 Page Sections
+    // ========================================
+
+    function Hero() {
+      return (
+        <section id="top" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 lg:pt-16 lg:pb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div className="fade-in order-2 lg:order-1">
+              <span className="inline-block font-mont-700 text-[11px] tracking-[0.18em] text-[#F1658A] mb-4">
+                SINCE 2026 · 1호 본점
+              </span>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-[#1A1A1A] mb-5">
+                오늘도, <span className="text-[#F1658A]">핑크</span>한<br />한 잔
+              </h1>
+              <p className="text-base sm:text-lg text-[#76685E] mb-8 leading-relaxed max-w-xl">
+                스타프레소만의 시그니처 핑크 무드와 깊은 그린의 안정감.<br className="hidden sm:block" />
+                매일 같은 자리에서 새로운 한 잔을 만나보세요.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a href="#menu">
+                  <Button variant="primary" size="lg">메뉴 보러가기</Button>
+                </a>
+                <a href="#store">
+                  <Button variant="outline" size="lg">오시는 길</Button>
+                </a>
+              </div>
+
+              <div className="flex items-center gap-6 mt-10 pt-6 border-t border-[#1A1A1A]/10">
+                <div>
+                  <div className="font-mont text-2xl text-[#2C2A29]">14</div>
+                  <div className="text-xs text-[#76685E] mt-0.5">시그니처 메뉴</div>
+                </div>
+                <div className="w-px h-10 bg-[#1A1A1A]/10" />
+                <div>
+                  <div className="font-mont text-2xl text-[#2C2A29]">07:00<span className="text-base text-[#76685E]">~22:00</span></div>
+                  <div className="text-xs text-[#76685E] mt-0.5">연중무휴 영업</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative order-1 lg:order-2 fade-in">
+              <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#F1658A]/15 rounded-full blur-2xl" aria-hidden="true" />
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#FF8A4C]/20 rounded-full blur-2xl" aria-hidden="true" />
+              <img
+                src="https://ik.imagekit.io/kikim1982/starpresso/starpresso-store-exterior_4.png"
+                alt="StarPresso 1호 본점 외관"
+                className="relative w-full aspect-[4/3] object-cover rounded-2xl shadow-xl"
+              />
+              <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur rounded-xl px-4 py-2.5 shadow-lg">
+                <div className="font-mont-700 text-[10px] tracking-widest text-[#F1658A]">FLAGSHIP</div>
+                <div className="text-sm font-bold text-[#1A1A1A]">1호 본점 NOW OPEN</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function MenuCard({ item }) {
+      return (
+        <Card className="overflow-hidden hover:-translate-y-1 transition flex flex-col">
+          <div className="relative bg-white">
+            <div className="aspect-square overflow-hidden">
+              <img
+                src={item.img}
+                alt={item.name}
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            {item.badge && (
+              <div className="absolute top-3 right-3">
+                <Badge kind={item.badge} />
+              </div>
+            )}
+          </div>
+
+          <div className="p-4 flex flex-col flex-1">
+            <h3 className="text-[17px] font-bold text-[#1A1A1A] mb-1.5 leading-snug">{item.name}</h3>
+            <p className="text-[13px] text-[#76685E] leading-relaxed line-clamp-2 mb-4 min-h-[36px]">
+              {item.desc}
+            </p>
+            <div className="mt-auto flex items-end justify-between gap-2">
+              <div className="flex items-baseline gap-0.5">
+                <span className="font-mont text-[20px] text-[#F1658A] leading-none">
+                  {item.price.toLocaleString()}
+                </span>
+                <span className="text-xs text-[#F1658A]/80 ml-0.5">원</span>
+              </div>
+              <button
+                type="button"
+                className="text-xs font-semibold px-3 py-1.5 rounded-full border border-[#F1658A] text-[#F1658A] hover:bg-[#F1658A] hover:text-white transition"
+              >
+                담기
+              </button>
+            </div>
+          </div>
+        </Card>
+      );
+    }
+
+    function MenuSection() {
+      const [activeCat, setActiveCat] = useState("coffee");
+      const items = useMemo(() => MENU_DATA[activeCat] || [], [activeCat]);
+
+      return (
+        <section id="menu" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+          <div className="text-center mb-8">
+            <h2 className="font-mont text-3xl sm:text-4xl text-[#2C2A29] tracking-tight">MENU</h2>
+            <p className="text-sm text-[#76685E] mt-2">스타프레소의 모든 메뉴</p>
+          </div>
+
+          {/* Tabs */}
+          <div className="flex items-center justify-center gap-1 sm:gap-2 border-b border-[#1A1A1A]/10 mb-8">
+            {CATEGORIES.map(cat => {
+              const active = activeCat === cat.key;
+              return (
+                <button
+                  key={cat.key}
+                  onClick={() => setActiveCat(cat.key)}
+                  className={`px-4 sm:px-6 py-3 text-sm sm:text-base font-semibold transition-all relative ${
+                    active
+                      ? "text-[#F1658A] tab-underline"
+                      : "text-[#76685E] hover:text-[#1A1A1A]"
+                  }`}
+                  aria-selected={active}
+                  role="tab"
+                >
+                  <span className="mr-1.5">{cat.icon}</span>{cat.label}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Grid */}
+          <div
+            key={activeCat}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 fade-in"
+          >
+            {items.map(item => (
+              <MenuCard key={item.id} item={item} />
+            ))}
+          </div>
+
+          {items.length === 0 && (
+            <div className="text-center text-[#76685E] py-10">메뉴 준비 중입니다.</div>
+          )}
+        </section>
+      );
+    }
+
+    // ========================================
+    // 🚀 App
+    // ========================================
+
+    function App() {
+      // 안전한 스크롤 동작 (앵커 클릭 시 헤더 높이 고려)
+      useEffect(() => {
+        document.documentElement.style.scrollBehavior = "smooth";
+        return () => { document.documentElement.style.scrollBehavior = ""; };
+      }, []);
+
+      return (
+        <div className="min-h-screen bg-[#F4F4F2] flex flex-col">
+          <Header />
+          <main className="flex-1">
+            <Hero />
+            <MenuSection />
+          </main>
+          <Footer />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

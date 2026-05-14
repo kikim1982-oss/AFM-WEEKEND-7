@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAISON ORD — Furniture for the way you live</title>
+
+  <!-- Google Fonts: Instrument Serif (display) + Inter (body) + Space Grotesk (UI labels) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind config (must come AFTER tailwind script so the global `tailwind` is defined) -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#F4F1EA',
+            'cream-2': '#EFEBE3',
+            'cream-3': '#EAE5DB',
+            ink: '#1A1A1A',
+            'ink-2': '#0A0A0A',
+            mute: '#6B6B6B',
+            terracotta: '#B96A4B',
+            sage: '#A8B89A',
+            mocha: '#6B4F3A',
+            sand: '#D6C7A8',
+            walnut: '#5A3E2B',
+            olive: '#4E5340',
+            stone: '#D9D2C2',
+          },
+          fontFamily: {
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['"Space Grotesk"', 'Inter', 'sans-serif'],
+          },
+          letterSpacing: {
+            'tightest': '-0.04em',
+            'tighter-2': '-0.06em',
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- React + Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    html, body { background-color: #F4F1EA; color: #1A1A1A; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-feature-settings: 'ss01', 'cv11';
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .font-serif-italic { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; }
+    .display-hero {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 500;
+      letter-spacing: -0.05em;
+      line-height: 0.88;
+    }
+    .display-large {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+    }
+    .label-tiny {
+      font-family: 'Space Grotesk', 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .label-tiny-2 {
+      font-family: 'Space Grotesk', 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    /* Marquee */
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 38s linear infinite;
+      white-space: nowrap;
+      will-change: transform;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+
+    /* Underline hover link */
+    .link-underline {
+      background-image: linear-gradient(currentColor, currentColor);
+      background-size: 0% 1px;
+      background-repeat: no-repeat;
+      background-position: 0 100%;
+      transition: background-size 350ms cubic-bezier(0.65, 0, 0.35, 1);
+      padding-bottom: 2px;
+    }
+    .link-underline:hover { background-size: 100% 1px; }
+
+    /* Reverse underline (visible -> shrink) */
+    .link-underline-rev {
+      background-image: linear-gradient(currentColor, currentColor);
+      background-size: 100% 1px;
+      background-repeat: no-repeat;
+      background-position: 100% 100%;
+      transition: background-size 350ms cubic-bezier(0.65, 0, 0.35, 1);
+      padding-bottom: 2px;
+    }
+    .link-underline-rev:hover { background-size: 0% 1px; }
+
+    /* Hairline divider */
+    .hairline { border-color: #1A1A1A; }
+
+    /* Card image gradient overlays */
+    .img-grain::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+      background-size: 3px 3px;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    /* Big footer wordmark */
+    .footer-wordmark {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      letter-spacing: -0.06em;
+      line-height: 0.85;
+    }
+
+    /* Arrow translate on hover */
+    .btn-arrow { transition: transform 300ms cubic-bezier(0.65,0,0.35,1); }
+    .group:hover .btn-arrow { transform: translateX(6px); }
+
+    /* Smooth product card */
+    .product-img { transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1); }
+    .product-card:hover .product-img { transform: scale(1.03); }
+
+    /* Newsletter underline input */
+    .input-underline {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #1A1A1A;
+      outline: none;
+      padding: 12px 4px;
+    }
+    .input-underline::placeholder { color: #6B6B6B; }
+
+    /* Scrollbar (subtle) */
+    ::selection { background: #1A1A1A; color: #F4F1EA; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // ========================================
+    // ICONS (inline SVG)
+    // ========================================
+    const ArrowRight = ({ className = "w-4 h-4" }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className} aria-hidden="true">
+        <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    );
+
+    const ArrowUpRight = ({ className = "w-4 h-4" }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className} aria-hidden="true">
+        <path d="M7 17L17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    );
+
+    const CartIcon = ({ className = "w-5 h-5" }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" className={className} aria-hidden="true">
+        <path d="M5 7h14l-1.5 11a2 2 0 0 1-2 1.8H8.5a2 2 0 0 1-2-1.8L5 7z" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M9 7V5a3 3 0 0 1 6 0v2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    );
+
+    const SearchIcon = ({ className = "w-5 h-5" }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" className={className} aria-hidden="true">
+        <circle cx="11" cy="11" r="7"/>
+        <path d="M20 20l-3.5-3.5" strokeLinecap="round"/>
+      </svg>
+    );
+
+    const PlusIcon = ({ className = "w-4 h-4" }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" className={className} aria-hidden="true">
+        <path d="M12 5v14M5 12h14" strokeLinecap="round"/>
+      </svg>
+    );
+
+    const MenuIcon = ({ className = "w-5 h-5" }) => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" className={className} aria-hidden="true">
+        <path d="M4 7h16M4 17h16" strokeLinecap="round"/>
+      </svg>
+    );
+
+    // ========================================
+    // 🎨 DESIGN SYSTEM
+    // ========================================
+
+    // Container — editorial padding
+    const Container = ({ children, className = "" }) => (
+      <div className={`mx-auto w-full max-w-[1500px] px-6 md:px-10 lg:px-14 ${className}`}>
+        {children}
+      </div>
+    );
+
+    // Pill button — primary (filled) / outline / ghost
+    const Pill = ({ children, variant = "primary", href = "#", onClick, className = "", icon = true }) => {
+      const base = "group inline-flex items-center gap-3 rounded-full px-6 py-3.5 text-sm font-medium tracking-tight transition-colors duration-300";
+      const variants = {
+        primary: "bg-ink text-cream hover:bg-ink-2",
+        outline: "border border-ink text-ink hover:bg-ink hover:text-cream",
+        ghost:   "text-ink hover:bg-ink/5",
+        light:   "bg-cream text-ink hover:bg-white",
+      };
+      const content = (
+        <>
+          <span>{children}</span>
+          {icon && <ArrowRight className="btn-arrow w-4 h-4" />}
+        </>
+      );
+      if (onClick) {
+        return <button onClick={onClick} className={`${base} ${variants[variant]} ${className}`}>{content}</button>;
+      }
+      return <a href={href} className={`${base} ${variants[variant]} ${className}`}>{content}</a>;
+    };
+
+    // Section label — uppercase tracking widest
+    const SectionLabel = ({ index, label, className = "" }) => (
+      <div className={`flex items-center gap-3 label-tiny text-ink ${className}`}>
+        {index && <span className="text-mute">—{index}</span>}
+        <span>{label}</span>
+      </div>
+    );
+
+    // Horizontal hairline divider
+    const Divider = ({ className = "" }) => (
+      <div className={`w-full h-px bg-ink/90 ${className}`} />
+    );
+
+    // Product image placeholder — colored block w/ watermark
+    const ProductImage = ({ color, name, ratio = "aspect-[4/5]" }) => (
+      <div className={`relative ${ratio} w-full overflow-hidden rounded-sm`}>
+        <div
+          className="product-img absolute inset-0 img-grain"
+          style={{
+            background: `linear-gradient(135deg, ${color} 0%, ${shade(color, -12)} 100%)`,
+          }}
+        />
+        <div className="absolute inset-0 flex items-end p-5">
+          <span className="font-serif-italic text-cream/90 text-xl tracking-tight drop-shadow-sm">{name}</span>
+        </div>
+      </div>
+    );
+
+    // utility: shade hex
+    function shade(hex, amt) {
+      const c = hex.replace('#','');
+      const num = parseInt(c, 16);
+      let r = (num >> 16) + amt;
+      let g = ((num >> 8) & 0x00ff) + amt;
+      let b = (num & 0x0000ff) + amt;
+      r = Math.max(0, Math.min(255, r));
+      g = Math.max(0, Math.min(255, g));
+      b = Math.max(0, Math.min(255, b));
+      return '#' + ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
+    }
+
+    // ProductCard
+    const ProductCard = ({ index, name, italicWord, category, price, color }) => {
+      // split name into normal + italic word if italicWord provided
+      const parts = italicWord ? name.split(italicWord) : null;
+      return (
+        <article className="product-card group cursor-pointer">
+          <ProductImage color={color} name={name} />
+          <div className="mt-5 flex items-start justify-between gap-4">
+            <div>
+              <div className="label-tiny-2 text-mute mb-2">— {index} / {category}</div>
+              <h3 className="text-2xl md:text-[26px] leading-tight tracking-tight font-medium text-ink">
+                {parts ? (
+                  <>
+                    {parts[0]}
+                    <span className="font-serif-italic">{italicWord}</span>
+                    {parts[1]}
+                  </>
+                ) : name}
+              </h3>
+            </div>
+            <div className="text-right shrink-0">
+              <div className="text-sm text-ink tabular-nums">{price}</div>
+              <button className="mt-3 inline-flex items-center justify-center w-9 h-9 rounded-full border border-ink/30 group-hover:border-ink group-hover:bg-ink group-hover:text-cream transition-colors duration-300" aria-label="Add to cart">
+                <PlusIcon className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </article>
+      );
+    };
+
+    // StatBlock — for dark stats section
+    const StatBlock = ({ number, label, suffix }) => (
+      <div className="flex flex-col">
+        <div className="flex items-start">
+          <span className="display-large text-cream text-[clamp(4rem,10vw,9rem)]">{number}</span>
+          {suffix && <span className="font-serif-italic text-cream/80 text-3xl md:text-5xl mt-3 md:mt-6 ml-1">{suffix}</span>}
+        </div>
+        <div className="label-tiny text-cream/60 mt-2">{label}</div>
+      </div>
+    );
+
+    // MarqueeRow — animated ticker
+    const MarqueeRow = ({ items, separator = "✱" }) => {
+      const repeated = [...items, ...items, ...items, ...items];
+      return (
+        <div className="overflow-hidden">
+          <div className="marquee-track py-6 md:py-7">
+            {repeated.map((item, i) => (
+              <span key={i} className="inline-flex items-center text-3xl md:text-5xl tracking-tight font-medium text-ink">
+                <span className="px-8">{item}</span>
+                <span className="font-serif-italic text-ink/70 text-2xl md:text-4xl">{separator}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      );
+    };
+
+    // ========================================
+    // 🧩 LAYOUT — Header
+    // ========================================
+    const Header = () => {
+      const [scrolled, setScrolled] = useState(false);
+      useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 8);
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll', onScroll);
+      }, []);
+
+      return (
+        <header className={`sticky top-0 z-50 transition-colors duration-300 ${scrolled ? 'bg-cream/95 backdrop-blur-sm border-b border-ink/15' : 'bg-cream'}`}>
+          <Container className="">
+            <div className="flex items-center justify-between py-5">
+              {/* Brand */}
+              <a href="#" className="flex items-baseline gap-2">
+                <span className="font-serif-italic text-2xl md:text-[28px] leading-none">Maison</span>
+                <span className="text-2xl md:text-[28px] tracking-tight leading-none font-medium">Ord</span>
+                <span className="hidden md:inline label-tiny-2 text-mute ml-2">SS26</span>
+              </a>
+
+              {/* Nav */}
+              <nav className="hidden md:flex items-center gap-9">
+                {["Collection", "Studio", "Journal", "Contact"].map((item, i) => (
+                  <a key={item} href="#" className="link-underline text-sm tracking-tight text-ink">
+                    <span className="text-mute mr-1.5 label-tiny-2">0{i+1}</span>{item}
+                  </a>
+                ))}
+              </nav>
+
+              {/* Actions */}
+              <div className="flex items-center gap-4">
+                <button className="p-1.5 -m-1.5 text-ink hover:opacity-60 transition-opacity" aria-label="Search">
+                  <SearchIcon />
+                </button>
+                <button className="relative p-1.5 -m-1.5 text-ink hover:opacity-60 transition-opacity" aria-label="Cart">
+                  <CartIcon />
+                  <span className="absolute -top-1 -right-1 bg-ink text-cream text-[10px] font-medium rounded-full w-4 h-4 flex items-center justify-center">2</span>
+                </button>
+                <button className="md:hidden p-1.5 -m-1.5 text-ink" aria-label="Menu">
+                  <MenuIcon />
+                </button>
+              </div>
+            </div>
+          </Container>
+          <Divider />
+        </header>
+      );
+    };
+
+    // ========================================
+    // 📄 PAGE SECTIONS
+    // ========================================
+
+    // HERO
+    const Hero = () => (
+      <section className="relative">
+        <Container className="pt-14 md:pt-20 pb-12 md:pb-20">
+          <SectionLabel index="01" label="New Collection · SS26" />
+
+          <div className="mt-10 md:mt-14 grid grid-cols-12 gap-x-6 gap-y-10">
+            {/* Headline */}
+            <div className="col-span-12 lg:col-span-8">
+              <h1 className="display-hero text-ink" style={{ fontSize: 'clamp(3.5rem, 12vw, 13rem)' }}>
+                Furniture<br/>
+                for the way<br/>
+                you <span className="font-serif-italic" style={{ fontWeight: 400 }}>live.</span>
+              </h1>
+            </div>
+
+            {/* Side meta */}
+            <div className="col-span-12 lg:col-span-4 flex flex-col justify-end gap-8">
+              <div className="hidden lg:block">
+                <div className="label-tiny-2 text-mute mb-3">— A note from the studio</div>
+                <p className="text-mute text-[15px] leading-[1.7] max-w-sm">
+                  장인의 손에서 완성되는, 시간을 초월한 디자인. 매일의 풍경을 조용히 다시 쓰는 가구를 만듭니다.
+                </p>
+              </div>
+              <div className="hidden lg:flex items-center gap-6 text-xs label-tiny-2 text-mute">
+                <span>EST. 2014</span>
+                <span className="w-8 h-px bg-ink/40"/>
+                <span>SEOUL · COPENHAGEN</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Tagline + CTA + lead image */}
+          <div className="mt-14 md:mt-20 grid grid-cols-12 gap-x-6 gap-y-12 items-end">
+            <div className="col-span-12 md:col-span-5">
+              <p className="text-ink text-lg md:text-xl leading-[1.45] max-w-md font-medium tracking-tight">
+                삶의 <span className="font-serif-italic">결</span>을 담은 가구.<br/>
+                Made by hand, designed to last generations.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Pill variant="primary" href="#collection">Shop Collection</Pill>
+                <Pill variant="outline" href="#story">Our Story</Pill>
+              </div>
+            </div>
+
+            {/* Lead image */}
+            <div className="col-span-12 md:col-span-7">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-sm img-grain"
+                   style={{ background: 'linear-gradient(140deg, #C6B79A 0%, #8E7A5A 60%, #5A4530 100%)' }}>
+                <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8">
+                  <div className="flex items-start justify-between">
+                    <span className="label-tiny-2 text-cream/80">Featured · No. 014</span>
+                    <span className="label-tiny-2 text-cream/80">01 / 06</span>
+                  </div>
+                  <div>
+                    <div className="font-serif-italic text-cream text-3xl md:text-5xl tracking-tight">Linen Lounge</div>
+                    <div className="label-tiny-2 text-cream/70 mt-2">Seating — Oak & natural linen</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+    );
+
+    // MARQUEE
+    const MarqueeSection = () => (
+      <section className="border-y hairline border-ink">
+        <MarqueeRow
+          items={["Sofas", "Tables", "Lighting", "Chairs", "Storage", "Beds", "Textiles", "Objects"]}
+          separator="✱"
+        />
+      </section>
+    );
+
+    // COLLECTION GRID
+    const Collection = () => {
+      const products = [
+        { index: "01", name: "Linen Lounge Chair",   italicWord: "Lounge",     category: "Seating",  price: "₩ 1,890,000", color: "#C6B79A" },
+        { index: "02", name: "Oak Dining Table",     italicWord: "Dining",     category: "Tables",   price: "₩ 3,450,000", color: "#5A3E2B" },
+        { index: "03", name: "Travertine Side Table",italicWord: "Travertine", category: "Tables",   price: "₩    980,000", color: "#D9D2C2" },
+        { index: "04", name: "Brass Floor Lamp",     italicWord: "Floor",      category: "Lighting", price: "₩ 1,240,000", color: "#4E5340" },
+        { index: "05", name: "Walnut Bookshelf",     italicWord: "Walnut",     category: "Storage",  price: "₩ 2,780,000", color: "#B96A4B" },
+        { index: "06", name: "Boucle Sofa",          italicWord: "Boucle",     category: "Seating",  price: "₩ 4,890,000", color: "#A8B89A" },
+      ];
+
+      return (
+        <section id="collection" className="bg-cream">
+          <Container className="pt-20 md:pt-28 pb-20 md:pb-28">
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14 md:mb-20">
+              <div className="max-w-2xl">
+                <SectionLabel index="02" label="The Collection" className="mb-6" />
+                <h2 className="display-large text-ink" style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)' }}>
+                  Pieces that <span className="font-serif-italic">linger.</span>
+                </h2>
+              </div>
+              <a href="#" className="group inline-flex items-center gap-2 link-underline text-sm tracking-tight self-start md:self-end pb-1">
+                View all 42 pieces <ArrowUpRight className="w-3.5 h-3.5 btn-arrow" />
+              </a>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-16 md:gap-y-20">
+              {products.map(p => <ProductCard key={p.index} {...p} />)}
+            </div>
+          </Container>
+        </section>
+      );
+    };
+
+    // STORY / SPLIT SECTION
+    const Story = () => (
+      <section id="story" className="border-t hairline border-ink">
+        <Container className="py-20 md:py-28">
+          <SectionLabel index="03" label="The Studio" className="mb-12" />
+          <div className="grid grid-cols-12 gap-x-6 gap-y-12 items-start">
+            <div className="col-span-12 lg:col-span-6">
+              <h2 className="display-large text-ink" style={{ fontSize: 'clamp(2.25rem, 5.5vw, 4.5rem)' }}>
+                장인 정신에<br/>
+                <span className="font-serif-italic">깊이</span>를 더하다.
+              </h2>
+              <p className="mt-8 text-ink/85 text-lg leading-[1.65] max-w-lg">
+                Made by hand, designed to last generations.
+                우리는 30년 이상 가구를 만들어 온 장인들과 함께, 단순히 사용하는 사물이 아닌
+                <span className="font-serif-italic"> 머무는 풍경</span>을 만듭니다.
+              </p>
+              <p className="mt-5 text-mute text-[15px] leading-[1.7] max-w-lg">
+                지속 가능한 활엽수림에서 자란 오크와 월넛, 자연 가공된 트래버틴, 그리고 한 올 한 올 짜낸 보클레 패브릭만을 사용합니다. 하나의 의자가 완성되기까지 평균 47시간이 걸립니다.
+              </p>
+              <div className="mt-10 flex items-center gap-3">
+                <Pill variant="outline" href="#">Read our journal</Pill>
+              </div>
+
+              {/* small specs row */}
+              <div className="mt-14 grid grid-cols-3 gap-6 max-w-md">
+                {[
+                  { k: "FSC", v: "Sourced timber" },
+                  { k: "47h", v: "Avg. build" },
+                  { k: "10y", v: "Warranty" },
+                ].map(item => (
+                  <div key={item.k} className="border-t hairline border-ink/30 pt-3">
+                    <div className="font-serif-italic text-2xl text-ink">{item.k}</div>
+                    <div className="label-tiny-2 text-mute mt-1">{item.v}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="col-span-12 lg:col-span-6 lg:pl-8">
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm img-grain"
+                   style={{ background: 'linear-gradient(160deg, #6B4F3A 0%, #3A2A1E 100%)' }}>
+                <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8">
+                  <span className="label-tiny-2 text-cream/80">Atelier · Gyeonggi-do</span>
+                  <div>
+                    <div className="font-serif-italic text-cream text-4xl md:text-6xl tracking-tight leading-none">In the<br/>workshop.</div>
+                    <div className="label-tiny-2 text-cream/70 mt-3">Photograph · 02 of 12</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+    );
+
+    // STATS — dark section
+    const Stats = () => (
+      <section className="bg-ink-2 text-cream">
+        <Container className="py-20 md:py-28">
+          <SectionLabel index="04" label="By the numbers" className="mb-14 text-cream" />
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-14">
+            <StatBlock number="12"   suffix=""  label="Years of craft" />
+            <StatBlock number="180"  suffix="+" label="Artisans" />
+            <StatBlock number="40"   suffix=""  label="Countries shipped" />
+            <StatBlock number="1500" suffix="+" label="Pieces made" />
+          </div>
+
+          <div className="mt-20 border-t border-cream/15 pt-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <p className="text-cream/70 max-w-md text-[15px] leading-[1.6]">
+              From a small atelier outside Seoul to studios in Copenhagen — every piece begins with a drawing and ends in your home.
+            </p>
+            <Pill variant="light" href="#">Visit the atelier</Pill>
+          </div>
+        </Container>
+      </section>
+    );
+
+    // TESTIMONIAL
+    const Testimonial = () => (
+      <section className="bg-cream-2 border-y hairline border-ink">
+        <Container className="py-24 md:py-36">
+          <SectionLabel index="05" label="In their words" className="mb-12" />
+          <figure className="max-w-5xl">
+            <blockquote className="text-ink leading-[1.05] tracking-tight" style={{ fontSize: 'clamp(2rem, 5vw, 4.5rem)', fontWeight: 400 }}>
+              <span className="font-serif-italic text-mute mr-2">“</span>
+              MAISON ORD의 가구는 단순한 사물이 아닌, 공간에 <span className="font-serif-italic">시간</span>을 더하는 <span className="font-serif-italic">조각</span>이다.
+              <span className="font-serif-italic text-mute ml-1">”</span>
+            </blockquote>
+            <figcaption className="mt-10 flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-walnut/80 img-grain" />
+              <div>
+                <div className="text-sm font-medium text-ink">김민지</div>
+                <div className="label-tiny-2 text-mute mt-0.5">Interior Designer · Studio Mok</div>
+              </div>
+            </figcaption>
+          </figure>
+        </Container>
+      </section>
+    );
+
+    // NEWSLETTER
+    const Newsletter = () => {
+      const [email, setEmail] = useState('');
+      const [submitted, setSubmitted] = useState(false);
+      const submit = (e) => { e.preventDefault(); if (email) setSubmitted(true); };
+
+      return (
+        <section className="bg-cream">
+          <Container className="py-24 md:py-32">
+            <div className="max-w-3xl mx-auto text-center">
+              <SectionLabel index="06" label="Stay in touch" className="justify-center mb-8" />
+              <h2 className="display-large text-ink mx-auto" style={{ fontSize: 'clamp(2rem, 5.5vw, 4.5rem)' }}>
+                Receive our <span className="font-serif-italic">letters.</span>
+              </h2>
+              <p className="mt-6 text-mute text-[15px] leading-[1.7] max-w-md mx-auto">
+                새로운 컬렉션과 아틀리에 소식, 그리고 가끔의 에세이를 한 달에 한 번 보내드립니다.
+              </p>
+
+              {!submitted ? (
+                <form onSubmit={submit} className="mt-12 flex flex-col sm:flex-row gap-3 max-w-xl mx-auto items-center">
+                  <input
+                    type="email"
+                    required
+                    placeholder="your@email.com"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    className="input-underline w-full text-center sm:text-left text-base"
+                  />
+                  <Pill variant="primary" onClick={submit} className="shrink-0">Subscribe</Pill>
+                </form>
+              ) : (
+                <div className="mt-12 inline-flex items-center gap-3 label-tiny text-ink border border-ink/30 rounded-full px-5 py-3">
+                  <span className="font-serif-italic normal-case tracking-normal text-base">감사합니다.</span>
+                  <span>You're on the list.</span>
+                </div>
+              )}
+            </div>
+          </Container>
+        </section>
+      );
+    };
+
+    // FOOTER
+    const Footer = () => {
+      const columns = [
+        { title: "Shop",    items: ["Seating", "Tables", "Lighting", "Storage", "Beds", "Accessories"] },
+        { title: "Studio",  items: ["About", "Craft", "Press", "Contact"] },
+        { title: "Help",    items: ["Shipping", "Returns", "Care Guide", "FAQ"] },
+        { title: "Connect", items: ["Instagram", "Pinterest", "Newsletter"] },
+      ];
+
+      return (
+        <footer className="bg-ink-2 text-cream">
+          <Container className="pt-20 md:pt-28 pb-10">
+            {/* Top row */}
+            <div className="grid grid-cols-12 gap-x-6 gap-y-12">
+              <div className="col-span-12 lg:col-span-4">
+                <SectionLabel index="07" label="Maison Ord — Atelier" className="mb-6 text-cream" />
+                <p className="text-cream/70 text-[15px] leading-[1.7] max-w-xs">
+                  An atelier of furniture-makers based in Seoul and Copenhagen. Every piece, hand-finished.
+                </p>
+                <div className="mt-8 flex items-center gap-4">
+                  <a href="#" className="link-underline-rev text-sm">Instagram</a>
+                  <a href="#" className="link-underline-rev text-sm">Pinterest</a>
+                  <a href="#" className="link-underline-rev text-sm">Are.na</a>
+                </div>
+              </div>
+
+              {columns.map(col => (
+                <div key={col.title} className="col-span-6 md:col-span-3 lg:col-span-2">
+                  <div className="label-tiny-2 text-cream/50 mb-5">{col.title}</div>
+                  <ul className="space-y-2.5">
+                    {col.items.map(item => (
+                      <li key={item}>
+                        <a href="#" className="text-cream/90 text-[15px] hover:text-cream link-underline-rev">{item}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            {/* Huge wordmark */}
+            <div className="mt-20 md:mt-28 border-t border-cream/15 pt-10">
+              <div className="footer-wordmark text-cream leading-none" style={{ fontSize: 'clamp(4.5rem, 22vw, 24rem)' }}>
+                Maison <span className="font-serif-italic">Ord</span>
+              </div>
+            </div>
+
+            {/* Bottom row */}
+            <div className="mt-10 border-t border-cream/15 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div className="flex items-center gap-6 label-tiny-2 text-cream/60">
+                <span>© 2026 Maison Ord. All rights reserved.</span>
+                <a href="#" className="link-underline-rev hidden md:inline">Privacy</a>
+                <a href="#" className="link-underline-rev hidden md:inline">Terms</a>
+              </div>
+              <div className="flex items-center gap-2 label-tiny-2 text-cream/60">
+                <button className="px-3 py-1.5 rounded-full border border-cream/20 hover:bg-cream hover:text-ink transition-colors">KR · 한국어</button>
+                <button className="px-3 py-1.5 rounded-full border border-cream/20 hover:bg-cream hover:text-ink transition-colors">EN</button>
+                <button className="px-3 py-1.5 rounded-full border border-cream/20 hover:bg-cream hover:text-ink transition-colors">DK</button>
+              </div>
+            </div>
+          </Container>
+        </footer>
+      );
+    };
+
+    // ========================================
+    // 🚀 APP
+    // ========================================
+    const App = () => (
+      <div className="min-h-screen bg-cream text-ink">
+        <Header />
+        <main>
+          <Hero />
+          <MarqueeSection />
+          <Collection />
+          <Story />
+          <Stats />
+          <Testimonial />
+          <Newsletter />
+        </main>
+        <Footer />
+      </div>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

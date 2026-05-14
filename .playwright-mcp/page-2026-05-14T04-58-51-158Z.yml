@@ -1,0 +1,516 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "메뉴바로가기" [ref=e4] [cursor=pointer]:
+      - /url: "#gnb"
+    - link "콘텐츠 바로가기" [ref=e5] [cursor=pointer]:
+      - /url: "#container"
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - heading "스타벅스 코리아" [level=1] [ref=e9]:
+        - link "스타벅스 코리아" [ref=e10] [cursor=pointer]:
+          - /url: /
+      - navigation [ref=e11]:
+        - list:
+          - listitem [ref=e12]:
+            - link "Sign In" [ref=e13] [cursor=pointer]:
+              - /url: javascript:void(0);
+          - listitem [ref=e14]:
+            - link "My Starbucks" [ref=e15] [cursor=pointer]:
+              - /url: javascript:void(0);
+          - listitem [ref=e16]:
+            - link "Customer Service & Ideas" [ref=e17] [cursor=pointer]:
+              - /url: /util/index.do
+          - listitem [ref=e18]:
+            - link "Find a Store" [ref=e19] [cursor=pointer]:
+              - /url: /store/store_map.do
+      - paragraph [ref=e20]:
+        - link "통합검색" [ref=e21] [cursor=pointer]:
+          - /url: javascript:void(0);
+          - img "통합검색" [ref=e22]
+        - generic [ref=e23]: 통합검색
+      - button "마이 리워드 레이어 열기" [ref=e24] [cursor=pointer]
+    - navigation [ref=e25]:
+      - list [ref=e27]:
+        - listitem [ref=e28]:
+          - heading "COFFEE" [level=2] [ref=e29]:
+            - link "COFFEE" [ref=e30] [cursor=pointer]:
+              - /url: /coffee/index.do
+        - listitem [ref=e31]:
+          - heading "MENU" [level=2] [ref=e32]:
+            - link "MENU" [ref=e33] [cursor=pointer]:
+              - /url: /menu/index.do
+        - listitem [ref=e34]:
+          - heading "STORE" [level=2] [ref=e35]:
+            - link "STORE" [ref=e36] [cursor=pointer]:
+              - /url: /store/index.do
+        - listitem [ref=e37]:
+          - heading "ESG" [level=2] [ref=e38]:
+            - link "ESG" [ref=e39] [cursor=pointer]:
+              - /url: /responsibility/index.do
+        - listitem [ref=e40]:
+          - heading "STARBUCKS REWARDS" [level=2] [ref=e41]:
+            - link "STARBUCKS REWARDS" [ref=e42] [cursor=pointer]:
+              - /url: /msr/index.do
+        - listitem [ref=e43]:
+          - heading "CORPORATE SALES" [level=2] [ref=e44]:
+            - link "CORPORATE SALES" [ref=e45] [cursor=pointer]:
+              - /url: /footer/co_sales/index.do
+        - listitem [ref=e46]:
+          - heading "WHAT'S NEW" [level=2] [ref=e47]:
+            - link "WHAT'S NEW" [ref=e48] [cursor=pointer]:
+              - /url: /whats_new/index.do
+  - generic [ref=e49]:
+    - generic [ref=e51]:
+      - heading "매장별 이벤트" [level=2] [ref=e52]:
+        - img "매장별 이벤트" [ref=e53]
+      - list [ref=e54]:
+        - listitem [ref=e55]:
+          - link "홈으로" [ref=e56] [cursor=pointer]:
+            - /url: /
+            - img "홈으로" [ref=e57]
+        - listitem [ref=e58]:
+          - img "하위메뉴" [ref=e59]
+        - listitem [ref=e60]:
+          - link "WHAT'S NEW" [ref=e61] [cursor=pointer]:
+            - /url: /whats_new/index.do
+        - listitem [ref=e62]:
+          - img "하위메뉴" [ref=e63]
+        - listitem [ref=e64]:
+          - link "매장별 이벤트" [ref=e65] [cursor=pointer]:
+            - /url: /whats_new/store_event_list.do
+    - generic [ref=e66]:
+      - paragraph [ref=e67]: 지역별 매장찾기 또는 매장명 검색을 통해 스타벅스의 매장 이벤트 정보를 확인 하실 수 있습니다.
+      - generic [ref=e68]:
+        - heading "All" [level=3] [ref=e70]:
+          - link "All" [ref=e71] [cursor=pointer]:
+            - /url: javascript:void(0);
+        - article [ref=e72]:
+          - generic [ref=e74]:
+            - generic [ref=e75]:
+              - term [ref=e76]: 지역으로 검색
+              - definition [ref=e77]:
+                - generic [ref=e79]:
+                  - generic [ref=e80]: 시/도
+                  - combobox "시/도" [ref=e81]:
+                    - option "시/도" [selected]
+                    - option "서울"
+                    - option "경기"
+                    - option "광주"
+                    - option "대구"
+                    - option "대전"
+                    - option "부산"
+                    - option "울산"
+                    - option "인천"
+                    - option "강원"
+                    - option "경남"
+                    - option "경북"
+                    - option "전남"
+                    - option "전북"
+                    - option "충남"
+                    - option "충북"
+                    - option "제주"
+                    - option "세종"
+                - generic [ref=e83]:
+                  - generic [ref=e84]: 구/군
+                  - combobox "구/군" [ref=e85]:
+                    - option "구/군" [selected]
+                - paragraph [ref=e86]:
+                  - link "검색" [ref=e87] [cursor=pointer]:
+                    - /url: javascript:void(0);
+            - generic [ref=e88]:
+              - term [ref=e89]: 매장명으로 검색
+              - definition [ref=e90]:
+                - textbox "원하는 매장명을 적어주세요" [ref=e92]:
+                  - /placeholder: 매장명으로 검색
+                - paragraph [ref=e93]:
+                  - link "검색" [ref=e94] [cursor=pointer]:
+                    - /url: javascript:void(0);
+          - paragraph [ref=e95]: 총 6개의 검색결과가 있습니다.
+          - list [ref=e97]:
+            - listitem [ref=e98]:
+              - generic [ref=e99]:
+                - term [ref=e100]:
+                  - link "안양호계DT" [ref=e101] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                    - img "안양호계DT" [ref=e102]
+                - definition [ref=e103]:
+                  - heading "[안양호계DT] 리뉴얼 오픈 이벤트 2026-05-15 ~ 2026-05-21" [level=4] [ref=e104]
+                  - paragraph [ref=e105]:
+                    - link "안양호계DT" [ref=e106] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                  - list [ref=e107]:
+                    - text: "[리뉴얼 오픈이벤트] 제조음료 포함 20,000원이상 구매 고객에게 로고 머그 선착순 증정"
+                    - text: "- 스타벅스 카드 충전금액, 딜리버스(배달) 주문은 이벤트 대상에서 제외됩니다."
+                    - text: "- 선착순 증정으로 행사는 조기에 종료될 수 있습니다."
+                  - generic [ref=e108]:
+                    - text: 1. 사이렌 오더 이용 시에도 이벤트 참여 가능합니다.(단, 매장대기고객이 다수일 경우, 사이렌오더 운영중단 될수 있습니다)
+                    - text: 2. 증정품 재고 소진의 사유로 사이렌 오더 주문 취소는 불가합니다.
+                    - text: 3. 조건 당 증정으로 푸드 2개 포함 제/상품을 4만원 이상 구매 시, 2개 증정 가능합니다. (영수증당 조건 충족 시, 최대 2개까지 증정 가능)
+                    - text: 4. 잼, 버터, 크림치즈, 병음료, 바나나는 대상 푸드에서 제외됩니다.
+                    - text: 5. 당일 구매 영수증에 한해 결제완료 즉시 증정되며, 영수증 합산은 불가합니다.
+                    - text: 6. 교환거래, 결제수단 변경 등의 재결제 시에는 이벤트 적용이 불가합니다.
+                    - text: 7. 선착순 증정으로 준비수량 소진 시 이벤트는 별도의 고지 없이 종료됩니다.
+                    - text: 8. 증정품 수량에 대한 유/무선 재고 안내는 불가합니다.
+                    - text: 9. 구매하신 물품의 교환/환불을 원하실 경우(푸드제외), 반드시 영수증과 판촉물을 함께 지참하시고 최초 구매일로부터 14일 이내 해당 상품을 구매한 매장에 방문해야 가능합니다.
+                    - text: 10. 임직원 할인 및 모닝세트 적용 시에도 이벤트 조건에 부합 시 증정 가능합니다.
+                    - text: 11. 쿠폰을 사용하시는 경우에도 최종 결제 금액이 이벤트 조건에 부합 시 증정 가능합니다.
+                    - text: 12. 스타벅스 카드 충전 금액은 이벤트 적용이 불가합니다.
+                    - text: 13. 딜리버스 이용시에는 이벤트 참여 제외됩니다.
+            - listitem [ref=e109]:
+              - generic [ref=e110]:
+                - term [ref=e111]:
+                  - link "천안단국대호수" [ref=e112] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                    - img "천안단국대호수" [ref=e113]
+                - definition [ref=e114]:
+                  - heading "사이렌오더 별 증정 이벤트 2026-04-24 ~ 2026-05-21" [level=4] [ref=e115]
+                  - paragraph [ref=e116]:
+                    - link "천안단국대호수" [ref=e117] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                  - list [ref=e118]: 사이렌 오더를 사용하여 회원 계정에 등록된 스타벅스 카드 또는 계좌 간편결제로 제조 음료 주문 시, 음료당 별 2개 추가 적립
+                  - generic [ref=e119]:
+                    - text: 1. 스타벅스 리워드 회원이 등록된 스타벅스 카드 또는 계좌 간편 결제한 금액이 방문별 적립 금액(3,000원 이상)을 충족한 경우에만 이벤트 참여 가능합니다.
+                    - text: 2. 사이렌 오더 또는 딜리버스 주문 시 적용 가능합니다. (단, 사이렌 오더 비회원 주문 또는 외부 채널 주문 시에는 적용 불가)
+                    - text: 3. 병 음료, 생수, 요거트 등 일부 음료는 대상에서 제외되며, 투고백의 경우 1개의 제조 음료로 간주됩니다.
+                    - text: 4. 이벤트 기간 내 발생한 정상 거래 외 이벤트 기간 전후 거래 변경 시 본 이벤트 대상에서 제외됩니다. (거래 취소 / 교환 거래 / 거래 취소 후 재결제 / 결제수단 변경 등)
+                    - text: 5. 조건 충족 시 방문당 별 1개와 만원별, 지정된 상품 구매 시 이벤트 별이 즉시 적립되며 결제 취소 시 적립된 별은 회수됩니다.
+                    - text: 6. 무료 음료 쿠폰 사용 시 이벤트 별은 적립되지 않습니다. (음료 Size up, Extra 등 추가 금액을 등록된 스타벅스 카드로 결제할 경우에도 이벤트 대상에서 제외)
+                    - text: 7. 1+1 쿠폰 및 사이즈업 쿠폰 적용 시 등록된 스타벅스 카드로 결제한 음료는 이벤트 대상에 포함됩니다.
+                    - text: 8. 회원 본인 계정이 아닌 다른 회원 계정에 등록된 스타벅스 카드 / 스타벅스 모바일 상품권 / 스타벅스 모바일 카드 등과의 복합 결제 시, 이벤트 참여가 정상적으로 되지 않을 수 있으니 이 점 유의하시기 바랍니다.
+                    - text: 9. 스타벅스 모바일 상품권 선물하기는 본 이벤트 대상에서 제외됩니다.
+                    - text: 10. 본 이벤트 조건 충족 시, 임직원 할인 및 굿 이브닝 혜택 적용 시에도 이벤트 참여 가능합니다.
+                    - text: 11. 본 이벤트로 적립된 이벤트 별의 유효기간은 적립일로부터 90일이며, 유효기간 만료 시 별도의 안내 없이 별은 소멸됩니다.
+                    - text: 12. 일부 매장에서는 매장 내 비치된 매장 QR코드를 통해서만 사이렌 오더 주문이 가능하며, 해당 주문은 매장 POS 주문으로 적용됩니다.
+                    - text: 13. 일부 매장에서는 특정 시간대 사이렌 오더 주문이 불가할 수 있습니다.
+            - listitem [ref=e120]:
+              - generic [ref=e121]:
+                - term [ref=e122]:
+                  - link "신세계사우스시티9F" [ref=e123] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                    - img "신세계사우스시티9F" [ref=e124]
+                - definition [ref=e125]:
+                  - heading "[신세계사우스시티9F] 신규점 오픈 이벤트 2026-05-14 ~ 2026-05-17" [level=4] [ref=e126]
+                  - paragraph [ref=e127]:
+                    - link "신세계사우스시티9F" [ref=e128] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                  - list [ref=e129]:
+                    - text: 1. 제조음료포함 20,000원 이상 구매시 로고머그 증정
+                    - text: 1) 제조 음료 포함 20,000원 이상 구매 고객에게 로고머그(Tall size) 선착순 증정(병음료, 쉐이크, 아이스크림, 요거트, 푸딩, 핸디젤리 등 일부품목 제외)
+                    - text: 2) 조건당 로고 머그 증정. 영수증당 최대 2개까지 증정
+                    - text: "(예시: 음료 2잔 포함하여 4만원 구매 시 2개 증정)"
+                    - text: 3) 스타벅스 카드 충전 금액은 제외됩니다.
+                    - text: 4) 행사는 조기에 종료될 수 있습니다.
+                  - generic [ref=e130]:
+                    - text: 1. 사이렌 오더 이용 시에도 이벤트 참여 가능합니다.
+                    - text: 2. 증정품 재고 소진의 사유로 사이렌 오더 주문 취소는 불가합니다.
+                    - text: 3. 조건 당 증정으로 제조음료 2잔 포함 제/상품을 4만원 이상 구매 시, 2개 증정 가능합니다.
+                    - text: 4. 병음료는 대상음료에서 제외됩니다.
+                    - text: 5. 당일 구매 영수증에 한해 결제 완료 즉시 증정되며, 영수증 합산은 불가합니다.
+                    - text: 6. 교환거래, 결제수단 변경 등의 재결제 시에는 이벤트 적용이 불가합니다.
+                    - text: 7. 선착순 증정으로 준비수량 소진 시 이벤트는 별도의 고지 없이 종료됩니다.
+                    - text: 8. 증정품 수량에 대한 유/무선상 재고 안내는 불가합니다.
+                    - text: 9. 구매하신 물품의 교환/환불을 원하실 경우 (푸드제외) 반드시 영수증과 증정품을 함께 지참하시고, 최초 구매일로 부터 14일 이내 해당 상품 및 증정품을 구매한 매장에 방문해야 가능합니다.
+                    - text: 10. 임직원 할인 및 모닝세트 적용 시에도 이벤트 조건에 부합 시 증정 가능합니다.
+                    - text: 11. 쿠폰을 사용하시는 경우에도 최종 결제 금액이 이벤트 조건 부합시 증정 가능합니다. (무료음료쿠폰 사용음료제외)
+                    - text: 12. 스타벅스 카드 충전 금액은 이벤트 적용이 불가합니다.
+                    - text: 13. 보다 많은 고객의 이벤트 참여를 위해, 증정품은 1인 기준 최대 2개를 증정해드립니다.
+            - listitem [ref=e131]:
+              - generic [ref=e132]:
+                - term [ref=e133]:
+                  - link "광명사거리역" [ref=e134] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                    - img "광명사거리역" [ref=e135]
+                - definition [ref=e136]:
+                  - heading "[광명사거리역] 리뉴얼 오픈 이벤트 2026-05-14 ~ 2026-05-15" [level=4] [ref=e137]
+                  - paragraph [ref=e138]:
+                    - link "광명사거리역" [ref=e139] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                  - list [ref=e140]:
+                    - text: "[리뉴얼 오픈 이벤트] 제조음료 포함 20,000원이상 구매 고객에게 로고 머그 선착순 증정"
+                    - text: "- 스타벅스 카드 충전금액, 딜리버스(배달) 주문은 이벤트 대상에서 제외됩니다."
+                    - text: "- 선착순 증정으로 행사는 조기에 종료될 수 있습니다."
+                  - generic [ref=e141]:
+                    - text: 1. 사이렌 오더 이용 시에도 이벤트 참여 가능합니다.
+                    - text: 2. 증정품 재고 소진의 사유로 사이렌 오더 주문 취소는 불가합니다.
+                    - text: 3. 조건 당 증정으로 제조음료 2잔 포함 제/상품을 4만원 이상 구매 시, 2개 증정 가능합니다.
+                    - text: 4. 병 음료는 대상에서 제외됩니다. 투고백은 제조 음료 1개로 카운팅 됩니다.
+                    - text: 5. 당일 구매 영수증에 한해 결제완료 즉시 증정되며, 영수증 합산은 불가합니다.
+                    - text: 6. 교환거래, 결제수단 변경 등의 재결제시에는 이벤트 적용이 불가합니다.
+                    - text: 7. 선착순 증정으로 준비수량 소진 시 이벤트는 별도의 고지 없이 종료됩니다.
+                    - text: 8. 증정품 수량에 대한 유/무선상 재고 안내는 불가합니다.
+                    - text: 9. 구매한 물품의 교환/환불을 원하실 경우(푸드 제외). 반드시 영수증과 판촉물을 함께 지참하시고 최초 구매일로부터 14일 이내 해당 물품을 구매한 매장에 방문해야 가능합니다.
+                    - text: 10. 임직원 할인 및 모닝세트 적용시에도 이벤트 조건에 부합 시 증정 가능합니다.
+                    - text: 11. 쿠폰을 사용하시는 경우에도 최종 결제금액이 이벤트 조건 부합시 증정가능합니다. (무료 음료 쿠폰 사용 음료 제외)
+                    - text: 12. 스타벅스 카드 충전 금액은 이벤트 적용이 불가합니다.
+                    - text: 13. 딜리버스(배달) 제외 이벤트입니다.
+                    - text: 14. 보다 많은 고객의 이벤트 참여를 위하여, 증정품은 1인 기준 최대 2개를 증정해 드립니다.
+            - listitem [ref=e142]:
+              - generic [ref=e143]:
+                - term [ref=e144]:
+                  - link "뉴코아강남" [ref=e145] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                    - img "뉴코아강남" [ref=e146]
+                - definition [ref=e147]:
+                  - heading "[뉴코아강남] 리뉴얼 오픈 이벤트 2026-05-08 ~ 2026-05-14" [level=4] [ref=e148]
+                  - paragraph [ref=e149]:
+                    - link "뉴코아강남" [ref=e150] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                  - list [ref=e151]:
+                    - text: "[리뉴얼 오픈이벤트] 제조음료 포함 20,000원이상 구매 고객에게 로고 머그 선착순 증정"
+                    - text: "- 스타벅스 카드 충전금액, 딜리버스(배달) 주문은 이벤트 대상에서 제외됩니다."
+                    - text: "- 선착순 증정으로 행사는 조기에 종료될 수 있습니다."
+                  - generic [ref=e152]:
+                    - text: 1. 사이렌 오더 이용 시에도 이벤트 참여 가능합니다.(단, 매장대기고객이 다수일 경우, 사이렌오더 운영중단 될수 있습니다)
+                    - text: 2. 증정품 재고 소진의 사유로 사이렌 오더 주문 취소는 불가합니다.
+                    - text: 3. 조건 당 증정으로 푸드 2개 포함 제/상품을 4만원 이상 구매 시, 2개 증정 가능합니다. (영수증당 조건 충족 시, 최대 2개까지 증정 가능)
+                    - text: 4. 잼, 버터, 크림치즈, 병음료, 바나나는 대상 푸드에서 제외됩니다.
+                    - text: 5. 당일 구매 영수증에 한해 결제완료 즉시 증정되며, 영수증 합산은 불가합니다.
+                    - text: 6. 교환거래, 결제수단 변경 등의 재결제 시에는 이벤트 적용이 불가합니다.
+                    - text: 7. 선착순 증정으로 준비수량 소진 시 이벤트는 별도의 고지 없이 종료됩니다.
+                    - text: 8. 증정품 수량에 대한 유/무선 재고 안내는 불가합니다.
+                    - text: 9. 구매하신 물품의 교환/환불을 원하실 경우(푸드제외), 반드시 영수증과 판촉물을 함께 지참하시고 최초 구매일로부터 14일 이내 해당 상품을 구매한 매장에 방문해야 가능합니다.
+                    - text: 10. 임직원 할인 및 모닝세트 적용 시에도 이벤트 조건에 부합 시 증정 가능합니다.
+                    - text: 11. 쿠폰을 사용하시는 경우에도 최종 결제 금액이 이벤트 조건에 부합 시 증정 가능합니다.
+                    - text: 12. 스타벅스 카드 충전 금액은 이벤트 적용이 불가합니다.
+                    - text: 13. 딜리버스 이용시에는 이벤트 참여 제외됩니다.
+            - listitem [ref=e153]:
+              - generic [ref=e154]:
+                - term [ref=e155]:
+                  - link "순화동경찰청앞" [ref=e156] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                    - img "순화동경찰청앞" [ref=e157]
+                - definition [ref=e158]:
+                  - heading "[순화동경창청앞] 신규점 오픈 이벤트 2026-05-08 ~ 2026-05-14" [level=4] [ref=e159]
+                  - paragraph [ref=e160]:
+                    - link "순화동경찰청앞" [ref=e161] [cursor=pointer]:
+                      - /url: javascript:void(0)
+                  - list [ref=e162]:
+                    - text: 1. 푸드 포함 20,000원 이상 구매 고객에게 로고머그(Tall size) 선착순 증정
+                    - text: "2. 조건당 로고 머그 증정. 영수증당 최대 2개까지 증정 (예시: 푸드 2개 포함하여 4만원 구매 시 2개 증정)"
+                    - text: 3. 스타벅스 카드 충전 금액, 딜리버스(배달) 주문은 이벤트 대상에서 제외됩니다.
+                    - text: 4. 행사는 조기에 종료될 수 있습니다
+                  - generic [ref=e163]:
+                    - text: 1.사이렌 오더 이용 시에도 이벤트 참여 가능합니다.(단, 매장대기고객이 다수일 경우, 사이렌오더 운영중단 될수 있습니다)
+                    - text: 2. 증정품 재고 소진의 사유로 사이렌 오더 주문 취소는 불가합니다.
+                    - text: 3. 조건 당 증정으로 푸드 2개 포함 제/상품을 4만원 이상 구매 시, 2개 증정 가능합니다. (영수증당 조건 충족 시, 최대 2개까지 증정 가능)
+          - list [ref=e165]:
+            - listitem [ref=e166]:
+              - link "1" [ref=e167] [cursor=pointer]:
+                - /url: javascript:void(0)
+        - heading "신규매장" [level=3] [ref=e168]:
+          - link "신규매장" [ref=e169] [cursor=pointer]:
+            - /url: javascript:void(0);
+        - heading "종료된 매장별 이벤트" [level=3] [ref=e170]:
+          - link "종료된 매장별 이벤트" [ref=e171] [cursor=pointer]:
+            - /url: javascript:void(0);
+  - contentinfo [ref=e172]:
+    - generic [ref=e174]:
+      - list [ref=e175]:
+        - listitem [ref=e176]:
+          - link "COMPANY" [ref=e177]:
+            - /url: javascript:void(0);
+            - text: COMPANY
+        - listitem [ref=e178]:
+          - link "한눈에 보기" [ref=e179] [cursor=pointer]:
+            - /url: /footer/company/index.do
+        - listitem [ref=e180]:
+          - link "스타벅스 사명" [ref=e181] [cursor=pointer]:
+            - /url: /footer/company/mission.do
+        - listitem [ref=e182]:
+          - link "스타벅스 소개" [ref=e183] [cursor=pointer]:
+            - /url: javascript:void(0)
+            - text: 스타벅스 소개
+        - listitem [ref=e184]:
+          - link "컴플라이언스" [ref=e185] [cursor=pointer]:
+            - /url: javascript:void(0)
+            - text: 컴플라이언스
+        - listitem [ref=e186]:
+          - link "국내 뉴스룸" [ref=e187] [cursor=pointer]:
+            - /url: /footer/company/news_list.do
+        - listitem [ref=e188]:
+          - link "세계의 스타벅스" [ref=e189] [cursor=pointer]:
+            - /url: /footer/company/global_starbucks.do
+        - listitem [ref=e190]:
+          - link "글로벌 뉴스룸" [ref=e191] [cursor=pointer]:
+            - /url: https://news.starbucks.com
+      - list [ref=e192]:
+        - listitem [ref=e193]:
+          - link "CORPORATE SALES" [ref=e194]:
+            - /url: javascript:void(0);
+            - text: CORPORATE SALES
+        - listitem [ref=e195]:
+          - link "단체 및 기업 구매 안내" [ref=e196] [cursor=pointer]:
+            - /url: /footer/co_sales/index.do
+        - listitem [ref=e197]:
+          - link "단체 주문 배달 안내" [ref=e198] [cursor=pointer]:
+            - /url: /footer/group_order/index.do
+      - list [ref=e199]:
+        - listitem [ref=e200]:
+          - link "PARTNERSHIP" [ref=e201]:
+            - /url: javascript:void(0);
+            - text: PARTNERSHIP
+        - listitem [ref=e202]:
+          - link "신규 입점 제의" [ref=e203] [cursor=pointer]:
+            - /url: /footer/partnership/new_partner.do
+        - listitem [ref=e204]:
+          - link "협력 고객사 등록신청" [ref=e205] [cursor=pointer]:
+            - /url: /srm/login.do
+        - listitem [ref=e206]:
+          - link "중개업체 확인" [ref=e207] [cursor=pointer]:
+            - /url: /srm/agency.do
+      - list [ref=e208]:
+        - listitem [ref=e209]:
+          - link "ONLINE COMMUNITY" [ref=e210]:
+            - /url: javascript:void(0);
+            - text: ONLINE COMMUNITY
+        - listitem [ref=e211]:
+          - link "페이스북" [ref=e212] [cursor=pointer]:
+            - /url: https://www.facebook.com/starbuckskorea
+        - listitem [ref=e213]:
+          - link "트위터" [ref=e214] [cursor=pointer]:
+            - /url: https://twitter.com/StarbucksKorea
+        - listitem [ref=e215]:
+          - link "유튜브" [ref=e216] [cursor=pointer]:
+            - /url: https://www.youtube.com/user/starbuckskorea
+        - listitem [ref=e217]:
+          - link "인스타그램" [ref=e218] [cursor=pointer]:
+            - /url: https://instagram.com/starbuckskorea/
+      - list [ref=e219]:
+        - listitem [ref=e220]:
+          - link "RECRUIT" [ref=e221]:
+            - /url: javascript:void(0);
+            - text: RECRUIT
+        - listitem [ref=e222]:
+          - link "채용 소개" [ref=e223] [cursor=pointer]:
+            - /url: https://job.shinsegae.com/job_intro/starbucks/starbucks01.jsp
+        - listitem [ref=e224]:
+          - link "채용 지원하기" [ref=e225] [cursor=pointer]:
+            - /url: https://job.shinsegae.com/recruit_info/notice/notice02_list.jsp?isSearch=Y&tabKey0=&notino=&searchWord0=&orderKey0=1&strCareerVals=&strRtlVals=&strFodhtlVals=&strFshnlvngVals=&strFbbsnsVals=&strRtlsprtVals=&rtlTogYn=Y&fodhtlTogYn=Y&FshnlvngTogYn=Y&fbbsnsTogYn=Y&rtlsprtTogYn=Y&searchWord1=&careerAllVal=&affFbbsnsVal=EE0
+    - generic [ref=e227]:
+      - generic [ref=e230]:
+        - list [ref=e232]:
+          - listitem [ref=e233]:
+            - link "산업통상자원부 2020 대한민국 중소중견기업혁신 대상 국회산업통상자원중소벤처위원회장상" [ref=e234] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "산업통상자원부 2020 대한민국 중소중견기업혁신 대상 국회산업통상자원중소벤처위원회장상" [ref=e235]
+          - listitem [ref=e236]:
+            - link "일자리위원회 2020 대한민국 일자리 유공 표창 대통령직속 일자리위원회 부위원장상" [ref=e237] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "일자리위원회 2020 대한민국 일자리 유공 표창 대통령직속 일자리위원회 부위원장상" [ref=e238]
+          - listitem [ref=e239]:
+            - link "동반성장위원회 2020 사랑나눔 사회공헌대상 동반성장위원회 위원장상" [ref=e240] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "동반성장위원회 2020 사랑나눔 사회공헌대상 동반성장위원회 위원장상" [ref=e241]
+          - listitem
+          - listitem [ref=e242]:
+            - link "소비자중심경영 CCM인증획득" [ref=e243] [cursor=pointer]:
+              - /url: /util/ccm.do
+              - img "소비자중심경영 CCM인증획득" [ref=e244]
+          - listitem
+          - listitem
+          - listitem [ref=e245]:
+            - link "소비자중심경영 CCM인증획득" [ref=e246] [cursor=pointer]:
+              - /url: /util/ccm.do
+              - img "소비자중심경영 CCM인증획득" [ref=e247]
+          - listitem
+          - listitem [ref=e248]:
+            - link "여섯가족부 2020 대한민국 일자리대상 여성가족부장관상" [ref=e249] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "여섯가족부 2020 대한민국 일자리대상 여성가족부장관상" [ref=e250]
+          - listitem [ref=e251]:
+            - link "행정안전부 2020 소방의 날 행정안전부장관 표창" [ref=e252] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "행정안전부 2020 소방의 날 행정안전부장관 표창" [ref=e253]
+          - listitem [ref=e254]:
+            - link "농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상" [ref=e255] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상" [ref=e256]
+          - listitem [ref=e257]:
+            - link "산업통상자원부 2020 대한민국 중소중견기업혁신 대상 국회산업통상자원중소벤처위원회장상" [ref=e258] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "산업통상자원부 2020 대한민국 중소중견기업혁신 대상 국회산업통상자원중소벤처위원회장상" [ref=e259]
+          - listitem [ref=e260]:
+            - link "일자리위원회 2020 대한민국 일자리 유공 표창 대통령직속 일자리위원회 부위원장상" [ref=e261] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "일자리위원회 2020 대한민국 일자리 유공 표창 대통령직속 일자리위원회 부위원장상" [ref=e262]
+          - listitem [ref=e263]:
+            - link "동반성장위원회 2020 사랑나눔 사회공헌대상 동반성장위원회 위원장상" [ref=e264] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "동반성장위원회 2020 사랑나눔 사회공헌대상 동반성장위원회 위원장상" [ref=e265]
+          - listitem
+          - listitem [ref=e266]:
+            - link "소비자중심경영 CCM인증획득" [ref=e267] [cursor=pointer]:
+              - /url: /util/ccm.do
+              - img "소비자중심경영 CCM인증획득" [ref=e268]
+          - listitem
+          - listitem [ref=e269]:
+            - link "여섯가족부 2020 대한민국 일자리대상 여성가족부장관상" [ref=e270] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "여섯가족부 2020 대한민국 일자리대상 여성가족부장관상" [ref=e271]
+          - listitem [ref=e272]:
+            - link "행정안전부 2020 소방의 날 행정안전부장관 표창" [ref=e273] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "행정안전부 2020 소방의 날 행정안전부장관 표창" [ref=e274]
+          - listitem [ref=e275]:
+            - link "농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상" [ref=e276] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상" [ref=e277]
+          - listitem [ref=e278]:
+            - link "여섯가족부 2020 대한민국 일자리대상 여성가족부장관상" [ref=e279] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "여섯가족부 2020 대한민국 일자리대상 여성가족부장관상" [ref=e280]
+          - listitem [ref=e281]:
+            - link "행정안전부 2020 소방의 날 행정안전부장관 표창" [ref=e282] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "행정안전부 2020 소방의 날 행정안전부장관 표창" [ref=e283]
+          - listitem [ref=e284]:
+            - link "농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상" [ref=e285] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "농림축산식품부 2020 대한민국 커피산업대상 농림축산식품부 장관상" [ref=e286]
+          - listitem [ref=e287]:
+            - link "산업통상자원부 2020 대한민국 중소중견기업혁신 대상 국회산업통상자원중소벤처위원회장상" [ref=e288] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "산업통상자원부 2020 대한민국 중소중견기업혁신 대상 국회산업통상자원중소벤처위원회장상" [ref=e289]
+          - listitem [ref=e290]:
+            - link "일자리위원회 2020 대한민국 일자리 유공 표창 대통령직속 일자리위원회 부위원장상" [ref=e291] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "일자리위원회 2020 대한민국 일자리 유공 표창 대통령직속 일자리위원회 부위원장상" [ref=e292]
+          - listitem [ref=e293]:
+            - link "동반성장위원회 2020 사랑나눔 사회공헌대상 동반성장위원회 위원장상" [ref=e294] [cursor=pointer]:
+              - /url: javascript:void(0);
+              - img "동반성장위원회 2020 사랑나눔 사회공헌대상 동반성장위원회 위원장상" [ref=e295]
+        - link "Stop" [ref=e298] [cursor=pointer]:
+          - /url: ""
+      - link "Stop" [ref=e303] [cursor=pointer]:
+        - /url: ""
+    - complementary [ref=e304]:
+      - link "개인정보처리방침" [ref=e305] [cursor=pointer]:
+        - /url: /footer/etc/privacy.do
+      - link "영상정보처리기기 운영관리 방침" [ref=e306] [cursor=pointer]:
+        - /url: /footer/etc/rules_vod.do
+      - link "홈페이지 이용약관" [ref=e307] [cursor=pointer]:
+        - /url: /footer/etc/rules.do
+      - link "위치정보 이용약관" [ref=e308] [cursor=pointer]:
+        - /url: /footer/etc/rules_loc.do
+      - link "스타벅스 카드 이용약관" [ref=e309] [cursor=pointer]:
+        - /url: /footer/etc/rules_msr.do
+      - link "신세계 유니버스 클럽 이용약관" [ref=e310] [cursor=pointer]:
+        - /url: /footer/etc/rules_membership.do
+      - link "비회원 이용약관" [ref=e311] [cursor=pointer]:
+        - /url: /footer/etc/rules_non.do
+      - link "My DT Pass 서비스 이용약관" [ref=e313] [cursor=pointer]:
+        - /url: /footer/etc/rules_mdp.do
+      - link "윤리경영 핫라인" [ref=e314] [cursor=pointer]:
+        - /url: /footer/etc/hotline.do
+      - link "찾아오시는 길" [ref=e315] [cursor=pointer]:
+        - /url: /footer/etc/coming_route.do
+      - link "신규입점제의" [ref=e316] [cursor=pointer]:
+        - /url: /footer/partnership/new_partner.do
+      - link "사이트 맵" [ref=e317] [cursor=pointer]:
+        - /url: /footer/etc/sitemap.do
+      - list [ref=e318]:
+        - listitem [ref=e319]: "사업자등록번호 : 201-81-21515"
+        - listitem [ref=e320]: "주식회사 에스씨케이컴퍼니 대표이사 : 손정현"
+        - listitem [ref=e321]: "TEL : 1522-3232"
+        - listitem [ref=e322]: "개인정보 보호책임자 : 이찬우"
+      - generic [ref=e323]: ⓒ 2026 Starbucks Coffee Company. All Rights Reserved.

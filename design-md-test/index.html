@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOCTURNE — Objects of Light in the Dark</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script>
+    // Tailwind config mapping DESIGN.md tokens
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            surface: {
+              DEFAULT: "#121318",
+              dim: "#121318",
+              bright: "#38393f",
+              "container-lowest": "#0d0e13",
+              "container-low": "#1a1b21",
+              container: "#1e1f25",
+              "container-high": "#292a2f",
+              "container-highest": "#34343a",
+              variant: "#34343a",
+              tint: "#e9c400",
+            },
+            "on-surface": "#e3e1e9",
+            "on-surface-variant": "#d0c6ab",
+            outline: "#999077",
+            "outline-variant": "#4d4732",
+            primary: {
+              DEFAULT: "#fff6df",
+              container: "#ffd700",
+              fixed: "#ffe16d",
+              "fixed-dim": "#e9c400",
+              on: "#3a3000",
+              "on-container": "#705e00",
+            },
+            secondary: {
+              DEFAULT: "#bdf4ff",
+              container: "#00e3fd",
+              fixed: "#9cf0ff",
+              "fixed-dim": "#00daf3",
+              on: "#00363d",
+              "on-container": "#00616d",
+            },
+            tertiary: {
+              DEFAULT: "#fcf3ff",
+              container: "#e7d1ff",
+              fixed: "#eedbff",
+              "fixed-dim": "#d6bcf4",
+              on: "#3b2754",
+              "on-container": "#6b5586",
+            },
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', "system-ui", "sans-serif"],
+            body: ['"Inter"', "system-ui", "sans-serif"],
+          },
+          letterSpacing: {
+            "headline-xl": "-0.04em",
+            "headline-lg": "-0.02em",
+            "label-md": "0.1em",
+          },
+          maxWidth: {
+            container: "1280px",
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      /* Colors */
+      --surface: #121318;
+      --surface-bright: #38393f;
+      --surface-container-lowest: #0d0e13;
+      --surface-container-low: #1a1b21;
+      --surface-container: #1e1f25;
+      --surface-container-high: #292a2f;
+      --surface-container-highest: #34343a;
+      --surface-variant: #34343a;
+      --on-surface: #e3e1e9;
+      --on-surface-variant: #d0c6ab;
+      --outline: #999077;
+      --outline-variant: #4d4732;
+      --primary: #fff6df;
+      --primary-container: #ffd700;
+      --primary-fixed: #ffe16d;
+      --primary-fixed-dim: #e9c400;
+      --on-primary: #3a3000;
+      --secondary: #bdf4ff;
+      --secondary-container: #00e3fd;
+      --on-secondary: #00363d;
+      --tertiary: #fcf3ff;
+      --tertiary-container: #e7d1ff;
+      --on-tertiary-container: #6b5586;
+
+      /* Spacing */
+      --gutter: 24px;
+      --margin-mobile: 16px;
+      --margin-desktop: 64px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--surface);
+      color: var(--on-surface);
+      font-family: "Inter", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Typography tokens */
+    .t-headline-xl {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: clamp(44px, 7vw, 72px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+    .t-headline-lg {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: clamp(32px, 4.5vw, 48px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .t-headline-md {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+    @media (min-width: 768px) {
+      .t-headline-md {
+        font-size: 32px;
+        line-height: 40px;
+      }
+    }
+    .t-body-lg {
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 18px;
+      line-height: 28px;
+    }
+    .t-body-md {
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .t-label-md {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Glow text for hero headline */
+    .glow-headline {
+      text-shadow: 0 0 40px rgba(255, 215, 0, 0.28),
+        0 0 80px rgba(255, 215, 0, 0.15);
+    }
+
+    /* Glass level-2 */
+    .glass {
+      background: rgba(52, 52, 58, 0.2);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .glass-strong {
+      background: rgba(30, 31, 37, 0.55);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-hover {
+      transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 400ms ease, background-color 400ms ease,
+        border-color 400ms ease;
+    }
+    .glass-hover:hover {
+      background: rgba(56, 57, 63, 0.4);
+      transform: translateY(-4px);
+      border-color: rgba(189, 244, 255, 0.25);
+      box-shadow: 0 0 0 1px rgba(189, 244, 255, 0.15),
+        0 30px 80px -20px rgba(0, 227, 253, 0.25),
+        0 0 60px -10px rgba(0, 227, 253, 0.2);
+    }
+
+    /* Primary button — diamond ring */
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      transition: all 300ms ease;
+      box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.4),
+        0 10px 30px -10px rgba(255, 215, 0, 0.35);
+    }
+    .btn-primary:hover {
+      background: var(--primary-fixed);
+      box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.7),
+        0 0 30px rgba(255, 215, 0, 0.45),
+        0 20px 50px -10px rgba(255, 215, 0, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--secondary);
+      border: 1px solid rgba(189, 244, 255, 0.4);
+      transition: all 300ms ease;
+    }
+    .btn-secondary:hover {
+      background: rgba(0, 227, 253, 0.1);
+      border-color: rgba(189, 244, 255, 0.8);
+      box-shadow: 0 0 0 1px rgba(189, 244, 255, 0.3),
+        0 10px 40px -10px rgba(0, 227, 253, 0.4);
+    }
+
+    .btn-ghost {
+      color: var(--on-surface);
+      transition: color 200ms ease, background-color 200ms ease;
+    }
+    .btn-ghost:hover {
+      color: var(--primary-container);
+      background: rgba(255, 215, 0, 0.06);
+    }
+
+    /* Inputs */
+    .input-glass {
+      background: var(--surface-container-lowest);
+      color: var(--on-surface);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 200ms ease;
+    }
+    .input-glass::placeholder {
+      color: rgba(208, 198, 171, 0.5);
+    }
+    .input-glass:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(189, 244, 255, 0.15),
+        0 0 30px rgba(0, 227, 253, 0.18);
+    }
+
+    /* Marquee */
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+    .marquee-track {
+      animation: marquee 40s linear infinite;
+    }
+
+    /* Slow orbit rotation */
+    @keyframes orbit-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .orbit-slow {
+      animation: orbit-slow 80s linear infinite;
+    }
+    @keyframes orbit-rev {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+    .orbit-rev {
+      animation: orbit-rev 120s linear infinite;
+    }
+
+    /* Soft pulse */
+    @keyframes pulse-soft {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    .pulse-soft {
+      animation: pulse-soft 4s ease-in-out infinite;
+    }
+
+    /* Cosmic corona — large fixed background blobs */
+    .corona-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .corona-1 {
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1400px;
+      height: 1400px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at center,
+        rgba(231, 209, 255, 0.18) 0%,
+        rgba(0, 227, 253, 0.08) 22%,
+        rgba(18, 19, 24, 0) 55%
+      );
+      filter: blur(20px);
+    }
+    .corona-2 {
+      position: absolute;
+      bottom: -40%;
+      right: -10%;
+      width: 900px;
+      height: 900px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle at center,
+        rgba(255, 215, 0, 0.1) 0%,
+        rgba(255, 215, 0, 0.03) 30%,
+        rgba(18, 19, 24, 0) 60%
+      );
+      filter: blur(40px);
+    }
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.05;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.6'/></svg>");
+    }
+
+    /* Image fallback gradient */
+    .img-fallback {
+      background: radial-gradient(
+          circle at 30% 30%,
+          rgba(231, 209, 255, 0.3),
+          rgba(18, 19, 24, 0.9) 60%
+        ),
+        linear-gradient(135deg, #1e1f25, #0d0e13);
+    }
+
+    /* Underline link */
+    .ul-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--secondary);
+      transition: color 200ms ease;
+    }
+    .ul-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      height: 1px;
+      width: 100%;
+      background: currentColor;
+      transform: scaleX(0.3);
+      transform-origin: left;
+      transition: transform 300ms ease;
+    }
+    .ul-link:hover::after {
+      transform: scaleX(1);
+    }
+    .ul-link:hover {
+      color: var(--secondary-container);
+    }
+
+    /* Scrollbar hide */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Section divider hairline */
+    .hairline {
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.08),
+        transparent
+      );
+    }
+
+    /* Sheet animation */
+    @keyframes sheetIn {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    .sheet-anim {
+      animation: sheetIn 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // ========================================
+    // React Hooks
+    // ========================================
+    const { useState, useEffect, useRef, useMemo, useCallback } = React;
+
+    // ========================================
+    // Design System — Primitives
+    // ========================================
+    function Button({
+      variant = "primary",
+      size = "md",
+      children,
+      className = "",
+      ...rest
+    }) {
+      const sizes = {
+        sm: "h-10 px-4 text-[12px]",
+        md: "h-12 px-6 text-[14px]",
+        lg: "h-14 px-8 text-[14px]",
+      };
+      const variants = {
+        primary: "btn-primary",
+        secondary: "btn-secondary",
+        ghost: "btn-ghost",
+      };
+      return (
+        <button
+          className={`inline-flex items-center justify-center gap-2 rounded-lg font-display font-medium tracking-[0.1em] uppercase whitespace-nowrap ${sizes[size]} ${variants[variant]} ${className}`}
+          {...rest}
+        >
+          {children}
+        </button>
+      );
+    }
+
+    function IconButton({ children, className = "", glow = "cyan", ...rest }) {
+      const glowMap = {
+        cyan: "hover:text-secondary hover:shadow-[0_0_20px_rgba(0,227,253,0.4)] hover:border-secondary/40",
+        amber:
+          "hover:text-primary-container hover:shadow-[0_0_20px_rgba(255,215,0,0.4)] hover:border-primary-container/40",
+      };
+      return (
+        <button
+          className={`inline-flex items-center justify-center w-10 h-10 rounded-lg border border-white/10 text-on-surface bg-white/[0.03] transition-all duration-300 ${glowMap[glow]} ${className}`}
+          {...rest}
+        >
+          {children}
+        </button>
+      );
+    }
+
+    function Input({ className = "", ...rest }) {
+      return (
+        <input
+          className={`input-glass w-full h-12 px-4 rounded-lg t-body-md font-body ${className}`}
+          {...rest}
+        />
+      );
+    }
+
+    function Badge({ children, tone = "tertiary", className = "" }) {
+      const tones = {
+        tertiary:
+          "bg-tertiary-container text-tertiary-on-container",
+        cyan:
+          "bg-secondary/15 text-secondary border border-secondary/30",
+        amber:
+          "bg-primary-container/15 text-primary-container border border-primary-container/40",
+      };
+      const map = {
+        tertiary: { bg: "#e7d1ff", color: "#3b2754" },
+        cyan: null,
+        amber: null,
+      };
+      const inlineStyle =
+        tone === "tertiary"
+          ? { background: "#e7d1ff", color: "#3b2754" }
+          : tone === "cyan"
+          ? {
+              background: "rgba(0,227,253,0.12)",
+              color: "#bdf4ff",
+              border: "1px solid rgba(189,244,255,0.35)",
+            }
+          : {
+              background: "rgba(255,215,0,0.12)",
+              color: "#ffd700",
+              border: "1px solid rgba(255,215,0,0.4)",
+            };
+      return (
+        <span
+          className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full t-label-md ${className}`}
+          style={inlineStyle}
+        >
+          {children}
+        </span>
+      );
+    }
+
+    function GlassCard({ children, className = "", interactive = false, as: As = "div", ...rest }) {
+      return (
+        <As
+          className={`glass rounded-xl ${interactive ? "glass-hover cursor-pointer" : ""} ${className}`}
+          {...rest}
+        >
+          {children}
+        </As>
+      );
+    }
+
+    // ========================================
+    // Icons (inline SVG)
+    // ========================================
+    const Icon = {
+      Search: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width="18" height="18" {...props}><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      ),
+      Bag: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width="18" height="18" {...props}><path d="M6 7h12l-1.2 12.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+      ),
+      Heart: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width="18" height="18" {...props}><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9Z"/></svg>
+      ),
+      Arrow: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width="16" height="16" {...props}><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      ),
+      Play: (props) => (
+        <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" {...props}><path d="M7 5v14l12-7L7 5Z"/></svg>
+      ),
+      Menu: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" width="20" height="20" {...props}><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      ),
+      Close: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" width="20" height="20" {...props}><path d="M6 6l12 12M18 6 6 18"/></svg>
+      ),
+      Instagram: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="16" height="16" {...props}><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      ),
+      Pin: (props) => (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width="18" height="18" {...props}><path d="M12 21s-7-7.5-7-12a7 7 0 1 1 14 0c0 4.5-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      ),
+      Sparkle: (props) => (
+        <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" {...props}><path d="M12 2l1.6 6.4L20 10l-6.4 1.6L12 18l-1.6-6.4L4 10l6.4-1.6L12 2Z"/></svg>
+      ),
+    };
+
+    // ========================================
+    // Data
+    // ========================================
+    const NAV_ITEMS = ["Living", "Lighting", "Objects", "Collections", "Journal"];
+
+    const COLLECTIONS = [
+      {
+        id: "totality-25",
+        title: "Totality 25",
+        tagline: "The flagship season",
+        copy: "Eleven pieces shaped during the long shadow of a winter eclipse — heavy oak, smoked brass, breath-held proportions.",
+        img: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1200&q=80&auto=format&fit=crop",
+      },
+      {
+        id: "corona-living",
+        title: "Corona Living",
+        tagline: "Lounge & seating",
+        copy: "Curved silhouettes upholstered in bouclé and aged leather. Built to hold the room together when the lights go low.",
+        img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&q=80&auto=format&fit=crop",
+      },
+      {
+        id: "penumbra",
+        title: "Penumbra Lighting",
+        tagline: "Lamps & sculpture",
+        copy: "Light treated as material. Hand-blown smoked glass, hand-spun brass — each piece quietly luminous.",
+        img: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=1200&q=80&auto=format&fit=crop",
+      },
+    ];
+
+    const PRODUCTS = [
+      {
+        id: 1,
+        name: "Solstice Lounge Chair",
+        cat: "Seating",
+        price: "€4,890",
+        copy: "Tanned saddle leather, solid walnut frame. A chair that holds the body the way silence holds a room.",
+        img: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=900&q=80&auto=format&fit=crop",
+        celestial: true,
+      },
+      {
+        id: 2,
+        name: "Penumbra Floor Lamp",
+        cat: "Lighting",
+        price: "€2,890",
+        copy: "Hand-blown smoked glass orb floating on a slender brass stem.",
+        img: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=900&q=80&auto=format&fit=crop",
+      },
+      {
+        id: 3,
+        name: "Orbit Coffee Table",
+        cat: "Tables",
+        price: "€3,650",
+        copy: "Travertine disc cantilevered on a single brushed-bronze axis.",
+        img: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=900&q=80&auto=format&fit=crop",
+      },
+      {
+        id: 4,
+        name: "Corona Pendant",
+        cat: "Lighting",
+        price: "€5,240",
+        copy: "Eighteen blown-glass petals around a single point of light.",
+        img: "https://images.unsplash.com/photo-1524634126442-357e0eac3c14?w=900&q=80&auto=format&fit=crop",
+        celestial: true,
+      },
+      {
+        id: 5,
+        name: "Eclipse Sofa",
+        cat: "Seating",
+        price: "€12,400",
+        copy: "Three meters of low-slung bouclé. Engineered for long evenings.",
+        img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=900&q=80&auto=format&fit=crop",
+      },
+      {
+        id: 6,
+        name: "Aphelion Daybed",
+        cat: "Seating",
+        price: "€8,920",
+        copy: "Boucle and oiled walnut. A horizon line you can lie down on.",
+        img: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=900&q=80&auto=format&fit=crop",
+      },
+      {
+        id: 7,
+        name: "Helios Console",
+        cat: "Storage",
+        price: "€6,180",
+        copy: "Smoked oak, fluted brass detail. Built to anchor a long wall.",
+        img: "https://images.unsplash.com/photo-1581539250439-c96689b516dd?w=900&q=80&auto=format&fit=crop",
+      },
+      {
+        id: 8,
+        name: "Nocturne Dining Table",
+        cat: "Tables",
+        price: "€18,500",
+        copy: "Single slab of stained walnut. Seats eight. Built once, lasts a lifetime.",
+        img: "https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=900&q=80&auto=format&fit=crop",
+      },
+    ];
+
+    const MATERIALS = [
+      { name: "Walnut", note: "Italian solid plank, oil-finished by hand.", icon: "◐" },
+      { name: "Brass", note: "Unlacquered, allowed to age into its own patina.", icon: "✦" },
+      { name: "Travertine", note: "Quarried in Tivoli, brushed soft to the touch.", icon: "◯" },
+      { name: "Bouclé", note: "Belgian wool, hand-tufted for depth and pause.", icon: "◌" },
+      { name: "Smoked Glass", note: "Murano-blown, no two orbs alike.", icon: "◉" },
+      { name: "Belgian Linen", note: "Stonewashed, undyed, pre-shrunk by time.", icon: "◓" },
+    ];
+
+    const PRESS = [
+      "AD MAGAZINE",
+      "WALLPAPER*",
+      "DEZEEN",
+      "MONOCLE",
+      "T MAGAZINE",
+      "KINFOLK",
+    ];
+
+    const MARQUEE = [
+      "Free white-glove delivery",
+      "Handcrafted in Milan",
+      "25-year warranty",
+      "Bespoke commissions accepted",
+      "Showrooms in Seoul · Milan · Copenhagen",
+      "Members preview · Totality 25",
+    ];
+
+    // ========================================
+    // Hero Image with fallback
+    // ========================================
+    function FurnitureImage({ src, alt, className = "", imgClassName = "" }) {
+      const [errored, setErrored] = useState(false);
+      return (
+        <div className={`relative overflow-hidden ${className}`}>
+          {!errored ? (
+            <img
+              src={src}
+              alt={alt}
+              loading="lazy"
+              onError={() => setErrored(true)}
+              className={`w-full h-full object-cover ${imgClassName}`}
+            />
+          ) : (
+            <div className="absolute inset-0 img-fallback flex items-center justify-center">
+              <div className="w-32 h-32 rounded-full border border-white/10" style={{ boxShadow: "0 0 80px rgba(231,209,255,0.25)" }} />
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    // ========================================
+    // Cart Context (lightweight)
+    // ========================================
+    const CartContext = React.createContext(null);
+    function CartProvider({ children }) {
+      const [count, setCount] = useState(0);
+      const [wishlist, setWishlist] = useState({});
+      const add = useCallback(() => setCount((c) => c + 1), []);
+      const toggleWish = useCallback((id) => {
+        setWishlist((w) => ({ ...w, [id]: !w[id] }));
+      }, []);
+      return (
+        <CartContext.Provider value={{ count, add, wishlist, toggleWish }}>
+          {children}
+        </CartContext.Provider>
+      );
+    }
+    const useCart = () => React.useContext(CartContext);
+
+    // ========================================
+    // Cosmic Background
+    // ========================================
+    function CosmicBackground() {
+      return (
+        <>
+          <div className="corona-bg">
+            <div className="corona-1 pulse-soft" />
+            <div className="corona-2" />
+          </div>
+          <div className="grain" />
+        </>
+      );
+    }
+
+    // ========================================
+    // Mobile Sheet
+    // ========================================
+    function MobileSheet({ open, onClose }) {
+      if (!open) return null;
+      return (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={onClose}
+          />
+          <div className="absolute right-0 top-0 bottom-0 w-[85%] max-w-sm glass-strong sheet-anim flex flex-col">
+            <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
+              <span className="t-label-md text-on-surface-variant">Menu</span>
+              <IconButton onClick={onClose} aria-label="Close menu">
+                <Icon.Close />
+              </IconButton>
+            </div>
+            <nav className="flex-1 px-6 py-8 flex flex-col gap-1">
+              {NAV_ITEMS.map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  onClick={onClose}
+                  className="t-headline-md py-3 border-b border-white/5 hover:text-primary-container transition-colors"
+                >
+                  {item}
+                </a>
+              ))}
+            </nav>
+            <div className="p-6 border-t border-white/10">
+              <Button variant="primary" className="w-full">
+                Book a Viewing
+              </Button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // ========================================
+    // Navigation
+    // ========================================
+    function TopNav() {
+      const { count } = useCart();
+      const [scrolled, setScrolled] = useState(false);
+      const [menuOpen, setMenuOpen] = useState(false);
+
+      useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 20);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+      }, []);
+
+      return (
+        <>
+          <header
+            className={`fixed top-0 inset-x-0 z-40 transition-all duration-500 ${
+              scrolled ? "pt-3" : "pt-5"
+            }`}
+          >
+            <div className="mx-auto max-w-container px-4 lg:px-8">
+              <div
+                className={`glass rounded-2xl flex items-center justify-between gap-4 px-4 lg:px-6 transition-all duration-500 ${
+                  scrolled ? "h-14" : "h-16"
+                }`}
+              >
+                {/* Logo */}
+                <a href="#" className="flex items-center gap-2">
+                  <div className="relative w-6 h-6">
+                    <div
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background:
+                          "radial-gradient(circle at 30% 30%, #fff6df, #e9c400 60%, #3a3000)",
+                        boxShadow: "0 0 16px rgba(255,215,0,0.6)",
+                      }}
+                    />
+                    <div className="absolute inset-[2px] rounded-full bg-surface" />
+                  </div>
+                  <span className="font-display font-bold text-[18px] tracking-[0.18em]">
+                    NOCTURNE
+                  </span>
+                </a>
+
+                {/* Nav */}
+                <nav className="hidden lg:flex items-center gap-1">
+                  {NAV_ITEMS.map((item) => (
+                    <a
+                      key={item}
+                      href="#"
+                      className="t-label-md px-4 py-2 rounded-md text-on-surface-variant hover:text-primary-container hover:bg-white/[0.04] transition-colors"
+                    >
+                      {item}
+                    </a>
+                  ))}
+                </nav>
+
+                {/* Actions */}
+                <div className="flex items-center gap-2">
+                  <IconButton aria-label="Search" className="hidden sm:inline-flex">
+                    <Icon.Search />
+                  </IconButton>
+                  <div className="relative">
+                    <IconButton aria-label="Bag">
+                      <Icon.Bag />
+                    </IconButton>
+                    {count > 0 && (
+                      <span
+                        className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full text-[10px] font-display font-bold flex items-center justify-center"
+                        style={{
+                          background: "#ffd700",
+                          color: "#3a3000",
+                          boxShadow: "0 0 12px rgba(255,215,0,0.6)",
+                        }}
+                      >
+                        {count}
+                      </span>
+                    )}
+                  </div>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    className="hidden md:inline-flex"
+                  >
+                    Book a Viewing
+                  </Button>
+                  <IconButton
+                    aria-label="Open menu"
+                    className="lg:hidden"
+                    onClick={() => setMenuOpen(true)}
+                  >
+                    <Icon.Menu />
+                  </IconButton>
+                </div>
+              </div>
+            </div>
+          </header>
+          <MobileSheet open={menuOpen} onClose={() => setMenuOpen(false)} />
+        </>
+      );
+    }
+
+    // ========================================
+    // Hero
+    // ========================================
+    function Hero() {
+      return (
+        <section className="relative pt-32 lg:pt-40 pb-20 lg:pb-32 overflow-hidden">
+          {/* Hero radial gradient */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 50% at 50% 30%, rgba(189,244,255,0.10), rgba(231,209,255,0.06) 30%, rgba(18,19,24,0) 65%)",
+            }}
+          />
+
+          {/* Orbital decoration */}
+          <div className="absolute left-1/2 top-32 -translate-x-1/2 pointer-events-none opacity-60">
+            <svg width="600" height="600" viewBox="0 0 600 600" className="orbit-slow">
+              <circle cx="300" cy="300" r="220" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+              <circle cx="300" cy="300" r="280" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="1" strokeDasharray="2 4" />
+              <circle cx="300" cy="80" r="3" fill="#bdf4ff" />
+              <circle cx="580" cy="300" r="2" fill="#ffd700" />
+            </svg>
+          </div>
+
+          <div className="relative mx-auto max-w-container px-4 lg:px-8 grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+            {/* Left: copy */}
+            <div className="lg:col-span-7 relative z-10">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass mb-8">
+                <span
+                  className="w-1.5 h-1.5 rounded-full pulse-soft"
+                  style={{ background: "#00e3fd", boxShadow: "0 0 12px #00e3fd" }}
+                />
+                <span className="t-label-md text-secondary">
+                  Totality 25 — Now in Showroom
+                </span>
+              </div>
+
+              <h1 className="t-headline-xl font-display text-primary glow-headline">
+                In the dark,
+                <br />
+                light finds form.
+              </h1>
+
+              <p className="t-body-lg text-on-surface-variant mt-8 max-w-xl">
+                Furniture shaped in the silence before dawn — solid walnut,
+                hand-blown smoked glass, brass left to age. Heirloom objects for
+                rooms that remember stillness.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-3 mt-10">
+                <Button variant="primary" size="lg">
+                  Shop The Collection
+                  <Icon.Arrow />
+                </Button>
+                <Button variant="secondary" size="lg">
+                  <Icon.Play />
+                  Watch The Film
+                </Button>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-x-10 gap-y-4 mt-14">
+                {[
+                  ["Atelier", "Milan, IT"],
+                  ["Lead time", "8–12 weeks"],
+                  ["Warranty", "25 years"],
+                ].map(([k, v]) => (
+                  <div key={k}>
+                    <div className="t-label-md text-on-surface-variant/70">{k}</div>
+                    <div className="font-display text-[18px] mt-1">{v}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: image with floating glass card */}
+            <div className="lg:col-span-5 relative">
+              <div className="relative aspect-[4/5] max-w-md mx-auto lg:ml-auto lg:mr-0">
+                <div
+                  className="absolute -inset-8 rounded-full pointer-events-none"
+                  style={{
+                    background:
+                      "radial-gradient(circle at 50% 40%, rgba(255,215,0,0.18), rgba(0,227,253,0.08) 40%, transparent 70%)",
+                    filter: "blur(20px)",
+                  }}
+                />
+                <FurnitureImage
+                  src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=1000&q=80&auto=format&fit=crop"
+                  alt="Solstice Lounge Chair"
+                  className="absolute inset-0 rounded-xl"
+                  imgClassName="rounded-xl"
+                />
+                {/* gradient veil */}
+                <div
+                  className="absolute inset-0 rounded-xl pointer-events-none"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(18,19,24,0) 30%, rgba(18,19,24,0.6) 100%)",
+                  }}
+                />
+
+                {/* Floating product card */}
+                <div className="absolute -bottom-6 -left-6 lg:-left-10 right-6 lg:right-auto lg:w-72 glass rounded-xl p-4 flex items-center gap-3 shadow-2xl">
+                  <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+                    <FurnitureImage
+                      src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=200&q=80&auto=format&fit=crop"
+                      alt=""
+                      className="w-full h-full"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="t-label-md text-on-surface-variant/80">Featured</div>
+                    <div className="font-display font-semibold truncate">
+                      Solstice Lounge Chair
+                    </div>
+                  </div>
+                  <div className="font-display font-semibold text-primary-container">
+                    €4,890
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ========================================
+    // Marquee Ticker
+    // ========================================
+    function Marquee() {
+      const items = [...MARQUEE, ...MARQUEE];
+      return (
+        <section className="relative py-6 border-y border-white/5 overflow-hidden">
+          <div className="flex marquee-track whitespace-nowrap">
+            {items.map((t, i) => (
+              <span key={i} className="flex items-center gap-8 t-label-md text-on-surface-variant/70 px-8">
+                {t}
+                <span className="text-primary-container">✦</span>
+              </span>
+            ))}
+          </div>
+        </section>
+      );
+    }
+
+    // ========================================
+    // Featured Collections
+    // ========================================
+    function Collections() {
+      return (
+        <section className="relative py-24 lg:py-32">
+          <div className="mx-auto max-w-container px-4 lg:px-8">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
+              <div>
+                <div className="t-label-md text-secondary mb-4">— Seasons</div>
+                <h2 className="t-headline-lg font-display max-w-2xl">
+                  Three collections,
+                  <span className="text-on-surface-variant"> one long shadow.</span>
+                </h2>
+              </div>
+              <a href="#" className="ul-link t-label-md">
+                View all collections <Icon.Arrow />
+              </a>
+            </div>
+
+            <div className="grid lg:grid-cols-3 gap-6">
+              {COLLECTIONS.map((c, i) => (
+                <GlassCard
+                  key={c.id}
+                  interactive
+                  className={`p-5 ${i === 0 ? "lg:row-span-2 lg:col-span-1" : ""}`}
+                >
+                  <FurnitureImage
+                    src={c.img}
+                    alt={c.title}
+                    className="aspect-[4/3] rounded-xl"
+                    imgClassName="rounded-xl"
+                  />
+                  <div className="pt-6 pb-2 px-1">
+                    <div className="t-label-md text-on-surface-variant">{c.tagline}</div>
+                    <h3 className="t-headline-md mt-2">{c.title}</h3>
+                    <p className="t-body-md text-on-surface-variant mt-3">{c.copy}</p>
+                    <div className="mt-6 flex items-center justify-between">
+                      <a href="#" className="ul-link t-label-md">
+                        Explore <Icon.Arrow />
+                      </a>
+                      <span className="t-label-md text-on-surface-variant/60">
+                        0{i + 1} / 0{COLLECTIONS.length}
+                      </span>
+                    </div>
+                  </div>
+                </GlassCard>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ========================================
+    // Signature Pieces — Product Grid
+    // ========================================
+    function ProductCard({ p }) {
+      const { add, wishlist, toggleWish } = useCart();
+      const wished = !!wishlist[p.id];
+
+      return (
+        <GlassCard interactive className="p-4 flex flex-col">
+          <div className="relative aspect-[4/5] rounded-xl overflow-hidden">
+            <FurnitureImage
+              src={p.img}
+              alt={p.name}
+              className="absolute inset-0"
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(18,19,24,0) 50%, rgba(18,19,24,0.55) 100%)",
+              }}
+            />
+            {p.celestial && (
+              <div className="absolute top-3 left-3">
+                <Badge tone="tertiary">
+                  <Icon.Sparkle /> Celestial
+                </Badge>
+              </div>
+            )}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleWish(p.id);
+              }}
+              aria-label="Wishlist"
+              className="absolute top-3 right-3 w-9 h-9 rounded-full border border-white/15 backdrop-blur-md flex items-center justify-center transition-all duration-300"
+              style={{
+                background: wished
+                  ? "rgba(0,227,253,0.18)"
+                  : "rgba(13,14,19,0.5)",
+                color: wished ? "#00e3fd" : "#e3e1e9",
+                boxShadow: wished ? "0 0 18px rgba(0,227,253,0.4)" : "none",
+              }}
+            >
+              <Icon.Heart />
+            </button>
+          </div>
+
+          <div className="pt-5 px-1 flex-1 flex flex-col">
+            <div className="t-label-md text-on-surface-variant/80">{p.cat}</div>
+            <h3 className="font-display font-semibold text-[20px] leading-tight mt-2">
+              {p.name}
+            </h3>
+            <p className="t-body-md text-on-surface-variant mt-2 line-clamp-2">
+              {p.copy}
+            </p>
+            <div className="mt-auto pt-5 flex items-center justify-between">
+              <div className="font-display font-semibold text-[18px] text-primary-container">
+                {p.price}
+              </div>
+              <button
+                onClick={() => add()}
+                className="ul-link t-label-md"
+              >
+                View <Icon.Arrow />
+              </button>
+            </div>
+          </div>
+        </GlassCard>
+      );
+    }
+
+    function Signature() {
+      const [filter, setFilter] = useState("All");
+      const cats = useMemo(
+        () => ["All", ...Array.from(new Set(PRODUCTS.map((p) => p.cat)))],
+        []
+      );
+      const list = useMemo(
+        () => (filter === "All" ? PRODUCTS : PRODUCTS.filter((p) => p.cat === filter)),
+        [filter]
+      );
+
+      return (
+        <section className="relative py-24 lg:py-32">
+          <div className="mx-auto max-w-container px-4 lg:px-8">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+              <div>
+                <div className="t-label-md text-secondary mb-4">— Signature pieces</div>
+                <h2 className="t-headline-lg font-display max-w-2xl">
+                  Heirlooms in waiting.
+                </h2>
+                <p className="t-body-lg text-on-surface-variant mt-4 max-w-xl">
+                  Each object made to order in our Milan atelier — never identical, never rushed.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {cats.map((c) => (
+                  <button
+                    key={c}
+                    onClick={() => setFilter(c)}
+                    className={`t-label-md px-4 py-2 rounded-lg border transition-all duration-300 ${
+                      filter === c
+                        ? "border-primary-container/60 text-primary-container bg-primary-container/10"
+                        : "border-white/10 text-on-surface-variant hover:border-white/30 hover:text-on-surface"
+                    }`}
+                    style={
+                      filter === c
+                        ? { boxShadow: "0 0 20px rgba(255,215,0,0.18)" }
+                        : undefined
+                    }
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {list.map((p) => (
+                <ProductCard key={p.id} p={p} />
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ========================================
+    // Atelier / Story
+    // ========================================
+    function Atelier() {
+      return (
+        <section className="relative py-24 lg:py-32">
+          <div className="mx-auto max-w-container px-4 lg:px-8 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            <div className="lg:col-span-5 relative">
+              <div
+                className="absolute -inset-4 rounded-2xl pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(circle at 50% 40%, rgba(231,209,255,0.18), transparent 60%)",
+                  filter: "blur(30px)",
+                }}
+              />
+              <FurnitureImage
+                src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1000&q=80&auto=format&fit=crop"
+                alt="The atelier"
+                className="relative aspect-[4/5] rounded-xl"
+                imgClassName="rounded-xl"
+              />
+              {/* glass overlay quote */}
+              <div className="absolute bottom-6 left-6 right-6 glass rounded-xl p-4">
+                <div className="t-label-md text-secondary">— The Atelier</div>
+                <div className="font-display text-[18px] mt-1">Via Tortona 27, Milano</div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7">
+              <div className="t-label-md text-secondary mb-4">— Story</div>
+              <h2 className="t-headline-lg font-display">
+                Crafted in the silence of dawn,
+                <br />
+                shaped by hands that know
+                <br />
+                the weight of stillness.
+              </h2>
+              <div className="hairline my-10" />
+              <div className="grid sm:grid-cols-2 gap-8 t-body-md text-on-surface-variant">
+                <p>
+                  We are six makers in a brick atelier on the edge of the Naviglio. We work in walnut,
+                  brass and breath. Nothing leaves the workshop on a deadline.
+                </p>
+                <p>
+                  Every piece is signed, numbered, and recorded in a leather-bound ledger that has been kept
+                  since 1979 — the year our grandfather first carved a single chair from a fallen oak.
+                </p>
+              </div>
+              <div className="mt-10 flex flex-wrap gap-3">
+                <Button variant="secondary">Read the journal</Button>
+                <Button variant="ghost">Visit the atelier <Icon.Arrow /></Button>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ========================================
+    // Materials
+    // ========================================
+    function Materials() {
+      return (
+        <section className="relative py-24 lg:py-32">
+          <div className="mx-auto max-w-container px-4 lg:px-8">
+            <div className="max-w-2xl mb-14">
+              <div className="t-label-md text-secondary mb-4">— Materials & Process</div>
+              <h2 className="t-headline-lg font-display">
+                Six materials.
+                <br />
+                <span className="text-on-surface-variant">A lifetime of patience.</span>
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {MATERIALS.map((m) => (
+                <GlassCard key={m.name} interactive className="p-6">
+                  <div className="flex items-start justify-between mb-6">
+                    <div
+                      className="w-12 h-12 rounded-full flex items-center justify-center text-[22px]"
+                      style={{
+                        background:
+                          "radial-gradient(circle at 30% 30%, rgba(255,215,0,0.25), rgba(255,215,0,0) 70%)",
+                        color: "#ffd700",
+                        border: "1px solid rgba(255,215,0,0.25)",
+                      }}
+                    >
+                      {m.icon}
+                    </div>
+                    <span className="t-label-md text-on-surface-variant/60">
+                      {String(MATERIALS.indexOf(m) + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="font-display font-semibold text-[22px]">{m.name}</h3>
+                  <p className="t-body-md text-on-surface-variant mt-2">{m.note}</p>
+                </GlassCard>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ========================================
+    // Press & Testimonial
+    // ========================================
+    function Press() {
+      return (
+        <section className="relative py-24 lg:py-32">
+          <div className="mx-auto max-w-container px-4 lg:px-8">
+            <div className="text-center mb-12">
+              <div className="t-label-md text-secondary">— As seen in</div>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 mb-20 opacity-70">
+              {PRESS.map((p) => (
+                <span
+                  key={p}
+                  className="font-display font-semibold tracking-[0.25em] text-on-surface-variant text-[14px] md:text-[18px]"
+                >
+                  {p}
+                </span>
+              ))}
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <GlassCard className="p-8 lg:p-12 relative overflow-hidden">
+                <div
+                  className="absolute -top-10 -right-10 w-56 h-56 rounded-full pointer-events-none"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(255,215,0,0.18), transparent 70%)",
+                    filter: "blur(20px)",
+                  }}
+                />
+                <div className="font-display text-[80px] leading-none text-primary-container/50">
+                  “
+                </div>
+                <blockquote className="t-headline-md font-display text-on-surface -mt-4">
+                  It feels less like furniture and more like punctuation in a sentence of light.
+                </blockquote>
+                <div className="mt-8 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary-container/20 border border-primary-container/30 flex items-center justify-center text-primary-container font-display font-bold">
+                    A
+                  </div>
+                  <div>
+                    <div className="font-display font-semibold">AD Magazine</div>
+                    <div className="t-label-md text-on-surface-variant/70">Spring 2026</div>
+                  </div>
+                </div>
+              </GlassCard>
+
+              <GlassCard className="p-8 lg:p-12 relative overflow-hidden">
+                <div
+                  className="absolute -top-10 -right-10 w-56 h-56 rounded-full pointer-events-none"
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(0,227,253,0.18), transparent 70%)",
+                    filter: "blur(20px)",
+                  }}
+                />
+                <div className="font-display text-[80px] leading-none text-secondary/50">
+                  “
+                </div>
+                <blockquote className="t-headline-md font-display text-on-surface -mt-4">
+                  A studio that treats a chair the way a poet treats a single, perfect line.
+                </blockquote>
+                <div className="mt-8 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-secondary/20 border border-secondary/30 flex items-center justify-center text-secondary font-display font-bold">
+                    W
+                  </div>
+                  <div>
+                    <div className="font-display font-semibold">Wallpaper*</div>
+                    <div className="t-label-md text-on-surface-variant/70">Issue 314</div>
+                  </div>
+                </div>
+              </GlassCard>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ========================================
+    // Showroom / Booking
+    // ========================================
+    function Showroom() {
+      const [form, setForm] = useState({ name: "", email: "", date: "", city: "Milano" });
+      const [sent, setSent] = useState(false);
+
+      const submit = (e) => {
+        e.preventDefault();
+        if (!form.name || !form.email) return;
+        setSent(true);
+      };
+
+      return (
+        <section className="relative py-24 lg:py-32">
+          <div className="mx-auto max-w-container px-4 lg:px-8 grid lg:grid-cols-12 gap-10 items-start">
+            <div className="lg:col-span-5">
+              <div className="t-label-md text-secondary mb-4">— Visit</div>
+              <h2 className="t-headline-lg font-display">
+                Book a private viewing.
+              </h2>
+              <p className="t-body-lg text-on-surface-variant mt-6 max-w-md">
+                Spend an unhurried afternoon among the collection. Espresso, low light, no salesfloor — just objects, properly seen.
+              </p>
+
+              <div className="mt-10 flex flex-col gap-5">
+                {[
+                  ["Milano", "Via Tortona 27 · By appointment"],
+                  ["Seoul", "Hannam-daero 12 · By appointment"],
+                  ["Copenhagen", "Bredgade 49 · By appointment"],
+                ].map(([city, addr]) => (
+                  <div key={city} className="flex items-start gap-3">
+                    <div className="mt-1 text-secondary"><Icon.Pin /></div>
+                    <div>
+                      <div className="font-display font-semibold">{city}</div>
+                      <div className="t-body-md text-on-surface-variant">{addr}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:col-span-7">
+              <GlassCard className="p-6 lg:p-10">
+                {!sent ? (
+                  <form onSubmit={submit} className="flex flex-col gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="t-label-md text-on-surface-variant block mb-2">Name</label>
+                        <Input
+                          required
+                          placeholder="Your name"
+                          value={form.name}
+                          onChange={(e) => setForm({ ...form, name: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <label className="t-label-md text-on-surface-variant block mb-2">Email</label>
+                        <Input
+                          required
+                          type="email"
+                          placeholder="you@studio.com"
+                          value={form.email}
+                          onChange={(e) => setForm({ ...form, email: e.target.value })}
+                        />
+                      </div>
+                    </div>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <label className="t-label-md text-on-surface-variant block mb-2">Preferred date</label>
+                        <Input
+                          type="date"
+                          value={form.date}
+                          onChange={(e) => setForm({ ...form, date: e.target.value })}
+                        />
+                      </div>
+                      <div>
+                        <label className="t-label-md text-on-surface-variant block mb-2">Showroom</label>
+                        <select
+                          className="input-glass w-full h-12 px-4 rounded-lg t-body-md font-body"
+                          value={form.city}
+                          onChange={(e) => setForm({ ...form, city: e.target.value })}
+                        >
+                          <option>Milano</option>
+                          <option>Seoul</option>
+                          <option>Copenhagen</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div>
+                      <label className="t-label-md text-on-surface-variant block mb-2">Note (optional)</label>
+                      <textarea
+                        rows={3}
+                        placeholder="Anything we should prepare for your visit?"
+                        className="input-glass w-full p-4 rounded-lg t-body-md font-body resize-none"
+                      />
+                    </div>
+                    <div className="flex items-center justify-between flex-wrap gap-4 pt-2">
+                      <p className="t-label-md text-on-surface-variant/70">
+                        We respond within one working day.
+                      </p>
+                      <Button variant="primary" size="lg" type="submit">
+                        Request Viewing <Icon.Arrow />
+                      </Button>
+                    </div>
+                  </form>
+                ) : (
+                  <div className="py-10 text-center">
+                    <div
+                      className="mx-auto w-14 h-14 rounded-full flex items-center justify-center mb-6"
+                      style={{
+                        background: "rgba(0,227,253,0.15)",
+                        color: "#00e3fd",
+                        border: "1px solid rgba(0,227,253,0.35)",
+                        boxShadow: "0 0 32px rgba(0,227,253,0.3)",
+                      }}
+                    >
+                      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12l4 4L19 7"/></svg>
+                    </div>
+                    <h3 className="t-headline-md font-display">Request received.</h3>
+                    <p className="t-body-md text-on-surface-variant mt-3 max-w-md mx-auto">
+                      Thank you, {form.name || "friend"}. We will be in touch about your visit to {form.city} shortly.
+                    </p>
+                  </div>
+                )}
+              </GlassCard>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // ========================================
+    // Newsletter
+    // ========================================
+    function Newsletter() {
+      const [email, setEmail] = useState("");
+      const [sent, setSent] = useState(false);
+      const submit = (e) => {
+        e.preventDefault();
+        if (!email) return;
+        setSent(true);
+        setEmail("");
+      };
+
+      return (
+        <section className="relative py-24 lg:py-32">
+          <div className="mx-auto max-w-container px-4 lg:px-8">
+            <GlassCard className="relative overflow-hidden p-8 lg:p-16">
+              <div
+                className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(0,227,253,0.18), transparent 65%)",
+                  filter: "blur(30px)",
+                }}
+              />
+              <div
+                className="absolute -bottom-32 -right-32 w-[500px] h-[500px] rounded-full pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(255,215,0,0.14), transparent 65%)",
+                  filter: "blur(30px)",
+                }}
+              />
+
+              <div className="relative grid lg:grid-cols-12 gap-10 items-center">
+                <div className="lg:col-span-7">
+                  <div className="t-label-md text-secondary mb-4">— Transmissions</div>
+                  <h2 className="t-headline-lg font-display">
+                    Receive transmissions
+                    <br />
+                    <span className="text-on-surface-variant">from the studio.</span>
+                  </h2>
+                  <p className="t-body-md text-on-surface-variant mt-4 max-w-md">
+                    Quiet dispatches — new pieces, atelier notes, occasional film. Roughly once a month.
+                  </p>
+                </div>
+
+                <div className="lg:col-span-5">
+                  {!sent ? (
+                    <form onSubmit={submit} className="flex flex-col gap-3">
+                      <Input
+                        type="email"
+                        placeholder="you@studio.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                      <Button variant="secondary" type="submit" className="w-full">
+                        Subscribe <Icon.Arrow />
+                      </Button>
+                      <p className="t-label-md text-on-surface-variant/60 mt-1">
+                        By subscribing you agree to our privacy policy.
+                      </p>
+                    </form>
+                  ) : (
+                    <div
+                      className="rounded-xl p-5 flex items-center gap-3"
+                      style={{
+                        background: "rgba(0,227,253,0.10)",
+                        border: "1px solid rgba(189,244,255,0.35)",
+                        boxShadow: "0 0 30px rgba(0,227,253,0.25)",
+                      }}
+                    >
+                      <div
+                        className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
+                        style={{
+                          background: "rgba(0,227,253,0.2)",
+                          color: "#00e3fd",
+                        }}
+                      >
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12l4 4L19 7"/></svg>
+                      </div>
+                      <div>
+                        <div className="font-display font-semibold text-secondary">
+                          You're on the list.
+                        </div>
+                        <div className="t-body-md text-on-surface-variant">
+                          The first transmission lands soon.
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </GlassCard>
+          </div>
+        </section>
+      );
+    }
+
+    // ========================================
+    // Footer
+    // ========================================
+    function Footer() {
+      const cols = [
+        {
+          title: "Shop",
+          items: ["Living", "Lighting", "Tables", "Storage", "Objects"],
+        },
+        {
+          title: "Studio",
+          items: ["The Atelier", "Materials", "Journal", "Press", "Contact"],
+        },
+        {
+          title: "Service",
+          items: ["Trade Program", "Bespoke", "Care Guide", "Shipping", "Warranty"],
+        },
+        {
+          title: "법적 고지",
+          items: ["이용약관", "개인정보처리방침", "환불정책", "사업자정보"],
+        },
+      ];
+
+      return (
+        <footer className="relative pt-24 pb-10 border-t border-white/5">
+          <div className="mx-auto max-w-container px-4 lg:px-8">
+            <div className="grid lg:grid-cols-12 gap-10">
+              <div className="lg:col-span-4">
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="relative w-7 h-7">
+                    <div
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background:
+                          "radial-gradient(circle at 30% 30%, #fff6df, #e9c400 60%, #3a3000)",
+                        boxShadow: "0 0 16px rgba(255,215,0,0.6)",
+                      }}
+                    />
+                    <div className="absolute inset-[2px] rounded-full bg-surface" />
+                  </div>
+                  <span className="font-display font-bold text-[20px] tracking-[0.18em]">
+                    NOCTURNE
+                  </span>
+                </div>
+                <p className="t-body-md text-on-surface-variant max-w-sm">
+                  Objects of light, made in the dark. A small Milan atelier of six makers, since 1979.
+                </p>
+
+                <div className="mt-8 flex items-center gap-3">
+                  <IconButton aria-label="Instagram">
+                    <Icon.Instagram />
+                  </IconButton>
+                  <IconButton aria-label="Search">
+                    <Icon.Search />
+                  </IconButton>
+                </div>
+              </div>
+
+              <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+                {cols.map((c) => (
+                  <div key={c.title}>
+                    <h4 className="t-label-md text-on-surface-variant/80 mb-5">
+                      {c.title}
+                    </h4>
+                    <ul className="flex flex-col gap-3">
+                      {c.items.map((i) => (
+                        <li key={i}>
+                          <a
+                            href="#"
+                            className="t-body-md hover:text-primary-container transition-colors"
+                          >
+                            {i}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="hairline my-12" />
+
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <p className="t-label-md text-on-surface-variant/60">
+                © 2026 NOCTURNE OBJECTS S.r.l. — Via Tortona 27, 20144 Milano, IT
+              </p>
+              <p className="t-label-md text-on-surface-variant/60">
+                Crafted in shadow. Shipped worldwide.
+              </p>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    // ========================================
+    // App
+    // ========================================
+    function App() {
+      return (
+        <CartProvider>
+          <CosmicBackground />
+          <div className="relative z-10">
+            <TopNav />
+            <main>
+              <Hero />
+              <Marquee />
+              <Collections />
+              <Signature />
+              <Atelier />
+              <Materials />
+              <Press />
+              <Showroom />
+              <Newsletter />
+            </main>
+            <Footer />
+          </div>
+        </CartProvider>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
